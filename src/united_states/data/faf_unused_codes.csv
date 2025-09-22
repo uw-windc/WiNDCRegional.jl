@@ -1,0 +1,48 @@
+naics,description
+22,Utilities (22)
+23,Construction (23)
+42,Wholesale trade (42)
+441,Motor vehicle and parts dealers (441)
+445,Food and beverage stores (445)
+452,General merchandise stores (452)
+4A0,Other retail (4A0)
+481,Air transportation (481)
+482,Rail transportation (482)
+483,Water transportation (483)
+484,Truck transportation (484)
+485,Transit and ground passenger transportation (485)
+486,Pipeline transportation (486)
+487OS,Other transportation and support activities (487OS)
+493,Warehousing and storage (493)
+511,"Publishing industries, except internet (includes software) (511)"
+512,Motion picture and sound recording industries (512)
+513,Broadcasting and telecommunications (513)
+514,"Data processing, internet publishing, and other information services (514)"
+521CI,"Federal Reserve banks, credit intermediation, and related activities (521CI)"
+523,"Securities, commodity contracts, and investments (523)"
+524,Insurance carriers and related activities (524)
+525,"Funds, trusts, and other financial vehicles (525)"
+HS,Housing (HS)
+ORE,Other real estate (ORE)
+532RL,Rental and leasing services and lessors of intangible assets (532RL)
+5411,Legal services (5411)
+5415,Computer systems design and related services (5415)
+5412OP,"Miscellaneous professional, scientific, and technical services (5412OP)"
+55,Management of companies and enterprises (55)
+561,Administrative and support services (561)
+562,Waste management and remediation services (562)
+61,Educational services (61)
+621,Ambulatory health care services (621)
+622,Hospitals (622)
+623,Nursing and residential care facilities (623)
+624,Social assistance (624)
+711AS,"Performing arts, spectator sports, museums, and related activities (711AS)"
+713,"Amusements, gambling, and recreation industries (713)"
+721,Accommodation (721)
+722,Food services and drinking places (722)
+81,"Other services, except government (81)"
+GFGD,Federal general government (defense) (GFGD)
+GFGN,Federal general government (nondefense) (GFGN)
+GFE,Federal government enterprises (GFE)
+GSLG,State and local general government (GSLG)
+GSLE,State and local government enterprises (GSLE)

@@ -1,0 +1,58 @@
+sctg2,naics,description
+01,111CA,Farms (111-112)
+02,111CA,Farms (111-112)
+03,111CA,Farms (111-112)
+04,111CA,Farms (111-112)
+05,111CA,Farms (111-112)
+01,113FF,"Forestry, fishing, and related activities (113-115)"
+25,113FF,"Forestry, fishing, and related activities (113-115)"
+16,211,Oil and gas extraction (211)
+19,211,Oil and gas extraction (211)
+10,212,"Mining, except oil and gas (212)"
+11,212,"Mining, except oil and gas (212)"
+12,212,"Mining, except oil and gas (212)"
+13,212,"Mining, except oil and gas (212)"
+14,212,"Mining, except oil and gas (212)"
+15,212,"Mining, except oil and gas (212)"
+10,213,Support activities for mining (213)
+11,213,Support activities for mining (213)
+12,213,Support activities for mining (213)
+13,213,Support activities for mining (213)
+14,213,Support activities for mining (213)
+15,213,Support activities for mining (213)
+26,321,Wood products manufacturing (321)
+31,327,Nonmetallic mineral products manufacturing (327)
+32,331,Primary metals manufacturing (331)
+33,331,Primary metals manufacturing (331)
+32,332,Fabricated metal products (332)
+33,332,Fabricated metal products (332)
+34,333,Machinery manufacturing (333)
+35,334,Computer and electronic products manufacturing (334)
+35,335,"Electrical equipment, appliance, and components manufacturing (335)"
+36,3361MV,"Motor vehicles, bodies and trailers, and parts manufacturing (3361-3363)"
+37,3364OT,"Other transportation equipment manufacturing (3364-3366, 3369)"
+39,337,Furniture and related products manufacturing (337)
+40,339,Miscellaneous manufacturing (339)
+06,311FT,Food and beverage and tobacco products manufacturing (311-312)
+07,311FT,Food and beverage and tobacco products manufacturing (311-312)
+08,311FT,Food and beverage and tobacco products manufacturing (311-312)
+09,311FT,Food and beverage and tobacco products manufacturing (311-312)
+30,313TT,Textile mills and textile product mills (313-314)
+30,315AL,Apparel and leather and allied products manufacturing (315-316)
+27,322,Paper products manufacturing (322)
+28,322,Paper products manufacturing (322)
+29,323,Printing and related support activities (323)
+17,324,Petroleum and coal products manufacturing (324)
+18,324,Petroleum and coal products manufacturing (324)
+19,324,Petroleum and coal products manufacturing (324)
+20,325,Chemical products manufacturing (325)
+21,325,Chemical products manufacturing (325)
+22,325,Chemical products manufacturing (325)
+23,325,Chemical products manufacturing (325)
+24,326,Plastics and rubber products manufacturing (326)
+41,Other,Noncomparable imports and rest-of-the-world adjustment
+43,Other,Noncomparable imports and rest-of-the-world adjustment
+41,Used,"Scrap, used and secondhand goods"
+43,Used,"Scrap, used and secondhand goods"
+38,339,Miscellaneous manufacturing (339)
+38,335,"Electrical equipment, appliances, and components (335)"
