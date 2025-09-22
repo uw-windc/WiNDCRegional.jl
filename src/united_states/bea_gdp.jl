@@ -12,12 +12,13 @@ end
 
 function load_state_gdp(
     path::String, 
-    name::String; 
-    missing_goods =  []
+    state_fips::DataFrame,
+    industry_codes::DataFrame,
+    name::String
     )
 
     df = CSV.read(
-        joinpath(base_dir, "bea_gdp",path),  # Fix this
+        path,
         DataFrame,
         footerskip = 4,
                 missingstring = [
@@ -44,14 +45,9 @@ function load_state_gdp(
         x -> subset(x, :value => ByRow(!iszero))
 
 
-    states_years = df |>
-        x -> select(x, :year, :state, :name) |>
-        x -> unique(x, [:year, :state])
-
-    df = vcat(
-        df,
-        add_good.(Ref(states_years), missing_goods)...
-    )
-
     return df
+
+
 end
+
+
