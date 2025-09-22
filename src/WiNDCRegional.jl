@@ -13,7 +13,7 @@ module WiNDCRegional
 
     include("united_states/common_files.jl")
 
-    export load_state_fips, load_industry_codes, disaggregate_by_shares, load_pce_map
+    export load_state_fips, load_industry_codes, disaggregate_by_shares, load_pce_map, load_sgf_map
     
     include("united_states/bea_gdp.jl")
 
@@ -26,5 +26,5 @@ module WiNDCRegional
 
     include("united_states/state_finances.jl")
 
-    export load_sgf_map, load_state_finances
+    export load_state_finances
 end

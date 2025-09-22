@@ -38,34 +38,7 @@ function load_sgf(base_path::String, path::AbstractString; parser = parse_sgf_li
 end
 
 
-"""
-    load_sgf_map(;
-            path = joinpath(@__DIR__, "data", "sgf_map.csv"),
-            keep_cols::Vector{Symbol} = []
-        )
 
-
-Load the SGF to NAICS mapping file. Optionally keep only a subset of columns, by 
-default keep all columns.
-"""
-function load_sgf_map(;
-        path = joinpath(@__DIR__, "data", "sgf_map.csv"),
-        keep_cols::Vector{Symbol} = []
-    )
-
-    sgf_map = CSV.read(
-        path,
-        DataFrame,
-    ) 
-
-    if !isempty(keep_cols)
-        sgf_map = select(sgf_map, keep_cols)
-    end
-
-
-    return sgf_map
-
-end
 
 """
     load_state_finances(

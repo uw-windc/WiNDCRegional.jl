@@ -69,10 +69,48 @@ function load_pce_map(;
 end
 
 
+function load_faf_map(; 
+        path = joinpath(@__DIR__,  "data", "faf_map.csv"),
+        keep_cols::Vector{Symbol} = [:sctg2, :naics]
+    )
+    df = CSV.read(
+        path,
+        DataFrame;
+        select = keep_cols,
+        types = Dict(keep_cols .=> String)
+        ) |>
+        x -> transform(x, :naics => ByRow(Symbol) => :naics) 
+        
+    return df
+end
 
 
+"""
+    load_sgf_map(;
+            path = joinpath(@__DIR__, "data", "sgf_map.csv"),
+            keep_cols::Vector{Symbol} = []
+        )
 
 
+Load the SGF to NAICS mapping file. Optionally keep only a subset of columns, by 
+default keep all columns.
+"""
+function load_sgf_map(;
+        path = joinpath(@__DIR__, "data", "sgf_map.csv"),
+        keep_cols::Vector{Symbol} = [:naics, :sgf_code]
+    )
+
+    sgf_map = CSV.read(
+        path,
+        DataFrame,
+        select = keep_cols,
+        types = Dict(keep_cols .=> String)
+    ) 
+
+
+    return sgf_map
+
+end
 
 """
     parse_value_by_unit(unit::String, value::Real)
