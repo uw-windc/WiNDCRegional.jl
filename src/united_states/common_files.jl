@@ -85,6 +85,20 @@ function load_faf_map(;
 end
 
 
+function load_usatrade_map(;
+        path = joinpath(@__DIR__, "data", "usatrade_map.csv"),
+        keep_cols::Vector{Symbol} = [:naics, :naics4]
+    )
+    df = CSV.read(
+        path,
+        DataFrame;
+        select = keep_cols,
+        types = Symbol
+    )
+
+    return df
+end
+
 """
     load_sgf_map(;
             path = joinpath(@__DIR__, "data", "sgf_map.csv"),
