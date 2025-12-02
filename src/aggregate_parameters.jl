@@ -98,17 +98,17 @@ function market_clearance(
         minimal::Bool = true
     )
     X = table(data, :commodity) |>
-        x -> groupby(x, [:row, :year]) |>
+        x -> groupby(x, [:row, :region, :year]) |>
         x -> combine(x, column => sum => output) |>
         x -> transform!(x, 
             :row => ByRow(_ -> (:mc, parameter)) => [:col, :parameter]
         ) |>
-        x -> select(x, [:row, :col, :year, :parameter, output])
+        x -> select(x, [:row, :col, :region, :year, :parameter, output])
         
         
     if minimal
         X |>
-            x -> select!(x, [:row, :year, :parameter, output])
+            x -> select!(x, [:row, :region, :year, :parameter, output])
     end
     return X
 end
@@ -167,4 +167,69 @@ function margin_balance(
     end
 
     return X
+end
+
+"""
+    total_supply(data::AbstractRegionalTable; column::Symbol = :value, output::Symbol = :value)
+
+Calculate the total supply for each commodity. The total supply is defined as the sum of:
+
+- `Intermediate_Supply`
+- `Household_Supply`
+"""
+function total_supply(data::AbstractRegionalTable; column::Symbol = :value, output::Symbol = :value)
+    return table(data, :Intermediate_Supply, :Household_Supply) |>
+        x -> groupby(x, [:row, :region, :year]) |>
+        x -> combine(x, column => sum => output) |>
+        x -> transform(x, :row => ByRow(y -> (:tot_sup, :total_supply)) => [:col, :parameter])
+end
+
+"""
+    absorption(
+        state_table::AbstractRegionalTable; 
+        column::Symbol = :value, 
+        output::Symbol = :value
+    )
+
+Calculate the absorption for each commodity in each region. The absorption is 
+defined as the sum of:
+
+- `Intermediate_Demand`
+- `Other_Final_Demand`
+
+Note that absorption is negative.
+"""
+function absorption(
+        state_table::AbstractRegionalTable; 
+        column::Symbol = :value, 
+        output::Symbol = :value
+    )
+    return table(state_table, :Intermediate_Demand, :Other_Final_Demand) |>
+        x -> groupby(x, [:row, :year, :region]) |>
+        x -> combine(x, column => sum => output) |>
+        x -> transform(x, :row => ByRow(y -> (:abs, :absorption)) => [:col, :parameter])
+end
+
+"""
+    balance_of_payments(
+        state_table::AbstractRegionalTable; 
+        column::Symbol = :value, 
+        output::Symbol = :value
+    )
+
+Calculate the balance of payments for each commodity in each region. The balance
+of payments is defined as the sum of:
+
+- `Imports`
+- `Exports`
+"""
+function balance_of_payments(
+        state_table::AbstractRegionalTable; 
+        column::Symbol = :value, 
+        output::Symbol = :value
+    )
+    return table(state_table, :Imports, :Exports) |>
+        x -> groupby(x, [:row, :year, :region]) |>
+        x -> combine(x, column => sum => output) |>
+        x -> transform(x, :row => ByRow(y -> (:bop, :balance_of_payments)) => [:col, :parameter])
 end

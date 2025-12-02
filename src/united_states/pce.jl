@@ -1,8 +1,8 @@
 function load_pce_data(
     path::String,
-    state_fips::DataFrame,
-    pce_map::DataFrame,
-    name::String
+    name::String;
+    state_fips::DataFrame = load_state_fips(),
+    pce_map::DataFrame = load_pce_map(),
 )
 
     df = CSV.read(

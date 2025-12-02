@@ -46,7 +46,7 @@ function load_industry_codes(;
         path, 
         DataFrame,
         types = Dict(:naics => Symbol),
-        drop = [:Description]
+        select = [:LineCode, :naics]
         ) |>
         dropmissing
 
@@ -120,11 +120,22 @@ function load_sgf_map(;
         select = keep_cols,
         types = Dict(keep_cols .=> String)
     ) 
-
-
     return sgf_map
-
 end
+
+function load_sgf_states(;
+        path = joinpath(@__DIR__, "data", "sgf_states.csv"),
+    )
+
+    sgf_states = CSV.read(
+        path,
+        DataFrame,
+        types = Dict(:code => String)
+    ) 
+
+    return sgf_states
+end
+
 
 """
     parse_value_by_unit(unit::String, value::Real)
@@ -181,6 +192,7 @@ function disaggregate_by_shares(
         disaggregate::DataFrame,
         parameter::Vector{Symbol};
         domain = :commodity,
+        fill_missing = true
     )
 
     column = WiNDCNational.sets(summary, domain) |> x -> x[1, :domain]
@@ -198,27 +210,30 @@ function disaggregate_by_shares(
         x -> select(x, :year, :state) |>
         x -> unique(x, [:year, :state])
 
-
-    missing_goods = leftjoin(
-            existing_goods_years,
-            disag_good_years,
-            on = [column => :naics, :year]
-        ) |>
-        x -> subset(x, :name => ByRow(ismissing)) |>
-        x -> leftjoin(
-            x,
-            states_years,
-            on = :year
-        ) |>
-        x -> coalesce.(x, "labor") |>
-        x -> transform(x, :name => ByRow(y -> 1) => :value) |>
-        x -> select(x, :year, :state, column => :naics, :value, :name)
-
+    if fill_missing
+        missing_goods = leftjoin(
+                existing_goods_years,
+                disag_good_years,
+                on = [column => :naics, :year]
+            ) |>
+            x -> subset(x, :name => ByRow(ismissing)) |>
+            x -> leftjoin(
+                x,
+                states_years,
+                on = :year
+            ) |>
+            x -> coalesce.(x, "labor") |> # This should not be here
+            x -> transform(x, :name => ByRow(y -> 1) => :value) |>
+            x -> select(x, :year, :state, column => :naics, :value, :name)
+    
         new_disag = vcat(
             disaggregate,
             missing_goods
         )
-
+    else
+        new_disag = disaggregate
+    end
+    
     df = innerjoin( # missing sectors get distributed by shares
             table(summary, parameter...),
             select(new_disag, :year, :state, :naics, :value => :disag),
@@ -226,7 +241,7 @@ function disaggregate_by_shares(
         ) |>
         x -> groupby(x, [:row, :col, :year, :parameter]) |>
         x -> combine(x, 
-            :state => identity => :state,
+            :state => identity => :region,
             [:value, :disag] => ((v,share) -> v.*share./sum(share)) => :value
         )
 
@@ -239,13 +254,15 @@ function disaggregate_by_shares(
         disaggregate::DataFrame,
         parameter::Symbol;
         domain = :commodity,
+        fill_missing = true
     )
 
     return disaggregate_by_shares(
         summary,
         disaggregate,
         [parameter];
-        domain = domain
+        domain = domain,
+        fill_missing = fill_missing
     )
 
 end

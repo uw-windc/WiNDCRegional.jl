@@ -1,4 +1,4 @@
-"""
+raw"""
     faf_cols_to_keep(i,name, cols_to_keep, regex_cols_to_keep, max_year) 
 
 Helper function for loading FAF data. We should keep columns in `cols_to_keep` or
@@ -117,9 +117,9 @@ years uses the data from the closest available year.
 """
 function load_faf_data(
         state_path::String,
-        reprocessed_path::String,
-        state_fips::DataFrame,
-        faf_map::DataFrame;
+        reprocessed_path::String;
+        state_fips::DataFrame = load_state_fips(),
+        faf_map::DataFrame = load_faf_map(),
         cols_to_keep = [
             :fr_orig,
             :dms_origst,
@@ -193,9 +193,24 @@ end
 
 """
     load_regional_purchase_coefficients(
-        demand_trade::DataFrame,
-        commodity::DataFrame
-    )
+        summary::WiNDCNational.National,
+        state_path::String,
+        reprocessed_path::String,
+        data_directory::String;
+        adjusted_demand = Dict{Symbol, Float64} = Dict(),
+        state_fips::DataFrame = load_state_fips(),
+        faf_map::DataFrame = load_faf_map(),
+        cols_to_keep = [
+            :fr_orig,
+            :dms_origst,
+            :dms_destst,
+            :fr_dest,
+            :trade_type,
+            :sctg2,
+        ],
+        regex_cols_to_keep = r"^value_(\\d{4})\$",
+        max_year = elements(summary, :year) |> x->maximum(x[!,:name]),
+        )
 
 The regional purchase coefficients are used to determine the mixture of domestic 
 vs. national demand in the absorption market. The coefficients are calculated
@@ -211,16 +226,59 @@ The computation has two steps:
 1. Identify non-trade goods, which are goods that do not appear in the FAF data.
    Pin the RPC to be the average over the traded goods.
 2. Compute the RPC as local / (local + national)
+
+## Arguments
+
+- `summary`: The national summary data, used to identify non-trade goods.
+- `state_path`: Path to the FAF data file for state-level data (2017 onward).
+- `reprocessed_path`: Path to the FAF data file for reprocessed data (1997
+    to 2012).
+- `data_directory`: Base directory for the data files.
+
+## Optional Arguments
+
+- `adjusted_demand`: A dictionary mapping NAICS codes to adjusted RPC values. If a NAICS code
+  is present in this dictionary, the corresponding RPC value will be used instead of the computed
+  value. Default is an empty dictionary.
+- `state_fips`: DataFrame containing state FIPS codes. Defaults to loading from common files.
+- `faf_map`: DataFrame mapping FAF SCTG codes to NAICS codes. Defaults to loading from common files.
+- `cols_to_keep`: Columns to keep from the FAF data. Defaults to a predefined list of columns.
+- `regex_cols_to_keep`: Regular expression to match columns to keep from the FAF data. Defaults to a predefined regular expression.
+- `max_year`: Maximum year to include in the data. Defaults to the maximum year in the summary data.
 """
 function load_regional_purchase_coefficients(
-    demand_trade::DataFrame,
-    commodity::DataFrame
+    summary::WiNDCNational.National,
+    state_path::String,
+    reprocessed_path::String,
+    data_directory::String;
+    adjusted_demand = Dict{Symbol, Float64} = Dict(),
+    state_fips::DataFrame = load_state_fips(),
+    faf_map::DataFrame = load_faf_map(),
+    cols_to_keep = [
+        :fr_orig,
+        :dms_origst,
+        :dms_destst,
+        :fr_dest,
+        :trade_type,
+        :sctg2,
+    ],
+    regex_cols_to_keep = r"^value_(\d{4})$",
+    max_year = elements(summary, :year) |> x->maximum(x[!,:name]),
     )
 
+    demand_trade = load_faf_data(
+        joinpath(data_directory, "FAF", state_path),
+        joinpath(data_directory, "FAF", reprocessed_path);
+        state_fips = state_fips,
+        faf_map = faf_map,
+        cols_to_keep = cols_to_keep,
+        regex_cols_to_keep = regex_cols_to_keep,
+        max_year = max_year
+    )
 
     trade_goods = demand_trade |> x-> select(x, :naics) |> x -> unique(x, :naics) |> x-> x[!, :naics]
 
-    non_trade_goods = commodity |> 
+    non_trade_goods = elements(summary, :commodity) |> 
         x -> select(x, :name => :naics) |>
         x -> subset(x, :naics => ByRow(y -> !(y in trade_goods)))
 
@@ -230,15 +288,17 @@ function load_regional_purchase_coefficients(
         demand_trade |>
             x -> groupby(x, [:year, :destination, :local]) |>
             x -> combine(x, :value => (y-> sum(y)/length(y)) => :value) |>
-            x -> subset(x, :year => ByRow(==(2017))) |>
             x -> crossjoin(x, non_trade_goods)
     ) |>
     x -> unstack(x, :local, :value) |>
     x -> transform(x,
         [:local, :national] => ((l,n) -> l ./ (l .+ n)) => :rpc
     ) |>
-    x -> select(x, :destination => :state, :year, :naics, :rpc) |>
-    dropmissing
+    x -> select(x, :destination => :region, :year, :naics, :rpc) |>
+    dropmissing |>
+    x -> transform(x,
+        [:naics, :rpc] => ByRow((n, r) -> haskey(adjusted_demand, n) ? adjusted_demand[n] : r) => :rpc
+    )
 
     return demand
 end

@@ -12,9 +12,9 @@ end
 
 function load_state_gdp(
     path::String, 
-    state_fips::DataFrame,
-    industry_codes::DataFrame,
-    name::String
+    name::String;
+    state_fips::DataFrame = load_state_fips(),
+    industry_codes::DataFrame = load_industry_codes(),
     )
 
     df = CSV.read(

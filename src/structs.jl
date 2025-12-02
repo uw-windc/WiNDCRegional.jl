@@ -1,9 +1,9 @@
 abstract type AbstractRegionalTable <: WiNDCtable end
 
-domain(data::AbstractRegionalTable) = [:row, :col, :region, :year]
-base_table(data::AbstractRegionalTable) = data.data
-sets(data::AbstractRegionalTable) = data.sets
-elements(data::AbstractRegionalTable) = data.elements
+WiNDCContainer.domain(data::AbstractRegionalTable) = [:row, :col, :region, :year]
+WiNDCContainer.base_table(data::AbstractRegionalTable) = data.data
+WiNDCContainer.sets(data::AbstractRegionalTable) = data.sets
+WiNDCContainer.elements(data::AbstractRegionalTable) = data.elements
 
 """
     State

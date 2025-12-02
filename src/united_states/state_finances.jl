@@ -1,12 +1,12 @@
 function parse_sgf_line(line::AbstractString)
-    state_fips = line[1:5]
+    state_fips = line[1:2]
     census_code = line[15:17]
     value = parse(Int, line[18:29])/1_000_000
     return (fips = state_fips, sgf_code = census_code, value = value)
 end
 
 function parse_sgf_line_99(line::AbstractString)
-    state_fips = line[1:5]
+    state_fips = line[1:2]
     census_code = line[22:24]
     value = parse(Int, line[25:35])/1_000_000
     return (fips = state_fips, sgf_code = census_code, value = value)
@@ -43,7 +43,7 @@ end
 """
     load_state_finances(
             directory_path::String,
-            state_fips::DataFrame,
+            sgf_states::DataFrame,
             sgf_map::DataFrame,
         )
 
@@ -51,7 +51,7 @@ Load state government finance data from census files in the specified directory.
 """
 function load_state_finances(
         directory_path::String,
-        state_fips::DataFrame,
+        sgf_states::DataFrame,
         sgf_map::DataFrame,
     )
 
@@ -72,7 +72,7 @@ function load_state_finances(
     ) |>
     x -> groupby(x, [:fips, :year, :naics]) |>
     x -> combine(x, :value => sum => :value) |>
-    x -> innerjoin(x, state_fips, on = :fips) |>
+    x -> innerjoin(x, sgf_states, on = :fips=>:code) |>
     x -> select(x, :naics, :year, :state, :value) |>
     x -> transform(x, 
         :naics => ByRow(Symbol) => :naics,
