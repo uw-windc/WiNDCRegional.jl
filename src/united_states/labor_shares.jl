@@ -173,9 +173,10 @@ function labor_shares(
     labor_shares = DataFrame([
             (year = yr, region = r, col = s, value = value(M[:L_SHR][yr, s, r]))
             for yr in yrs, s in sectors, r in states[!, :state]
-        ]) |>
+        ]) #|>
         x -> subset(x, :value => ByRow(>(0)))
 
+    return labor_shares
 end
 
 
@@ -299,8 +300,16 @@ function labor_share_model(
     @constraints(M, begin 
         lshrdef[row = eachrow(df)], row[:L]*(row[:labor_demand] + row[:capital_demand]) == row[:labor_demand]
         kshrdef[row = eachrow(df)], row[:K]*(row[:labor_demand] + row[:capital_demand]) == row[:capital_demand]
-        shrdef[row = eachrow(df)], row[:L] + row[:K] == 1
     end);
+
+    region_share |>
+    x -> transform(x,
+        [:year, :naics, :state] => ByRow((yr, s, r) -> (L_SHR[yr, s, r], K_SHR[yr, s, r])) => [:L_SHR, :K_SHR]
+    ) |>
+    df ->
+    @constraint(M, shrconstr[row = eachrow(df)], 
+        row[:L_SHR] + row[:K_SHR] == 1
+    );
 
     return M
 
