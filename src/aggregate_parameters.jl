@@ -39,11 +39,11 @@ function zero_profit(
         x -> transform(x,
             :col => ByRow(_ -> (:zp, parameter)) => [:row, :parameter]
         ) |>
-        x -> select(x, [:row, :col, :year, :parameter, output])
+        x -> select(x, [:row, :col, :region, :year, :parameter, output])
         
     if minimal
         X |>
-            x -> select!(x, [:col, :year, :parameter, output])
+            x -> select!(x, [:col, :region, :year, :parameter, output])
     end
 
     return X

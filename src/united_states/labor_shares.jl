@@ -255,9 +255,9 @@ function labor_share_model(
         gdp |>
             x -> select(x, :year, :naics => :col,  :state, :value => :gdp),
 
-        klshare |>
+        klshare_fin |>
             x->subset(x,
-                :parameter => ByRow(==(:labor_demand))
+                :parameter => ByRow(==("labor_demand"))
             ) |>
             x -> leftjoin(
                 x,
