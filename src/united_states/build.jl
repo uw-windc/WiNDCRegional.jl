@@ -450,7 +450,6 @@ function disaggregate_output_tax(
 
     state_output_tax = outerjoin(
         table(state_table, :Intermediate_Supply) |>
-        #table(state_table, :Intermediate_Demand, :Value_Added) |>
             x -> groupby(x, [:year, :col, :region]) |>
             x -> combine(x, :value => sum => :output),
         WiNDCNational.output_tax_rate(summary),
