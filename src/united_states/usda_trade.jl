@@ -64,12 +64,15 @@ Load additional agricultural trade flow data from USDA. This data is used to
 supplement the USA Trade data for NAICS code 111CA.
 
 Returns a DataFrame with columns `:year`, `:state`, `:naics`, `:value`, and `:flow`.
+
+NOTE: THIS RELIES ON A FIXED EXCEL RANGE AND MAY BREAK IF THE EXCEL FILE
+IS UPDATED. FIX THIS
 """
 function load_usda_agricultural_flow(path::String)
     extra_ag_flow = XLSX.readdata(
         path,
         "Total Exports",
-        "A3:X55"
+        "A3:Y55"
     ) |>
     x -> DataFrame(x[4:end, :], ["state", x[1, 2:end]...]) |>
     x -> stack(x, Not(:state); variable_name = :year, value_name = :value) |>
@@ -109,10 +112,10 @@ and USDA agricultural flow data. [`load_usda_agricultural_flow`](@ref).
         yearly total share.
  4. Remove NAICS code 111CA (Crop Production) from the USA Trade data and append 
     the USDA agricultural flow data for this NAICS code.
- 5. Backfill missing years, to 1997, for each state/commodity/flow pair using the earliest
-    available year for that pair.
+ 5. Back fill missing years for 1997-2001 using the next available year's data.
 """
 function load_trade_shares(
+        summary::National,
         export_path::String,
         import_path::String,
         usda_agricultural_flow_path::String;
@@ -172,35 +175,73 @@ function load_trade_shares(
             [:value, :default] => ((y,d) -> all(ismissing.(y)) ? d : y ) => :value
         ) |>
         x -> dropmissing(x) |>
-        x -> subset(x, :naics => ByRow(!=(Symbol("111CA")))) |>
+        x -> subset(x, [:naics,:flow] => ByRow((n,f) -> !(n == Symbol("111CA") && f == "exports"))) |>
         x -> vcat(x, extra_ag_flow) 
 
 
-    missing_years = DataFrame([
-        (base_year = 2002, year = 2001),
-        (base_year = 2002, year = 2000),
-        (base_year = 2002, year = 1999),
-        (base_year = 2002, year = 1998),
-        (base_year = 2002, year = 1997),
-        (base_year = 2000, year = 1999),
-        (base_year = 2000, year = 1998),
-        (base_year = 2000, year = 1997),
-    ])
+    max_year = elements(summary, :year) |> x-> maximum(x[!,:name])
+    min_year = elements(summary, :year) |> x-> minimum(x[!,:name])
 
-    trade_shares = trade_shares |>
+    last_ag_export_year = trade_shares |>
+        x -> subset(x, 
+            :flow => ByRow(==("exports")),
+            :naics => ByRow(==(Symbol("111CA")))
+        ) |>
+        x -> unique(x, :year) |>
+        x -> sort(x, :year) |>
+        x -> combine(x, :year => maximum => :max_year) |>
+        x -> only(x[!,:max_year])
+            
+    extra_ag_years = DataFrame(
+            (year = last_ag_export_year, new_year = i) for i in last_ag_export_year+1:max_year
+        )
+
+
+    minimum_years = trade_shares |>
         x -> groupby(x, [:naics, :flow, :state]) |>
-        x -> combine(x,
-            [:value, :year] => ((v,y) -> (v[argmin(y)], minimum(y))) => :is_min,
-        ) |>
-        x -> transform(x,
-            :is_min => ByRow(identity) => [:value,:year]
-        ) |>
-        x -> leftjoin(
-            missing_years,
+        x -> combine(x, :year => minimum => :year) |>
+        x -> subset(x, :year => ByRow(<=(2002))) |>
+        x -> innerjoin(
             x,
-            on = [:base_year => :year]
+            trade_shares,
+            on = [:naics, :flow, :state, :year]
+        )
+
+    fill_years = minimum_years |>
+        x -> unique(x, :year) |>
+        x -> select(x, :year) |>
+        x -> crossjoin(
+            x,
+            DataFrame(new_year = min_year:max_year)
         ) |>
-        x -> select(x, Not(:is_min, :base_year)) 
+        x -> subset(x, 
+            [:year, :new_year] => ByRow(>)
+        )
+
+    trade_shares = vcat(
+        trade_shares, 
+
+        trade_shares |>
+            x -> subset(x, 
+                :flow => ByRow(==("exports")),
+                :naics => ByRow(==(Symbol("111CA"))),
+                :year => ByRow(==(last_ag_export_year))
+            ) |>
+            x-> leftjoin(x, extra_ag_years, on = :year) |>
+            x -> select(x, :naics, :flow, :state, :value, :new_year => :year),
+        minimum_years |>
+            x -> leftjoin(x, fill_years, on = [:year]) |>
+            x -> select(x, :naics, :flow, :state, :value, :new_year => :year)
+    )
+
+
+
+
+
+
+
+
+    return trade_shares
 
 
 

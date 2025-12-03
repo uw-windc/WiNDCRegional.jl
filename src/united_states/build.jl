@@ -393,21 +393,33 @@ function disaggregate_government_final_demand(
     )
 
     census_data = load_state_finances(
-        joinpath(data_directory, "SGF"),
-        sgf_states,
-        sgf_map,
+            summary,
+            joinpath(data_directory, "SGF");
+            sgf_states = sgf_states,
+            sgf_map = sgf_map
+        ) |>
+        x -> rename(x, :naics => :row, :state => :region) |>
+        x -> groupby(x, [:year, :row]) |>
+        x -> combine(x, 
+            :region => identity => :region,
+            :value => (y -> y./sum(y)) => :value
         )
 
-    state_government = disaggregate_by_shares(
-        summary,
-        census_data,
-        :Government_Final_Demand;
-        domain = :commodity,
-        fill_missing = false
+
+    state_government = leftjoin(
+            table(summary, :Government_Final_Demand) |>
+                x -> groupby(x, 
+                        [:year, :row]
+                ) |>
+                x -> combine(x, :value => sum => :value),
+            census_data |> x -> rename(x, :value => :sgf),
+            on = [:year, :row],
         ) |>
-        x -> groupby(x, [:row, :year, :parameter, :region]) |>
-        x -> combine(x, :value => sum => :value) |>
-        x -> transform(x, :row => ByRow(y -> :govern) => :col)
+        x -> transform(x, 
+            [:value, :sgf] => ByRow(*) => :value,
+            :row => ByRow(y -> (:govern, :government_final_demand)) => [:col, :parameter]
+        ) |>
+        x -> select(x, :row, :col, :year, :region, :parameter, :value) 
 
     df = vcat(table(state_table), state_government)
 
@@ -500,6 +512,12 @@ function disaggregate_foreign_exports(
         "gdp"
     )
 
+    region_share = gdp |>
+        x -> groupby(x, [:year, :name, :naics]) |>
+        x -> combine(x,
+            :state => identity => :state,
+            :value => (y -> y./sum(y)) => :share
+        )
 
     all_goods_years = crossjoin(
         elements(summary, :commodity) |> x -> select(x, :name => :naics),
@@ -519,25 +537,34 @@ function disaggregate_foreign_exports(
 
     non_trade_gdp = innerjoin(
         non_trade_goods_years,
-        gdp |> x -> select(x, :year, :naics, :state, :name, :value),
+        region_share |> x -> select(x, :year, :naics, :state, :name, :share),
         on = [:year, :naics]
     )
 
     export_disag = vcat(
         trade_shares |> 
-            x -> rename(x, :flow => :name) |>
+            x -> rename(x, :flow => :name, :value => :share) |>
             x -> subset(x, :name => ByRow(==("exports"))),
         non_trade_gdp
     ) 
 
+    state_exports = innerjoin(
+            table(summary, :Export),
+            export_disag,
+            on = [:year, :row => :naics]
+        ) |>
+        x -> transform(x,
+            [:share, :value] => ByRow(*) => :value,
+        ) |>
+        x -> select(x, :row, :col, :year, :state=>:region, :parameter, :value)
 
-    state_exports = disaggregate_by_shares(
-        summary,
-        export_disag,
-        [:Export];
-        domain = :commodity,
-        fill_missing = false
-        )
+    #state_exports = disaggregate_by_shares(
+    #    summary,
+    #    export_disag,
+    #    [:Export];
+    #    domain = :commodity,
+    #    fill_missing = false
+    #    )
 
     df = vcat(table(state_table), state_exports)
 
@@ -963,6 +990,8 @@ function create_regional_margin_supply(
             DataFrame([
                 (set = :Local_Margin_Supply, name = :local_margin_supply, description = "Local Margin Supply parameter"),
                 (set = :Region_Margin_Supply, name = :region_margin_supply, description = "Regional Margin Supply parameter"),
+                (set = :Margin_Supply, name = :local_margin_supply, description = "Local Margin Supply element"),
+                (set = :Margin_Supply, name = :region_margin_supply, description = "Regional Margin Supply element"),
             ])
         )  
 
