@@ -42,17 +42,21 @@ end
 
 """
     load_state_finances(
-            directory_path::String,
-            sgf_states::DataFrame,
-            sgf_map::DataFrame,
+            directory_path::String;
+            sgf_map::DataFrame = WiNDCRegional.load_sgf_map(),
+            sgf_states::DataFrame = WiNDCRegional.load_sgf_states()
         )
 
 Load state government finance data from census files in the specified directory.
+
+
+NEEDS FIXING - HACK IN YEAR 2024 DATA AND DC
 """
 function load_state_finances(
-        directory_path::String,
-        sgf_states::DataFrame,
-        sgf_map::DataFrame,
+        summary::National,
+        directory_path::String;
+        sgf_map::DataFrame = WiNDCRegional.load_sgf_map(),
+        sgf_states::DataFrame = WiNDCRegional.load_sgf_states()
     )
 
 
@@ -77,8 +81,31 @@ function load_state_finances(
     x -> transform(x, 
         :naics => ByRow(Symbol) => :naics,
         :state => ByRow(y -> "government_final_demand") => :name
-    ) 
+    ) |>
+    x -> vcat(
+        x,
+        x |> 
+            x -> subset(x,
+                :year => ByRow(==(2023))
+            ) |>
+            x -> transform(x,
+                :year => ByRow(y -> 2024) => :year
+            )
+    ) |>
+    x -> vcat(
+        x,
+        x |>
+            x -> subset(x,
+                :state => ByRow(==("Maryland"))
+            ) |>
+            x -> transform(x,
+                :state => ByRow(y -> "District of Columbia") => :state
+            )
+    ) |>
+    x -> subset(x, :value => ByRow(!=(0)))
 
+
+    
 
     return census_data
 end
