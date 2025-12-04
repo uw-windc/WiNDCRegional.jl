@@ -786,7 +786,7 @@ function adjust_by_absorption(
 
     df = table(state_table) |>
         x -> subset(x,
-            :parameter => ByRow(y -> !(y in (:Reexport, :Export, :Household_Supply)))
+            :parameter => ByRow(y -> !(y in (:reexport, :export, :household_supply)))
         ) |>
         x -> vcat(
             x,
