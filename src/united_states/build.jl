@@ -838,7 +838,7 @@ function create_regional_demand(
         domestic_reexport_demand,
     ) |>
     x -> groupby(x, [:row, :year, :region]) |>
-    x -> combine(x, :value => minimum => :value) 
+    x -> combine(x, :value => (y -> length(y)==1 ? 0 : minimum(y)) => :value) 
 
 
 
@@ -849,23 +849,27 @@ function create_regional_demand(
     ) |>
     x -> coalesce.(x,1) |>
     x -> transform(x,
-        [:value, :rpc] => ByRow((a,b) -> -a*b) => :value,
+        [:value, :rpc] => ByRow((a,b) -> a*b) => :value,
         :row => ByRow(y -> (:local_demand, :local_demand)) => [:col, :parameter]
     ) |> 
     x -> select(x, Not(:rpc))
 
 
-    nd0_ = outerjoin(
-        regional_demand,
-        rpc |> x -> rename(x, :naics => :row),
-        on = [:year, :region, :row]
-    ) |>
-    x -> coalesce.(x,1) |>
-    x -> transform(x,
-        [:value, :rpc] => ByRow((v,r) -> -v *(1-r)) => :value,
-        :row => ByRow(y -> (:national_demand, :national_demand)) => [:col, :parameter]
-    ) |> 
-    x -> select(x, Not(:rpc))
+    nd0_ = leftjoin(
+            domestic_demand_absorption,
+            dd0_ |>
+                x -> select(x, :year, :region, :row, :value => :dd0),
+            on = [:year, :row, :region],
+        ) |>
+        x -> transform(x,
+            [:value, :dd0] => ByRow((a,b) -> a - b) => :value,
+            :row => ByRow(y -> (:national_demand, :national_demand)) => [:col, :parameter]
+        ) |>
+        x -> select(x, Not(:dd0))
+
+
+
+
 
     df = vcat(table(state_table), dd0_, nd0_)
     S = sets(state_table) |>
