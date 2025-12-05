@@ -51,9 +51,42 @@ function create_state_table(
 
     state_table = initialize_table(summary)
     state_table = WiNDCRegional.disaggregate_intermediate(state_table, summary, data_directory)
+    state_table = WiNDCRegional.disaggregate_labor_capital(state_table, summary, data_directory)
+    state_table = WiNDCRegional.disaggregate_output_tax(state_table, summary, data_directory)
+    state_table = WiNDCRegional.disaggregate_investement_final_demand(state_table, summary, data_directory)
+    state_table = WiNDCRegional.disaggregate_personal_consumption(state_table, summary, data_directory)
+    state_table = WiNDCRegional.disaggregate_household_supply(state_table, summary, data_directory)
+    state_table = WiNDCRegional.disaggregate_government_final_demand(state_table, summary, data_directory)
 
+    trade_shares = load_trade_shares(
+        summary,
+        joinpath(data_directory, "USATradeOnline", "State Exports by NAICS Commodities.csv"),
+        joinpath(data_directory, "USATradeOnline", "State Imports by NAICS Commodities.csv"),
+        joinpath(data_directory, "USATradeOnline", "commodity_detail_by_state_cy.xlsx"),
+    )
 
+    state_table = WiNDCRegional.disaggregate_foreign_exports(state_table, summary, data_directory, trade_shares)
+    state_table = WiNDCRegional.create_reexports(state_table)
+    state_table = WiNDCRegional.disaggregate_foreign_imports( state_table, summary, data_directory)
+    state_table = WiNDCRegional.disaggregate_margin_demand(state_table, summary, data_directory)
+    state_table = WiNDCRegional.disaggregate_duty(state_table, summary, data_directory)
+    state_table = WiNDCRegional.disaggregate_tax(state_table, summary, data_directory)
 
+    adjusted_demand = Dict(
+        Symbol("22") => .9,
+        Symbol("23") => .9,
+    )
+
+    rpc_new = load_regional_purchase_coefficients(
+        summary,
+        "FAF5.7.1_State.csv",
+        "FAF5.7.1_Reprocessed_1997-2012_State.csv",
+        data_directory;
+        adjusted_demand = adjusted_demand
+    ) 
+
+    state_table = WiNDCRegional.create_regional_demand(state_table, rpc_new,)
+    state_table = WiNDCRegional.create_regional_margin_supply(state_table, summary, rpc_new,)
 
     return state_table
 end
@@ -210,7 +243,9 @@ Disaggregate the tax from the national summary into state-level using BEA
 GSP data.
 
 Dependent on:
-    - "SAGDP6__ALL_AREAS_1997_2024.csv"
+    - [`WiNDCRegional.absorption`](@ref)
+    - Summary absorption tax rate
+
 """
 function disaggregate_tax(
         state_table::State,    
@@ -219,16 +254,21 @@ function disaggregate_tax(
         tax_path = "SAGDP6__ALL_AREAS_1997_2024.csv"
     )
 
-    tax = load_state_gdp(
-        joinpath(data_directory, "bea_gdp", tax_path),
-        "tax"
-    )
 
-    state_tax = disaggregate_by_shares(
-        summary,
-        tax,
-        :Tax;
-        domain = :commodity
+    col_label = elements(summary, :Tax; base = true)[1,1]
+
+    state_tax = outerjoin(
+            WiNDCRegional.absorption(state_table),
+            absorption_tax_rate(summary, output = :tax_rate) |> x -> select(x, Not(:parameter)),
+            on = [:year, :row],
+        ) |>
+        x -> transform(x,
+            [:value, :tax_rate] => ByRow((v,tr) -> -v*tr) => :value,
+            :parameter => ByRow(y -> (col_label, :Tax)) => [:col, :parameter]
+        ) |>
+        x -> select(x, :row, :col, :region, :year, :parameter, :value) |>
+        x -> subset(x,
+            :value => ByRow(y -> abs(y) > 1e-6)
         )
 
     df = table(state_table)
@@ -842,7 +882,7 @@ function create_regional_demand(
 
 
 
-    dd0_ = outerjoin(
+    dd0_ = leftjoin(
         regional_demand,
         rpc |> x -> rename(x, :naics => :row),
         on = [:year, :region, :row]
@@ -866,10 +906,6 @@ function create_regional_demand(
             :row => ByRow(y -> (:national_demand, :national_demand)) => [:col, :parameter]
         ) |>
         x -> select(x, Not(:dd0))
-
-
-
-
 
     df = vcat(table(state_table), dd0_, nd0_)
     S = sets(state_table) |>
