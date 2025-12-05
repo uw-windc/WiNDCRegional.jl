@@ -53,6 +53,8 @@ function create_state_table(
     state_table = WiNDCRegional.disaggregate_intermediate(state_table, summary, data_directory)
     state_table = WiNDCRegional.disaggregate_labor_capital(state_table, summary, data_directory)
     state_table = WiNDCRegional.disaggregate_output_tax(state_table, summary, data_directory)
+
+
     state_table = WiNDCRegional.disaggregate_investement_final_demand(state_table, summary, data_directory)
     state_table = WiNDCRegional.disaggregate_personal_consumption(state_table, summary, data_directory)
     state_table = WiNDCRegional.disaggregate_household_supply(state_table, summary, data_directory)
@@ -992,6 +994,9 @@ function create_regional_margin_supply(
         rpc,
         on = [:year, :region, :row => :naics]
     ) |>
+    x -> transform(x,
+        [:value, :rpc] => ByRow((a,b) -> a*b) => :value
+    ) |>
     x -> select(x, :row, :col, :year, :region, :value)
 
 
@@ -1022,16 +1027,16 @@ function create_regional_margin_supply(
         x -> vcat(x,
             DataFrame([
                 (name = :Local_Margin_Supply, description = "Local Margin Supply", domain = :parameter),
-                (name = :Region_Margin_Supply, description = "Regional Margin Supply", domain = :parameter)
+                (name = :National_Margin_Supply, description = "National Margin Supply", domain = :parameter)
             ])
         )
     E = elements(state_table) |>
         x -> vcat(x,
             DataFrame([
                 (set = :Local_Margin_Supply, name = :local_margin_supply, description = "Local Margin Supply parameter"),
-                (set = :Region_Margin_Supply, name = :region_margin_supply, description = "Regional Margin Supply parameter"),
+                (set = :National_Margin_Supply, name = :national_margin_supply, description = "National Margin Supply parameter"),
                 (set = :Margin_Supply, name = :local_margin_supply, description = "Local Margin Supply element"),
-                (set = :Margin_Supply, name = :region_margin_supply, description = "Regional Margin Supply element"),
+                (set = :Margin_Supply, name = :national_margin_supply, description = "National Margin Supply element"),
             ])
         )  
 
