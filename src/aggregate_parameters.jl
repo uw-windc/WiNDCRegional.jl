@@ -97,7 +97,19 @@ function market_clearance(
         parameter::Symbol = :market_clearance,
         minimal::Bool = true
     )
-    X = table(data, :commodity) |>
+
+    X = table(data,
+        :Intermediate_Demand,
+        :Other_Final_Demand,
+        :Reexport,
+        :Tax,
+        :Subsidy,
+        :National_Demand,
+        :Local_Demand,
+        :Import,
+        :Duty,
+        :Margin_Demand,
+    )  |>
         x -> groupby(x, [:row, :region, :year]) |>
         x -> combine(x, column => sum => output) |>
         x -> transform!(x, 
