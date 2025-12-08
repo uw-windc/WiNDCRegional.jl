@@ -1,6 +1,6 @@
 
 """
-    load_usda_raw_trade_data(
+    load_usa_raw_trade_data(
         path::String,
         flow::String;
         value_col::Symbol = flow == "exports" ? :Total_Exports_Value_US_ : :Customs_Value_Gen_US_,
@@ -17,7 +17,7 @@ depending on whether you are loading export or import data.
 This will return a normalized DataFrame with columns `:year`, `:state`, `:naics`, 
 `:value`, and `:flow`.
 """
-function load_usda_raw_trade_data(
+function load_usa_raw_trade_data(
         path::String,
         flow::String;
         value_col::Symbol = flow == "exports" ? :Total_Exports_Value_US_ : :Customs_Value_Gen_US_,
@@ -37,11 +37,9 @@ function load_usda_raw_trade_data(
         ) |>
         x -> select(x, :State => :state, :Country => :country, :Time => :year, :Commodity => :naics, value_col => :value) |>
         x -> subset(x, 
-            #:year => ByRow(y -> !occursin("through",y)),
             :country => ByRow(==("World Total"))
         ) |>
         x -> transform(x, 
-            #:year => (y -> parse.(Int, y)) => :year,
             :naics => ByRow(y -> match(r"(\d{4}) .*", y).captures[1] |> Symbol) => :naics4,
             :value => ByRow(y -> y |> z -> replace(z, "," => "") |> z->parse(Float64, z)/1_000_000) => :value,
             :state => ByRow(y -> replace(y, "Dist" => "District")) => :state
@@ -58,21 +56,43 @@ function load_usda_raw_trade_data(
 end
 
 """
-    load_usda_agricultural_flow(path::String)
+    load_usda_agricultural_flow(
+            path::String,
+            sheet::String,
+            range::String; 
+            agriculture_code = Symbol("111CA"),
+            flow::String = "exports"
+        )
 
 Load additional agricultural trade flow data from USDA. This data is used to
-supplement the USA Trade data for NAICS code 111CA.
+supplement the USA Trade data for the `agricultural_code`.
 
 Returns a DataFrame with columns `:year`, `:state`, `:naics`, `:value`, and `:flow`.
 
-NOTE: THIS RELIES ON A FIXED EXCEL RANGE AND MAY BREAK IF THE EXCEL FILE
-IS UPDATED. FIX THIS
+## Required Arguments
+
+- path::String: Path to the Excel file.
+- sheet::String: Sheet name in the Excel file.
+- range::String: Cell range in the sheet to read.
+
+## Optional Arguments
+
+- agriculture_code::Symbol: The NAICS code for the agricultural commodity. Default is `:111CA`.
+- flow::String: The trade flow type, either `exports` or `imports`. Default is `exports`.
+
 """
-function load_usda_agricultural_flow(path::String)
+function load_usda_agricultural_flow(
+        path::String,
+        sheet::String,
+        range::String; 
+        agriculture_code = Symbol("111CA"),
+        flow::String = "exports",
+        replacement_data::Dict = Dict()
+    )
     extra_ag_flow = XLSX.readdata(
         path,
-        "Total Exports",
-        "A3:Y55"
+        sheet,
+        range
     ) |>
     x -> DataFrame(x[4:end, :], ["state", x[1, 2:end]...]) |>
     x -> stack(x, Not(:state); variable_name = :year, value_name = :value) |>
@@ -83,61 +103,94 @@ function load_usda_agricultural_flow(path::String)
         :value => (y -> y ./ sum(y)) => :value
         ) |>
     x -> transform(x, 
-        :state => ByRow(y -> Symbol("111CA")) => :naics,
-        :state => ByRow(y -> "exports") => :flow
+        :state => ByRow(y -> agriculture_code) => :naics,
+        :state => ByRow(y -> flow) => :flow
     ) 
+    
+    for (column,Y) in replacement_data
+        for (new_data, existing_data) in Y
+            extra_ag_flow = extend_data(extra_ag_flow, Symbol(column), existing_data, new_data)
+        end
+    end
+
+    extra_ag_flow |>
+        x -> transform!(x,
+            :year => ByRow(y-> !isa(y,Int) ? parse(Int, y) : y) => :year
+        )
 
     return extra_ag_flow
 end
     
 """
     load_trade_shares(
-        export_path::String,
-        import_path::String,
-        usda_agricultural_flow_path::String;
-        state_fips::DataFrame = load_state_fips(),
-        usatrade_map::DataFrame = load_usatrade_map()
+        exports::DataFrame,
+        imports::DataFrame,
+        usda_agricultural_flow::DataFrame;
+        agricultural_code = Symbol("111CA"),
+        base_year::Int = 1997
     )
 
-Load and process trade data from USA Trade, [`load_usda_raw_trade_data`](@ref), 
-and USDA agricultural flow data. [`load_usda_agricultural_flow`](@ref).
+Use exports, imports and usda agricultural flow data to calculate the foreign flow
+of goods.
 
-## Build Process
+## Required Arguments
 
- 1. Load export and import data using [`load_usda_raw_trade_data`](@ref).
- 2. Calculate the state trade shares, i.e. the share of each state's exports/imports
-    for each NAICS code and year.
- 3. There is missing data, some years have no trade data for certain commodities. 
-        set a default value for each state and commodity/flow pair based on the
-        yearly total share.
- 4. Remove NAICS code 111CA (Crop Production) from the USA Trade data and append 
-    the USDA agricultural flow data for this NAICS code.
- 5. Back fill missing years for 1997-2001 using the next available year's data.
+- `exports::DataFrame`: Export data from [`load_usda_raw_trade_data`](@ref).
+- `imports::DataFrame`: Import data from [`load_usda_raw_trade_data`](@ref).
+- `usda_agricultural_flow::DataFrame`: Agricultural flow data from 
+    [`load_usda_agricultural_flow`](@ref).
+
+## Optional Arguments
+- `agricultural_code::Symbol`: The NAICS code for the agricultural commodity. 
+    Default is `:111CA`.
+- `base_year::Int`: The base year for backfilling missing years. Default is 
+    `1997`, the first year of summary data.
+
+## Loading Process
+
+First we calculate the trade shares for each state, commodity, flow, and year. This
+is given by:
+
+```math
+\\frac{V}{\\sum_{{\\rm state}} V}
+```
+
+There are years with no trade data for certain commodities. We use the yearly region
+share to set a default value for each state and commodity/flow pair. The yearly
+region share is defined by:
+
+```math
+\\frac{sum_{{\\rm year}} V}{sum_{{\\rm state}}\\left(sum_{{\\rm year}} V\\right)}
+```
+
+These two values are combined such that if there is no trade data for a given year,
+the default value is used instead. We then remove all values where with naics code
+`agricultural_code` and flow `exports` from the data, and append the USDA agricultural
+flow data.
+
+Finally, we back fill missing years for 1997-2001 using the next available year's data. 
+Note that the minimum year for each state/commodity/flow combination is used to 
+determine which years need to be back filled, with a maximum year of `2002`.
 """
 function load_trade_shares(
-        summary::National,
-        export_path::String,
-        import_path::String,
-        usda_agricultural_flow_path::String;
-        state_fips::DataFrame = load_state_fips(),
-        usatrade_map::DataFrame = load_usatrade_map()
+        exports::DataFrame,
+        imports::DataFrame,
+        usda_agricultural_flow::DataFrame;
+        agricultural_code = Symbol("111CA"),
+        base_year::Int = 1997
     )
 
-    df = vcat(
-        load_usda_raw_trade_data(
-            export_path,
-            "exports";
-            state_fips = state_fips,
-            usatrade_map = usatrade_map
-        ),
-        load_usda_raw_trade_data(
-            import_path,
-            "imports";
-            state_fips = state_fips,
-            usatrade_map = usatrade_map
-        ) 
-    )
-        
+    df = vcat(exports, imports)
+
+    default_values = df |>
+        x -> groupby(x, [:naics, :flow, :state]) |>
+        x -> combine(x,  :value => sum => :value) |>
+        x -> groupby(x, [:naics, :flow]) |>
+        x -> combine(x,
+            :state => identity => :state,
+            :value => (y -> y./sum(y)) => :default
+        )     
+
     state_trade_shares = df |>
         x -> groupby(x, [:year, :naics, :flow]) |>
         x -> combine(x, 
@@ -145,27 +198,12 @@ function load_trade_shares(
         :value => (y -> y ./ sum(y)) => :value,
         )
 
-
     all_things = crossjoin(
         state_trade_shares |> x -> select(x, :year) |> unique,
         state_trade_shares |> x -> select(x, :naics) |> unique,   
         state_trade_shares |> x -> select(x, :state) |> unique,
         state_trade_shares |> x -> select(x, :flow) |> unique,
     )
-
-    default_values = df |>
-        x -> groupby(x, [:naics, :flow]) |>
-        x -> combine(x, 
-            :state => identity => :state,
-            :value => identity => :value,
-            :value => (y -> y./sum(y)) => :share
-        ) |>
-        x -> groupby(x, [:naics, :flow, :state]) |>
-        x -> combine(x, :share => sum => :default) 
-        
-        
-    extra_ag_flow = load_usda_agricultural_flow(usda_agricultural_flow_path)
-
 
     trade_shares = outerjoin(state_trade_shares, all_things, on = [:year, :naics, :state, :flow]) |>
         x -> leftjoin(x, default_values, on = [:naics, :state, :flow]) |>
@@ -175,27 +213,8 @@ function load_trade_shares(
             [:value, :default] => ((y,d) -> all(ismissing.(y)) ? d : y ) => :value
         ) |>
         x -> dropmissing(x) |>
-        x -> subset(x, [:naics,:flow] => ByRow((n,f) -> !(n == Symbol("111CA") && f == "exports"))) |>
-        x -> vcat(x, extra_ag_flow) 
-
-
-    max_year = elements(summary, :year) |> x-> maximum(x[!,:name])
-    min_year = elements(summary, :year) |> x-> minimum(x[!,:name])
-
-    last_ag_export_year = trade_shares |>
-        x -> subset(x, 
-            :flow => ByRow(==("exports")),
-            :naics => ByRow(==(Symbol("111CA")))
-        ) |>
-        x -> unique(x, :year) |>
-        x -> sort(x, :year) |>
-        x -> combine(x, :year => maximum => :max_year) |>
-        x -> only(x[!,:max_year])
-            
-    extra_ag_years = DataFrame(
-            (year = last_ag_export_year, new_year = i) for i in last_ag_export_year+1:max_year
-        )
-
+        x -> subset(x, [:naics,:flow] => ByRow((n,f) -> !(n == agricultural_code && f == "exports"))) |>
+        x -> vcat(x, usda_agricultural_flow) 
 
     minimum_years = trade_shares |>
         x -> groupby(x, [:naics, :flow, :state]) |>
@@ -210,25 +229,11 @@ function load_trade_shares(
     fill_years = minimum_years |>
         x -> unique(x, :year) |>
         x -> select(x, :year) |>
-        x -> crossjoin(
-            x,
-            DataFrame(new_year = min_year:max_year)
-        ) |>
-        x -> subset(x, 
-            [:year, :new_year] => ByRow(>)
-        )
+        x -> crossjoin(x, DataFrame(new_year = base_year:2002)) |>
+        x -> subset(x, [:year, :new_year] => ByRow(>))
 
     trade_shares = vcat(
         trade_shares, 
-
-        trade_shares |>
-            x -> subset(x, 
-                :flow => ByRow(==("exports")),
-                :naics => ByRow(==(Symbol("111CA"))),
-                :year => ByRow(==(last_ag_export_year))
-            ) |>
-            x-> leftjoin(x, extra_ag_years, on = :year) |>
-            x -> select(x, :naics, :flow, :state, :value, :new_year => :year),
         minimum_years |>
             x -> leftjoin(x, fill_years, on = [:year]) |>
             x -> select(x, :naics, :flow, :state, :value, :new_year => :year)
