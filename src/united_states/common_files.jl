@@ -266,3 +266,26 @@ function disaggregate_by_shares(
     )
 
 end
+
+"""
+    extend_data(X::DataFrame, column::Symbol, old_value, new_value)
+
+Extend data from `X` by copying rows where `column` equals `old_value` to new 
+rows where `column` equals `new_value`. This is used, for example, the maximum
+year is 2023, but we need to extend to 2024 by copying 2023 data. 
+
+The function takes four arguments:
+
+- `X::DataFrame`: The dataframe to append.
+- `column::Symbol`: The column to search for the old value.
+- `exisiting_data`: The base data to use for the new values
+- `new_data`: The name of the new data.
+"""
+function extend_data(X::DataFrame, column::Symbol, exisiting_data, new_data)
+    return X |>
+            x -> unstack(x, column, :value) |>
+            x -> transform(x, Symbol(exisiting_data) => identity => Symbol(new_data)) |>
+            x -> stack(x, Not(filter(∉([String(column),"value"]), names(X))); variable_name = column, value_name = "value") |>
+            dropmissing
+
+end
