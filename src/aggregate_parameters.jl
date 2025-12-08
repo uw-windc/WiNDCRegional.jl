@@ -103,7 +103,6 @@ function market_clearance(
         :Other_Final_Demand,
         :Reexport,
         :Tax,
-        :Subsidy,
         :National_Demand,
         :Local_Demand,
         :Import,
