@@ -9,20 +9,45 @@ Add one set, State, containing all US states. These are loaded using the provide
 
 NOTE: Update with set listing
 """
-function initialize_table(summary::National)
-    state_fips = load_state_fips()
+function initialize_table(summary::National, raw_data::Dict)
+    state_fips = raw_data[:state_map]
 
-    S = sets(summary) |>
+    sets_to_keep = [
+        :capital_demand,
+        :commodity,
+        :duty,
+        :export,
+        :import,
+        :labor_demand,
+        :margin,
+        :output_tax,
+        :personal_consumption,
+        :sector,
+        :tax,
+        :trade,
+        :transport,
+        :year
+    ]
+
+    aggregate_parameters = [
+        :Other_Final_Demand,
+        :Use,
+        :Supply,
+        :Final_Demand,
+        :Value_Added
+    ]
+
+    S = sets(summary, sets_to_keep..., aggregate_parameters...) |>
         x -> vcat(x,
             DataFrame([
-                (name = :State, description = "States", domain = :region)
+                (name = :state, description = "States", domain = :region)
             ])
         )
 
-    E = elements(summary) |>
+    E = elements(summary, sets_to_keep...) |>
         x -> vcat(x,
             DataFrame([
-                (set = :State, name = s, description = s) for s in state_fips[!, :state]
+                (set = :state, name = s, description = s) for s in state_fips[!, :state]
             ])
         )
 
@@ -257,13 +282,13 @@ function create_state_table(
 
 
 
-    state_table = initialize_table(summary)
+    state_table = initialize_table(summary, maps)
     state_table = WiNDCRegional.disaggregate_intermediate(state_table, summary, raw_data)
     state_table = WiNDCRegional.disaggregate_labor_capital(state_table, summary, raw_data)
     state_table = WiNDCRegional.disaggregate_output_tax(state_table, summary, raw_data)
 
 
-    state_table = WiNDCRegional.disaggregate_investement_final_demand(state_table, summary, raw_data)
+    state_table = WiNDCRegional.disaggregate_investment_final_demand(state_table, summary, raw_data)
     state_table = WiNDCRegional.disaggregate_personal_consumption(state_table, summary, raw_data)
     state_table = WiNDCRegional.disaggregate_household_supply(state_table, summary, raw_data)
     state_table = WiNDCRegional.disaggregate_government_final_demand(state_table, summary, raw_data)
@@ -296,6 +321,13 @@ state-level using BEA GSP data.
 
 Raw data used:
     - `gdp`
+
+New parameters:
+    - `Intermediate_Demand` with element `intermediate_demand`
+    - `Intermediate_Supply` with element `intermediate_supply`
+
+New Sets:
+
 """
 function disaggregate_intermediate(
         state_table::State,    
@@ -312,10 +344,28 @@ function disaggregate_intermediate(
         domain = :sector
         )
 
-    df = table(state_table)
-    df = vcat(df,state_intermediate)
+    df = vcat(table(state_table),state_intermediate)
 
-    return State(df, sets(state_table), elements(state_table))
+    S = sets(state_table) |>
+        x -> vcat(x,
+            DataFrame([
+                (name = :Intermediate_Demand, description = "Intermediate Demand", domain = :parameter),
+                (name = :Intermediate_Supply, description = "Intermediate Supply", domain = :parameter),
+            ])
+        )
+
+    E = elements(state_table) |>
+        x -> vcat(x,
+            DataFrame([
+                (set = :Intermediate_Demand, name = :intermediate_demand, description = "Intermediate Demand"),
+                (set = :Intermediate_Supply, name = :intermediate_supply, description = "Intermediate Supply"),
+                (set = :Use, name = :intermediate_demand, description = "Intermediate Demand"),
+                (set = :Supply, name = :intermediate_supply, description = "Intermediate Supply"),
+            ])
+        )
+
+
+    return State(df, S, E)
 end
 
 """
@@ -334,6 +384,10 @@ Raw data used:
     - `capital`
     - `tax`
     - `subsidy`
+
+New parameters:
+    - `Labor_Demand` with element `labor_demand`
+    - `Capital_Demand` with element `capital_demand`
 """
 function disaggregate_labor_capital(
         state_table::State,    
@@ -379,13 +433,93 @@ function disaggregate_labor_capital(
             on = :parameter
         )
 
+    df = vcat(table(state_table),labor_capital_state)
+
+    S = sets(state_table) |>
+        x -> vcat(x,
+            DataFrame([
+                (name = :Labor_Demand, description = "Labor Demand", domain = :parameter),
+                (name = :Capital_Demand, description = "Capital Demand", domain = :parameter),
+            ])
+        )
+    E = elements(state_table) |>
+        x -> vcat(x,
+            DataFrame([
+                (set = :Labor_Demand, name = :labor_demand, description = "Labor Demand"),
+                (set = :Capital_Demand, name = :capital_demand, description = "Capital Demand"),
+                (set = :Use, name = :labor_demand, description = "Labor Demand"),
+                (set = :Use, name = :capital_demand, description = "Capital Demand"),
+                (set = :Value_Added, name = :labor_demand, description = "Labor Demand"),
+                (set = :Value_Added, name = :capital_demand, description = "Capital Demand"),
+            ])
+        )
+
+    return State(df, S, E)
+end
 
 
+"""
+    disaggregate_output_tax(
+        state_table::State,    
+        summary::National,
+        data_directory::String
+    )
 
-    df = table(state_table)
-    df = vcat(df,labor_capital_state)
+Disaggregate the output tax from the national summary into state-level using 
+national level tax rates and total output by state.
 
-    return State(df, sets(state_table), elements(state_table))
+Dependent on:
+    - Intermediate Demand
+    - Labor Demand
+    - Capital Demand
+
+New parameters:
+    - `Output_Tax` with element `output_tax`
+"""
+function disaggregate_output_tax(
+        state_table::State,    
+        summary::National,
+        raw_data::Dict;
+    )
+
+    # Ensure we maintain labeling consistency 
+    tax_code = elements(summary, :Output_Tax; base=true) |>
+        x -> only(x)[:name]
+
+
+    state_output_tax = outerjoin(
+        table(state_table, :Intermediate_Supply) |>
+            x -> groupby(x, [:year, :col, :region]) |>
+            x -> combine(x, :value => sum => :output),
+        WiNDCNational.output_tax_rate(summary),
+        on = [:year, :col]
+        ) |>
+        x -> transform(x, 
+            [:output, :value] => ((o,r) -> -o .* r) => :output_tax,
+            :value => ByRow(y -> tax_code) => :row
+        ) |>
+        x -> subset(x, :output_tax => ByRow(y -> abs(y)>1e-5)) |>
+        x -> select(x, :row, :col, :region, :year, :parameter, :output_tax => :value)
+
+
+    df = vcat(table(state_table),state_output_tax)
+
+    S = sets(state_table) |>
+        x -> vcat(x,
+            DataFrame([
+                (name = :Output_Tax, description = "Output Tax", domain = :parameter),
+            ])
+        )
+
+    E = elements(state_table) |>
+        x -> vcat(x,
+            DataFrame([
+                (set = :Output_Tax, name = :output_tax, description = "Output Tax"),
+                (set = :Use, name = :output_tax, description = "Output Tax"),
+            ])
+        )
+
+    return State(df, S, E)
 end
 
 
@@ -395,8 +529,7 @@ end
     disaggregate_tax(
         state_table::State,    
         summary::National,
-        data_directory::String;
-        tax_path = "SAGDP6__ALL_AREAS_1997_2024.csv"
+        raw_data::Dict;
     )
 
 Disaggregate the tax from the national summary into state-level using BEA
@@ -425,16 +558,30 @@ function disaggregate_tax(
         ) |>
         x -> transform(x,
             [:value, :tax_rate] => ByRow((v,tr) -> -v*tr) => :value,
-            :parameter => ByRow(y -> (col_label, :Tax)) => [:col, :parameter]
+            :parameter => ByRow(y -> (col_label, :tax)) => [:col, :parameter]
         ) |>
         x -> select(x, :row, :col, :region, :year, :parameter, :value) |>
         x -> subset(x,
             :value => ByRow(y -> abs(y) > 1e-6)
         )
+    df = vcat(table(state_table),state_tax)
 
-    df = table(state_table)
-    df = vcat(df,state_tax)
-    return State(df, sets(state_table), elements(state_table))
+    S = sets(state_table) |>
+        x -> vcat(x,
+            DataFrame([
+                (name = :Tax, description = "Tax", domain = :parameter),
+            ])
+        )
+
+    E = elements(state_table) |>
+        x -> vcat(x,
+            DataFrame([
+                (set = :Tax, name = :tax, description = "Tax"),
+                (set = :Supply, name = :tax, description = "Tax"),
+            ])
+        )
+
+    return State(df, S, E)
 end
 
 
@@ -451,8 +598,14 @@ element `invest`, updates the elements table accordingly.
 
 Raw data used:
     - `gdp`
+
+New parameter:
+    - `Investment_Final_Demand` with element `investment_final_demand`
+
+New Sets:
+    - `investment_final_demand` with element `invest` in domain `col`
 """
-function disaggregate_investement_final_demand(
+function disaggregate_investment_final_demand(
         state_table::State,    
         summary::National,
         raw_data::Dict;
@@ -471,21 +624,28 @@ function disaggregate_investement_final_demand(
     x -> transform(x, :row => ByRow(y -> :invest) => :col)
 
 
+    df = vcat(table(state_table),state_investment)
 
-    df = table(state_table)
-    df = vcat(df,state_investment)
-
-    E = elements(state_table) |>
-        x -> subset(x,
-            :set => ByRow(!=(:investment_final_demand))
-        ) |>
+    S = sets(state_table) |>
         x -> vcat(x,
             DataFrame([
-                (set = :investment_final_demand, name = :invest, description = "Investment Final Demand")
+                (name = :Investment_Final_Demand, description = "Investment Final Demand", domain = :parameter),
+                (name = :investment_final_demand, description = "Investment Final Demand", domain = :col),
             ])
         )
 
-    return State(df, sets(state_table), E)
+    E = elements(state_table) |>
+        x -> vcat(x,
+            DataFrame([
+                (set = :investment_final_demand, name = :invest, description = "Investment Final Demand"),
+                (set = :Investment_Final_Demand, name = :investment_final_demand, description = "Investment Final Demand"),
+                (set = :Use, name = :investment_final_demand, description = "Investment Final Demand"),
+                (set = :Other_Final_Demand, name = :investment_final_demand, description = "Investment Final Demand"),
+                (set = :Final_Demand, name = :investment_final_demand, description = "Investment Final Demand"),
+            ])
+        )
+
+    return State(df, S, E)
 end
 
 """
@@ -500,6 +660,9 @@ state-level using BEA PCE data.
 
 Raw data used:
     - `pce`
+
+New Parameter
+    - `Personal_Consumption` with element `personal_consumption`
 """
 function disaggregate_personal_consumption(
         state_table::State,    
@@ -516,10 +679,26 @@ function disaggregate_personal_consumption(
         domain = :commodity
     )
 
-    df = table(state_table)
-    df = vcat(df,state_pce)
+    df = vcat(table(state_table),state_pce)
 
-    return State(df, sets(state_table), elements(state_table))
+    S = sets(state_table) |>
+        x -> vcat(x,
+            DataFrame([
+                (name = :Personal_Consumption, description = "Personal Consumption", domain = :parameter),
+            ])
+        )
+
+    E = elements(state_table) |>
+        x -> vcat(x,
+            DataFrame([
+                (set = :Personal_Consumption, name = :personal_consumption, description = "Personal Consumption"),
+                (set = :Use, name = :personal_consumption, description = "Personal Consumption"),
+                (set = :Final_Demand, name = :personal_consumption, description = "Personal Consumption"),
+                (set = :Other_Final_Demand, name = :personal_consumption, description = "Personal Consumption"),
+            ])
+        )
+
+    return State(df, S, E)
 end
 
 """
@@ -534,6 +713,9 @@ BEA PCE data.
 
 Raw data used:
     - `pce`
+
+New Parameter
+    - `Household_Supply` with element `household_supply`
 """
 function disaggregate_household_supply(
         state_table::State,    
@@ -551,7 +733,24 @@ function disaggregate_household_supply(
     )
 
     df = vcat(table(state_table), state_household_supply)
-    return State(df, sets(state_table), elements(state_table))
+
+
+    S = sets(state_table) |>
+        x -> vcat(x,
+            DataFrame([
+                (name = :Household_Supply, description = "Household Supply", domain = :parameter),
+            ])
+        )
+
+    E = elements(state_table) |>
+        x -> vcat(x,
+            DataFrame([
+                (set = :Household_Supply, name = :household_supply, description = "Household Supply"),
+                (set = :Supply, name = :household_supply, description = "Household Supply"),
+            ])
+        )
+
+    return State(df, S, E)
 end
 
 """
@@ -567,6 +766,12 @@ element `govern`, updates the elements table accordingly.
 
 Raw data used:
     - `sgf`
+
+New parameter:
+    - `Government_Final_Demand` with element `government_final_demand`
+
+New Sets:
+    - `government_final_demand` with element `govern` in domain `col`
 """
 function disaggregate_government_final_demand(
         state_table::State,    
@@ -600,63 +805,29 @@ function disaggregate_government_final_demand(
 
     df = vcat(table(state_table), state_government)
 
-    E = elements(state_table) |>
-        x -> subset(x, :set => ByRow(!=(:government_final_demand))) |>
+    S = sets(state_table) |>
         x -> vcat(x,
             DataFrame([
-                (set = :government_final_demand, name = :govern, description = "Government Final Demand")
+                (name = :Government_Final_Demand, description = "Government Final Demand", domain = :parameter),
+                (name = :government_final_demand, description = "Government Final Demand", domain = :col),
             ])
         )
 
-    return State(df, sets(state_table), E)
+    E = elements(state_table) |>
+        x -> vcat(x,
+            DataFrame([
+                (set = :government_final_demand, name = :govern, description = "Government Final Demand"),
+                (set = :Government_Final_Demand, name = :government_final_demand, description = "Government Final Demand"),
+                (set = :Use, name = :government_final_demand, description = "Government Final Demand"),
+                (set = :Other_Final_Demand, name = :government_final_demand, description = "Government Final Demand"),
+                (set = :Final_Demand, name = :government_final_demand, description = "Government Final Demand"),
+            ])
+        )
+
+    return State(df, S, E)
 end
 
-"""
-    disaggregate_output_tax(
-        state_table::State,    
-        summary::National,
-        data_directory::String
-    )
 
-Disaggregate the output tax from the national summary into state-level using 
-national level tax rates and total output by state.
-
-Dependent on:
-    - Intermediate Demand
-    - Labor Demand
-    - Capital Demand
-"""
-function disaggregate_output_tax(
-        state_table::State,    
-        summary::National,
-        raw_data::Dict;
-    )
-
-    # Ensure we maintain labeling consistency 
-    tax_code = elements(summary, :Output_Tax; base=true) |>
-        x -> only(x)[:name]
-
-
-    state_output_tax = outerjoin(
-        table(state_table, :Intermediate_Supply) |>
-            x -> groupby(x, [:year, :col, :region]) |>
-            x -> combine(x, :value => sum => :output),
-        WiNDCNational.output_tax_rate(summary),
-        on = [:year, :col]
-        ) |>
-        x -> transform(x, 
-            [:output, :value] => ((o,r) -> -o .* r) => :output_tax,
-            :value => ByRow(y -> tax_code) => :row
-        ) |>
-        x -> subset(x, :output_tax => ByRow(y -> abs(y)>1e-5)) |>
-        x -> select(x, :row, :col, :region, :year, :parameter, :output_tax => :value)
-
-
-    df = table(state_table)
-    df = vcat(df,state_output_tax)
-
-    return State(df, sets(state_table), elements(state_table))
-end
 
 
 """
@@ -672,6 +843,9 @@ BEA GSP data and trade shares.
 Raw data used:
     - `gdp`
     - `trade_shares`
+
+New Parameter
+    - `Export` with element `export`
 """
 function disaggregate_foreign_exports(
         state_table::State,    
@@ -730,7 +904,23 @@ function disaggregate_foreign_exports(
 
     df = vcat(table(state_table), state_exports)
 
-    return State(df, sets(state_table), elements(state_table))
+    S = sets(state_table) |>
+        x -> vcat(x,
+            DataFrame([
+                (name = :Export, description = "Exports", domain = :parameter),
+            ])
+        )
+
+    E = elements(state_table) |>
+        x -> vcat(x,
+            DataFrame([
+                (set = :Export, name = :export, description = "Exports"),
+                (set = :Use, name = :export, description = "Exports"),
+                (set = :Final_Demand, name = :export, description = "Exports"),
+            ])
+        )
+
+    return State(df, S, E)
 end
 
 """
@@ -746,6 +936,12 @@ supply and exports.
 Dependent on:
     - [`WiNDCRegional.total_supply`](@ref)
     - exports
+
+New Parameter
+    - `Reexport` with element `reexport`
+
+New Sets:
+    - `reexport` with element `reexport` in domain `col`
 """
 function create_reexports(
         state_table::State,
@@ -769,7 +965,7 @@ function create_reexports(
     S = sets(state_table) |>
         x -> vcat(x,
             DataFrame([
-                (name = :reexport, description = "Reexports", domain = :sector),
+                (name = :reexport, description = "Reexports", domain = :row),
                 (name = :Reexport, description = "Reexports", domain = :parameter)
             ])
         )
@@ -778,6 +974,7 @@ function create_reexports(
             DataFrame([
                 (set = :Reexport, name = :reexport, description = "Reexports parameter"),
                 (set = :reexport, name = :reexport, description = "Reexports parameter"),
+                (set = :Use, name = :reexport, description = "Reexports parameter"),
             ])
         )
 
@@ -796,6 +993,9 @@ Disaggregate the foreign imports from the national summary into state-level usin
 
 Dependent on:
     - [`absorption`](@ref)
+
+New Parameter:
+    - `Import` with element `import`
 """
 function disaggregate_foreign_imports(
         state_table::State,    
@@ -813,7 +1013,22 @@ function disaggregate_foreign_imports(
 
     df = vcat(table(state_table), state_imports)
 
-    return State(df, sets(state_table), elements(state_table))
+    S = sets(state_table) |>
+        x -> vcat(x,
+            DataFrame([
+                (name = :Import, description = "Imports", domain = :parameter),
+            ])
+        )
+
+    E = elements(state_table) |>
+        x -> vcat(x,
+            DataFrame([
+                (set = :Import, name = :import, description = "Imports"),
+                (set = :Supply, name = :import, description = "Imports"),
+            ])
+        )
+
+    return State(df, S, E)
 end
 
 """
@@ -844,7 +1059,24 @@ function disaggregate_margin_demand(
         )
 
     df = vcat(table(state_table), state_imports)
-    return State(df, sets(state_table), elements(state_table))
+
+    S = sets(state_table) |>
+        x -> vcat(x,
+            DataFrame([
+                (name = :Margin_Demand, description = "Margin Demand", domain = :parameter),
+            ])
+        )
+
+    E = elements(state_table) |>
+        x -> vcat(x,
+            DataFrame([
+                (set = :Margin_Demand, name = :margin_demand, description = "Margin Demand"),
+                (set = :Supply, name = :margin_demand, description = "Margin Demand"),
+            ])
+        )
+
+
+    return State(df, S, E)
 end
 
 """
@@ -859,6 +1091,9 @@ level duty rates and total imports by state.
 
 Dependent on:
     - imports
+
+New Parameter:
+    - `Duty` with element `duty`
 """
 function disaggregate_duty(
         state_table::State,    
@@ -883,7 +1118,22 @@ function disaggregate_duty(
 
     df = vcat(table(state_table), state_duty)
 
-    return State(df, sets(state_table), elements(state_table))
+    S = sets(state_table) |>
+        x -> vcat(x,
+            DataFrame([
+                (name = :Duty, description = "Duty", domain = :parameter),
+            ])
+        )
+
+    E = elements(state_table) |>
+        x -> vcat(x,
+            DataFrame([
+                (set = :Duty, name = duty_code, description = "Duty"),
+                (set = :Supply, name = duty_code, description = "Duty"),
+            ])
+        )
+
+    return State(df, S, E)
 end
 
 
@@ -977,6 +1227,14 @@ Raw data used:
 Dependent on:
     - [`WiNDCRegional.absorption`](@ref)
     - [`WiNDCRegional.total_supply`](@ref)
+
+New Parameters:
+    - `local_demand` with element `local_demand`
+    - `national_demand` with element `national_demand`
+
+New Sets:
+    - `local_demand` with element `local_demand` in domain `col`
+    - `national_demand` with element `national_demand` in domain `col`
 """
 function create_regional_demand(
         state_table::State,
@@ -988,7 +1246,7 @@ function create_regional_demand(
 
     domestic_demand_absorption = vcat(
             WiNDCRegional.absorption(state_table),
-            table(state_table, :Tax, :Subsidy, :Reexport, :Import, :Duty, :Margin_Demand),
+            table(state_table, :Tax, :Reexport, :Import, :Duty, :Margin_Demand),
         ) |>
         x -> groupby(x, [:year, :region, :row]) |>
         x -> combine(x, :value => sum => :value) |>
@@ -1055,6 +1313,8 @@ function create_regional_demand(
                 (set = :National_Demand, name = :national_demand, description = "National Demand parameter"),
                 (set = :local_demand, name = :local_demand, description = "Local Demand element"),
                 (set = :national_demand, name = :national_demand, description = "National Demand element"),
+                (set = :supply, name = :local_demand, description = "Local Demand element"),
+                (set = :supply, name = :national_demand, description = "National Demand element"),
             ])
         )
 
@@ -1071,6 +1331,13 @@ end
 
 Raw data used:
     - `rpc`
+
+New Parameters:
+    - `Local_Margin_Supply` with element `local_margin_supply`
+    - `National_Margin_Supply` with element `region_margin_supply`
+    - `Margin_Supply` with elements `local_margin_supply` and `region_margin_supply`
+
+    
 """
 function create_regional_margin_supply(
         state_table::State,
@@ -1167,6 +1434,7 @@ function create_regional_margin_supply(
             DataFrame([
                 (name = :Local_Margin_Supply, description = "Local Margin Supply", domain = :parameter),
                 (name = :National_Margin_Supply, description = "National Margin Supply", domain = :parameter)
+                (name = :Margin_Supply, description = "Margin Supply", domain = :parameter),
             ])
         )
     E = elements(state_table) |>
