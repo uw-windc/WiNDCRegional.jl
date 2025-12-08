@@ -42,32 +42,48 @@ end
 
 """
     load_state_finances(
-            directory_path::String;
-            sgf_map::DataFrame = WiNDCRegional.load_sgf_map(),
-            sgf_states::DataFrame = WiNDCRegional.load_sgf_states()
-        )
-
-Load state government finance data from census files in the specified directory.
-
-
-NEEDS FIXING - HACK IN YEAR 2024 DATA AND DC
-"""
-function load_state_finances(
-        summary::National,
+        file_pattern::Regex,
         directory_path::String;
         sgf_map::DataFrame = WiNDCRegional.load_sgf_map(),
-        sgf_states::DataFrame = WiNDCRegional.load_sgf_states()
+        sgf_states::DataFrame = WiNDCRegional.load_sgf_states(),
+        replacement_data::Dict = Dict()
+        )
+
+Load state government finance data that matches the file pattern in the given
+directory path. 
+
+## Required Arguments
+
+- `file_pattern::Regex`: A regex pattern to match the filenames, typically of the 
+    form ^(?<year>\\d{2})(state|data)35.txt\$
+- `directory_path::String`: Location of the data files.
+
+## Optional Arguments
+
+- `sgf_map::DataFrame`: A dataframe mapping SGF codes to NAICS codes. Default is
+    [`WiNDCRegional.load_sgf_map()`](@ref).
+- `sgf_states::DataFrame`: A dataframe mapping FIPS codes to state names. Default is
+    [`WiNDCRegional.load_sgf_states()`](@ref).
+- `replacement_data::Dict`: A dictionary of replacement data to append to the
+    dataframe. The keys are column names, and the values are dictionaries
+    mapping new data names to existing data names. The replacement is done using
+    [`WiNDCRegional.sgf_append_data`](@ref).
+"""
+function load_state_finances(
+        file_pattern::Regex,
+        directory_path::String;
+        sgf_map::DataFrame = WiNDCRegional.load_sgf_map(),
+        sgf_states::DataFrame = WiNDCRegional.load_sgf_states(),
+        replacement_data::Dict = Dict()
     )
 
 
     census_files = readdir(directory_path) |>
-        x -> match.(r"^(?<year>\d{2})(state|data)35.txt$", x) |>
+        x -> match.(file_pattern, x) |>
         x -> filter(!isnothing, x)
 
 
     df = vcat(load_sgf.(directory_path, census_files)...)
-
-
 
     census_data = innerjoin(
         df,
@@ -81,32 +97,14 @@ function load_state_finances(
     x -> transform(x, 
         :naics => ByRow(Symbol) => :naics,
         :state => ByRow(y -> "government_final_demand") => :name
-    ) |>
-    x -> vcat(
-        x,
-        x |> 
-            x -> subset(x,
-                :year => ByRow(==(2023))
-            ) |>
-            x -> transform(x,
-                :year => ByRow(y -> 2024) => :year
-            )
-    ) |>
-    x -> vcat(
-        x,
-        x |>
-            x -> subset(x,
-                :state => ByRow(==("Maryland"))
-            ) |>
-            x -> transform(x,
-                :state => ByRow(y -> "District of Columbia") => :state
-            )
-    ) |>
-    x -> subset(x, :value => ByRow(!=(0)))
+    ) 
 
+    for (column,Y) in replacement_data
+        for (new_data, existing_data) in Y
+            census_data = extend_data(census_data, Symbol(column), existing_data, new_data)
+        end
+    end
 
-    
 
     return census_data
 end
-
