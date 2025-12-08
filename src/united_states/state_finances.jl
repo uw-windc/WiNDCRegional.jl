@@ -105,6 +105,10 @@ function load_state_finances(
         end
     end
 
+    census_data |>
+        x -> transform!(x,
+            :year => ByRow(y -> !isa(y, Int) ? parse(Int, y) : y) => :year
+        )
 
     return census_data
 end

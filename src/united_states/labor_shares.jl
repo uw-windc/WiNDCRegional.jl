@@ -2,14 +2,9 @@
 
 function labor_shares(
     summary::National,
-    base_dir::String;
-    gdp_path = "SAGDP2__ALL_AREAS_1997_2024.csv",
-    labor_path = "SAGDP4__ALL_AREAS_1997_2024.csv",
-    capital_path = "SAGDP7__ALL_AREAS_1997_2024.csv",
-    tax_path = "SAGDP6__ALL_AREAS_1997_2024.csv",
-    subsidy_path = "SAGDP5__ALL_AREAS_1997_2024.csv",
+    raw_data::Dict;
 )
-    gdp = load_state_gdp(joinpath(base_dir, "bea_gdp", gdp_path), "gdp")
+    gdp = raw_data[:gdp]
     region_share = gdp |>
         x -> groupby(x, [:year, :name, :naics]) |>
         x -> combine(x,
@@ -18,10 +13,10 @@ function labor_shares(
         )
 
 
-    labor = load_state_gdp(joinpath(base_dir, "bea_gdp", labor_path), "labor")
-    capital = load_state_gdp(joinpath(base_dir, "bea_gdp", capital_path), "capital")
-    tax = load_state_gdp(joinpath(base_dir, "bea_gdp", tax_path), "tax")
-    subsidy = load_state_gdp(joinpath(base_dir, "bea_gdp", subsidy_path), "subsidy")
+    labor = raw_data[:labor]
+    capital = raw_data[:capital]
+    tax = raw_data[:tax]
+    subsidy = raw_data[:subsidy]
 
     calculated_gdp = compute_gdp_from_gsp(
         labor,

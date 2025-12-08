@@ -6,6 +6,8 @@ provided National summary.
 
 Add one set, State, containing all US states. These are loaded using the provided
 `state_fips.csv` file. 
+
+NOTE: Update with set listing
 """
 function initialize_table(summary::National)
     state_fips = load_state_fips()
@@ -34,61 +36,249 @@ end
 
 
 """
-    create_state_table(
+    load_map_data(map_dictionary::Dict)
+
+Load map data specified in the `metadata:maps` section of the regional.yaml file.
+Returns a dictionary of DataFrames, with keys corresponding to the map types.
+
+If the paths are not speicifed in `regional.yaml`, the default maps will be loaded.
+
+## Required Arguments
+
+- `map_dictionary::Dict`: A dictionary with keys the name of the map and values the 
+    path to the map data file. If the value is `nothing`, the default map will be loaded.
+
+## Default Loading Functions
+
+- `state_map` => [`WiNDCRegional.load_state_fips`](@ref)
+- `gdp_map` => [`WiNDCRegional.load_industry_codes`](@ref)
+- `pce_map` => [`WiNDCRegional.load_pce_map`](@ref)
+- `sgf_map` => [`WiNDCRegional.load_sgf_map`](@ref)
+- `sgf_states_map` => [`WiNDCRegional.load_sgf_states`](@ref)
+- `trade_map` => [`WiNDCRegional.load_usatrade_map`](@ref)
+- `faf_map` => [`WiNDCRegional.load_faf_map`](@ref)
+"""
+function load_map_data(map_dictionary::Dict)
+    load_functions = Dict(
+        "state_map" => WiNDCRegional.load_state_fips,
+        "gdp_map" => WiNDCRegional.load_industry_codes,
+        "pce_map" => WiNDCRegional.load_pce_map,
+        "sgf_map" => WiNDCRegional.load_sgf_map,
+        "sgf_states_map" => WiNDCRegional.load_sgf_states,
+        "trade_map" => WiNDCRegional.load_usatrade_map,
+        "faf_map" => WiNDCRegional.load_faf_map,
+    )   
+
+    out = Dict{Symbol,DataFrame}()
+    for (key, path) in map_dictionary
+        if haskey(load_functions, key)
+            out[Symbol(key)] = isnothing(path) ? load_functions[key]() : load_functions[key](path)
+        else
+            error("No load function defined for map type: $key")
+        end
+    end
+
+    return out
+
+end
+
+
+
+"""
+    load_raw_data(
+            summary::National,
+            data_info::Dict, 
+            data_directory::String, 
+            maps::Dict{Symbol, DataFrame}
+        )
+
+Load data files specified in `regional.yaml` needed for disaggregation of the US
+WiNDCNational summary into state-level WiNDCRegional table.
+
+Returns a dictionary of DataFrames, with keys corresponding to key in the `data`
+section of `regional.yaml`.
+
+## Required Arguments
+
+- `summary::National`: The national summary WiNDCNational table.
+- `data_info::Dict`: The `data` section of the `regional.yaml` file.
+- `data_directory::String`: The base directory where data files are located. This 
+    is specified in the `metadata:data_directory` field of `regional.yaml`.
+- `maps::Dict{Symbol, DataFrame}`: A dictionary of mapping DataFrames loaded using
+    [`WiNDCRegional.load_map_data`](@ref).
+
+## Data Loading Functions
+
+- `state_gdp` - All values => [`WiNDCRegional.load_state_gdp`](@ref)
+- `pce` => [`WiNDCRegional.load_pce_data`](@ref)
+- `sgf` => [`WiNDCRegional.load_state_finances`](@ref)
+- `trade_shares`
+    - `exports` and `imports` => [`WiNDCRegional.load_usa_raw_trade_data`](@ref)
+    - `ag_time_series` => [`WiNDCRegional.load_usda_agricultural_flow`](@ref)
+    - trade shares => [`WiNDCRegional.load_trade_shares`](@ref)
+- `rpc` => [`WiNDCRegional.load_regional_purchase_coefficients`](@ref)
+"""
+function load_raw_data(
         summary::National,
-        data_directory::String,
+        data_info::Dict, 
+        data_directory::String, 
+        maps::Dict{Symbol, DataFrame}
+    )
+    out = Dict()
+    
+    # State GDP
+    state_data = data_info["state_gdp"]
+    state_dir = state_data["metadata"]["base_directory"] # Careful
+
+    # Load GDP data
+    for (name, data) in state_data
+        name == "metadata" ? continue : nothing
+        out[Symbol(name)] = load_state_gdp(
+            joinpath(data_directory, state_dir, data["path"]), 
+            name;
+            state_fips = maps[:state_map],
+            industry_codes = maps[:gdp_map],
+        )
+    end
+
+
+    # PCE data
+    pce_data = data_info["personal_consumption"]
+    state_dir = pce_data["metadata"]["base_directory"]
+
+    out[:pce] = load_pce_data(
+        joinpath(data_directory, state_dir, pce_data["pce"]["path"]), 
+        "pce";
+        state_fips = maps[:state_map],
+        pce_map = maps[:pce_map],
+        )
+
+    # SGF data
+    finance_data = data_info["state_finances"]
+
+    out[:sgf] = WiNDCRegional.load_state_finances(
+         Regex(finance_data["sgf"]["path"]), 
+        joinpath(data_directory, finance_data["metadata"]["base_directory"]); 
+        replacement_data = finance_data["sgf"]["replacement"],
+        sgf_states = maps[:sgf_states_map],
+        sgf_map = maps[:sgf_map],
+        )
+
+
+    # Trade data
+    trade_data = data_info["trade"]
+    trade_path = joinpath(data_directory, trade_data["metadata"]["base_directory"])
+    ### exports
+    exports = WiNDCRegional.load_usa_raw_trade_data(
+        joinpath(trade_path, trade_data["exports"]["path"]),
+        "exports";
+        value_col = Symbol(trade_data["exports"]["sheet"]),
+        state_fips = maps[:state_map],
+        usatrade_map = maps[:trade_map]
     )
 
-Disaggregate the national summary into a state-level table, using data files
-located in `data_directory`.
+    ### imports
+    imports = WiNDCRegional.load_usa_raw_trade_data(
+        joinpath(trade_path, trade_data["imports"]["path"]),
+        "imports";
+        value_col = Symbol(trade_data["imports"]["sheet"]),
+        state_fips = maps[:state_map],
+        usatrade_map = maps[:trade_map]
+    )
+
+
+    ### ag
+    ag_flow = WiNDCRegional.load_usda_agricultural_flow(
+        joinpath(trade_path, trade_data["ag_time_series"]["path"]),
+        trade_data["ag_time_series"]["sheet"],
+        trade_data["ag_time_series"]["range"];
+        agriculture_code = Symbol(trade_data["metadata"]["agriculture_code"]),
+        replacement_data = trade_data["ag_time_series"]["replacement"]
+    )
+
+
+    out[:trade_shares] = WiNDCRegional.load_trade_shares(
+        exports,
+        imports, 
+        ag_flow
+    )
+
+    # FAF
+    faf = data_info["freight_analysis_framework"]
+    faf_path = joinpath(data_directory, faf["metadata"]["base_directory"])
+
+    adjusted_demand = Dict{Symbol, Float64}(Symbol(k) => v for (k,v) in faf["metadata"]["adjusted_demand"])
+
+    out[:rpc] = load_regional_purchase_coefficients(
+        summary,
+        joinpath(faf_path, faf["state"]["path"]),
+        joinpath(faf_path, faf["reprocessed_state"]["path"]);
+        adjusted_demand = adjusted_demand,
+        state_fips = maps[:state_map],
+        faf_map = maps[:faf_map],
+        cols_to_keep = Symbol.(faf["metadata"]["columns"]),
+        regex_cols_to_keep = Regex(faf["metadata"]["column_regex"]),
+        max_year = faf["metadata"]["max_year"],
+    ) 
+
+    return out
+
+end
+
+
+"""
+    create_state_table(
+        summary::National,
+        regional_info::Dict,
+    )
+
+Disaggregate the US WiNDCNational summary-level data into a state-level table, 
+using raw data files located in `data_directory`.
+
 
 
 """
 function create_state_table(
         summary::National,
-        data_directory::String,
+        regional_info::Dict,
     )
+
+    metadata = regional_info["metadata"]
+    data_directory = metadata["data_directory"]
+
+    maps = WiNDCRegional.load_map_data(metadata["maps"])
+
+    raw_data = WiNDCRegional.load_raw_data(
+        summary,
+        regional_info["data"],
+        data_directory,
+        maps
+    )
+
+
 
     state_table = initialize_table(summary)
-    state_table = WiNDCRegional.disaggregate_intermediate(state_table, summary, data_directory)
-    state_table = WiNDCRegional.disaggregate_labor_capital(state_table, summary, data_directory)
-    state_table = WiNDCRegional.disaggregate_output_tax(state_table, summary, data_directory)
+    state_table = WiNDCRegional.disaggregate_intermediate(state_table, summary, raw_data)
+    state_table = WiNDCRegional.disaggregate_labor_capital(state_table, summary, raw_data)
+    state_table = WiNDCRegional.disaggregate_output_tax(state_table, summary, raw_data)
 
 
-    state_table = WiNDCRegional.disaggregate_investement_final_demand(state_table, summary, data_directory)
-    state_table = WiNDCRegional.disaggregate_personal_consumption(state_table, summary, data_directory)
-    state_table = WiNDCRegional.disaggregate_household_supply(state_table, summary, data_directory)
-    state_table = WiNDCRegional.disaggregate_government_final_demand(state_table, summary, data_directory)
+    state_table = WiNDCRegional.disaggregate_investement_final_demand(state_table, summary, raw_data)
+    state_table = WiNDCRegional.disaggregate_personal_consumption(state_table, summary, raw_data)
+    state_table = WiNDCRegional.disaggregate_household_supply(state_table, summary, raw_data)
+    state_table = WiNDCRegional.disaggregate_government_final_demand(state_table, summary, raw_data)
 
-    trade_shares = load_trade_shares(
-        summary,
-        joinpath(data_directory, "USATradeOnline", "State Exports by NAICS Commodities.csv"),
-        joinpath(data_directory, "USATradeOnline", "State Imports by NAICS Commodities.csv"),
-        joinpath(data_directory, "USATradeOnline", "commodity_detail_by_state_cy.xlsx"),
-    )
 
-    state_table = WiNDCRegional.disaggregate_foreign_exports(state_table, summary, data_directory, trade_shares)
-    state_table = WiNDCRegional.create_reexports(state_table)
-    state_table = WiNDCRegional.disaggregate_foreign_imports( state_table, summary, data_directory)
-    state_table = WiNDCRegional.disaggregate_margin_demand(state_table, summary, data_directory)
-    state_table = WiNDCRegional.disaggregate_duty(state_table, summary, data_directory)
-    state_table = WiNDCRegional.disaggregate_tax(state_table, summary, data_directory)
+    state_table = WiNDCRegional.disaggregate_foreign_exports(state_table, summary, raw_data)
+    state_table = WiNDCRegional.create_reexports(state_table, summary, raw_data)
+    state_table = WiNDCRegional.disaggregate_foreign_imports( state_table, summary, raw_data)
+    state_table = WiNDCRegional.disaggregate_margin_demand(state_table, summary, raw_data)
+    state_table = WiNDCRegional.disaggregate_duty(state_table, summary, raw_data)
+    state_table = WiNDCRegional.disaggregate_tax(state_table, summary, raw_data)
 
-    adjusted_demand = Dict(
-        Symbol("22") => .9,
-        Symbol("23") => .9,
-    )
 
-    rpc_new = load_regional_purchase_coefficients(
-        summary,
-        "FAF5.7.1_State.csv",
-        "FAF5.7.1_Reprocessed_1997-2012_State.csv",
-        data_directory;
-        adjusted_demand = adjusted_demand
-    ) 
-
-    state_table = WiNDCRegional.create_regional_demand(state_table, rpc_new,)
-    state_table = WiNDCRegional.create_regional_margin_supply(state_table, summary, rpc_new,)
+    state_table = WiNDCRegional.create_regional_demand(state_table, summary, raw_data)
+    state_table = WiNDCRegional.create_regional_margin_supply(state_table, summary, raw_data)
 
     return state_table
 end
@@ -104,20 +294,16 @@ end
 Disaggregate the intermediate demand and supply from the national summary into 
 state-level using BEA GSP data.
 
-Dependent on:
-    - "SAGDP2__ALL_AREAS_1997_2024.csv"
+Raw data used:
+    - `gdp`
 """
 function disaggregate_intermediate(
         state_table::State,    
         summary::National,
-        data_directory::String;
-        gdp_path = "SAGDP2__ALL_AREAS_1997_2024.csv"
+        raw_data::Dict;
     )
 
-    gdp = load_state_gdp(
-        joinpath(data_directory, "bea_gdp", gdp_path),
-        "gdp"
-    )
+    gdp = raw_data[:gdp]
 
     state_intermediate = disaggregate_by_shares(
         summary,
@@ -132,15 +318,30 @@ function disaggregate_intermediate(
     return State(df, sets(state_table), elements(state_table))
 end
 
+"""
+    disaggregate_labor_capital(
+            state_table::State,    
+            summary::National,
+            raw_data::Dict;
+        )
 
+Disaggregate the labor and capital demand from the national summary into state-level
+using BEA GSP data.
+
+Raw data used:
+    - `gdp`
+    - `labor`
+    - `capital`
+    - `tax`
+    - `subsidy`
+"""
 function disaggregate_labor_capital(
         state_table::State,    
         summary::National,
-        data_directory::String;
-        gdp_path = "SAGDP2__ALL_AREAS_1997_2024.csv",
+        raw_data::Dict;
     )
 
-    gdp = load_state_gdp(joinpath(data_directory, "bea_gdp", gdp_path), "gdp")
+    gdp = raw_data[:gdp]
     region_share = gdp |>
         x -> groupby(x, [:year, :name, :naics]) |>
         x -> combine(x,
@@ -148,10 +349,7 @@ function disaggregate_labor_capital(
             :value => (y -> y./sum(y)) => :share
         )
 
-    labor_share = labor_shares(
-        summary,
-        data_directory
-    )
+    labor_share = labor_shares(summary, raw_data)
 
     labor_capital_state = innerjoin(
             region_share |> x -> select(x, :year, :naics => :col, :state=>:region, :share),
@@ -192,46 +390,6 @@ end
 
 
 
-"""
-    disaggregate_subsidy(
-        state_table::State,    
-        summary::National,
-        data_directory::String;
-        subsidy_path = "SAGDP5__ALL_AREAS_1997_2024.csv"
-    )
-
-Disaggregate the subsidy from the national summary into state-level using BEA
-GSP data.
-
-Dependent on:
-    - "SAGDP5__ALL_AREAS_1997_2024.csv"
-"""
-function disaggregate_subsidy(
-        state_table::State,    
-        summary::National,
-        data_directory::String;
-        subsidy_path = "SAGDP5__ALL_AREAS_1997_2024.csv"
-    )
-
-    subsidy = load_state_gdp(
-        joinpath(data_directory, "bea_gdp", subsidy_path),
-        "subsidy"
-    )
-
-
-    state_subsidy = disaggregate_by_shares(
-        summary,
-        subsidy,
-        :Subsidy;
-        domain = :commodity
-        )
-
-    df = table(state_table)
-    df = vcat(df,state_subsidy)
-
-    return State(df, sets(state_table), elements(state_table))
-end
-
 
 """
     disaggregate_tax(
@@ -244,6 +402,8 @@ end
 Disaggregate the tax from the national summary into state-level using BEA
 GSP data.
 
+Note: This will be inclusive of subsidies.
+
 Dependent on:
     - [`WiNDCRegional.absorption`](@ref)
     - Summary absorption tax rate
@@ -252,8 +412,7 @@ Dependent on:
 function disaggregate_tax(
         state_table::State,    
         summary::National,
-        data_directory::String;
-        tax_path = "SAGDP6__ALL_AREAS_1997_2024.csv"
+        raw_data::Dict;
     )
 
 
@@ -283,28 +442,23 @@ end
     disaggregate_investement_final_demand(
         state_table::State,    
         summary::National,
-        data_directory::String;
-        investment_path = "SAGDP2__ALL_AREAS_1997_2024.csv"
+        raw_data::Dict;
     )
 
 Disaggregate the investment final demand from the national summary into state-level
 using BEA GSP data. Also aggregates all investment final demand to a single 
 element `invest`, updates the elements table accordingly.
 
-Dependent on:
-    - "SAGDP2__ALL_AREAS_1997_2024.csv"
+Raw data used:
+    - `gdp`
 """
 function disaggregate_investement_final_demand(
         state_table::State,    
         summary::National,
-        data_directory::String;
-        gdp_path = "SAGDP2__ALL_AREAS_1997_2024.csv"
+        raw_data::Dict;
     )
 
-    gdp = load_state_gdp(
-        joinpath(data_directory, "bea_gdp", gdp_path),
-        "gdp"
-    )
+    gdp = raw_data[:gdp]
 
     state_investment = disaggregate_by_shares(
         summary,
@@ -338,27 +492,22 @@ end
     disaggregate_personal_consumption(
         state_table::State,    
         summary::National,
-        data_directory::String;
-        pce_path = "SAPCE1__ALL_AREAS_1997_2024.csv"
+        raw_data::Dict;
     )
 
 Disaggregate the personal consumption expenditure from the national summary into
 state-level using BEA PCE data.
 
-Dependent on:
-    - "SAPCE1__ALL_AREAS_1997_2024.csv"
+Raw data used:
+    - `pce`
 """
 function disaggregate_personal_consumption(
         state_table::State,    
         summary::National,
-        data_directory::String;
-        pce_path = "SAPCE1__ALL_AREAS_1997_2024.csv"
+        raw_data::Dict;
     )
 
-    pce = load_pce_data(
-        joinpath(data_directory, "PCE", pce_path),
-        "pce"
-    )
+    pce = raw_data[:pce]
 
     state_pce = disaggregate_by_shares(
         summary,
@@ -377,27 +526,22 @@ end
     disaggregate_household_supply(
         state_table::State,    
         summary::National,
-        data_directory::String;
-        pce_path = "SAPCE1__ALL_AREAS_1997_2024.csv"
+        raw_data::Dict;
     )
 
 Disaggregate the household supply from the national summary into state-level using
 BEA PCE data.
 
-Dependent on:
-    - "SAPCE1__ALL_AREAS_1997_2024.csv"
+Raw data used:
+    - `pce`
 """
 function disaggregate_household_supply(
         state_table::State,    
         summary::National,
-        data_directory::String;
-        pce_path = "SAPCE1__ALL_AREAS_1997_2024.csv"
+        raw_data::Dict;
     )
 
-    pce = load_pce_data(
-        joinpath(data_directory, "PCE", pce_path),
-        "pce"
-    )
+    pce = raw_data[:pce]
 
     state_household_supply = disaggregate_by_shares(
         summary,
@@ -414,32 +558,23 @@ end
     disaggregate_government_final_demand(
         state_table::State,    
         summary::National,
-        data_directory::String;
-        sgf_map = WiNDCRegional.load_sgf_map(),
-        sgf_states = WiNDCRegional.load_sgf_states()
+        raw_data::Dict;
     )
 
 Disaggregate the government final demand from the national summary into state-level
 using Census SGF data. Also aggregates all government final demand to a single 
 element `govern`, updates the elements table accordingly.
 
-Dependent on:
-    - Census SGF data files
+Raw data used:
+    - `sgf`
 """
 function disaggregate_government_final_demand(
         state_table::State,    
         summary::National,
-        data_directory::String;
-        sgf_map = WiNDCRegional.load_sgf_map(),
-        sgf_states = WiNDCRegional.load_sgf_states()
+        raw_data::Dict;
     )
 
-    census_data = load_state_finances(
-            summary,
-            joinpath(data_directory, "SGF");
-            sgf_states = sgf_states,
-            sgf_map = sgf_map
-        ) |>
+    census_data = raw_data[:sgf] |>
         x -> rename(x, :naics => :row, :state => :region) |>
         x -> groupby(x, [:year, :row]) |>
         x -> combine(x, 
@@ -494,7 +629,7 @@ Dependent on:
 function disaggregate_output_tax(
         state_table::State,    
         summary::National,
-        data_directory::String
+        raw_data::Dict;
     )
 
     # Ensure we maintain labeling consistency 
@@ -528,31 +663,24 @@ end
     disaggregate_foreign_exports(
             state_table::State,    
             summary::National,
-            data_directory::String,
-            trade_shares::DataFrame;
-            gdp_path = "SAGDP2__ALL_AREAS_1997_2024.csv"
+            raw_data::Dict;
         )
 
 Disaggregate the foreign exports from the national summary into state-level using
 BEA GSP data and trade shares.
 
-Dependent on:
-    - "SAGDP2__ALL_AREAS_1997_2024.csv"
-    - trade shares DataFrame, produced by
-      [`WiNDCRegional.load_trade_shares`](@ref)
+Raw data used:
+    - `gdp`
+    - `trade_shares`
 """
 function disaggregate_foreign_exports(
         state_table::State,    
         summary::National,
-        data_directory::String,
-        trade_shares::DataFrame;
-        gdp_path = "SAGDP2__ALL_AREAS_1997_2024.csv"
+        raw_data::Dict;
     )
 
-    gdp = load_state_gdp(
-        joinpath(data_directory, "bea_gdp", gdp_path),
-        "gdp"
-    )
+    gdp = raw_data[:gdp]
+    trade_shares = raw_data[:trade_shares]
 
     region_share = gdp |>
         x -> groupby(x, [:year, :name, :naics]) |>
@@ -600,14 +728,6 @@ function disaggregate_foreign_exports(
         ) |>
         x -> select(x, :row, :col, :year, :state=>:region, :parameter, :value)
 
-    #state_exports = disaggregate_by_shares(
-    #    summary,
-    #    export_disag,
-    #    [:Export];
-    #    domain = :commodity,
-    #    fill_missing = false
-    #    )
-
     df = vcat(table(state_table), state_exports)
 
     return State(df, sets(state_table), elements(state_table))
@@ -615,7 +735,9 @@ end
 
 """
     create_reexports(
-        state_table::State
+        state_table::State,
+        summary::National,
+        raw_data::Dict;
     )
 
 Reexports are defined as the negative portion of the difference between total 
@@ -626,7 +748,9 @@ Dependent on:
     - exports
 """
 function create_reexports(
-        state_table::State
+        state_table::State,
+        summary::National,
+        raw_data::Dict;
     )
 
     reexports = innerjoin(
@@ -664,7 +788,7 @@ end
     disaggregate_foreign_imports(
         state_table::State,    
         summary::National,
-        data_directory::String;
+        raw_data::Dict;
     )
 
 Disaggregate the foreign imports from the national summary into state-level using
@@ -676,7 +800,7 @@ Dependent on:
 function disaggregate_foreign_imports(
         state_table::State,    
         summary::National,
-        data_directory::String;
+        raw_data::Dict;
     )
 
     state_imports = disaggregate_by_shares(
@@ -696,7 +820,7 @@ end
     disaggregate_margin_demand(
         state_table::State,    
         summary::National,
-        data_directory::String;
+        raw_data::Dict;
     )
 
 Disaggregate the margin demand from the national summary into state-level using
@@ -708,7 +832,7 @@ Dependent on:
 function disaggregate_margin_demand(
         state_table::State,    
         summary::National,
-        data_directory::String;
+        raw_data::Dict;
     )
 
     state_imports = disaggregate_by_shares(
@@ -720,9 +844,6 @@ function disaggregate_margin_demand(
         )
 
     df = vcat(table(state_table), state_imports)
-
-    return State(df, sets(state_table), elements(state_table))
-
     return State(df, sets(state_table), elements(state_table))
 end
 
@@ -730,7 +851,7 @@ end
     disaggregate_duty(
         state_table::State,    
         summary::National,
-        data_directory::String
+        raw_data::Dict;
     )
 
 Disaggregate the duty from the national summary into state-level using national
@@ -742,7 +863,7 @@ Dependent on:
 function disaggregate_duty(
         state_table::State,    
         summary::National,
-        data_directory::String
+        raw_data::Dict;
     )
         
     duty_code, duty_set = elements(summary, :Duty; base=true) |>
@@ -843,20 +964,27 @@ end
 """
     create_regional_demand(
             state_table::State,
-            rpc::DataFrame,
+            summary::National,
+            raw_data::Dict;
         )
 
 Create regional demand (local + national) based on regional purchase coefficients.
 
+
+Raw data used:
+    - `rpc`
+
 Dependent on:
-    - [`WiNDCRegional.load_regional_purchase_coefficients`](@ref)
     - [`WiNDCRegional.absorption`](@ref)
     - [`WiNDCRegional.total_supply`](@ref)
 """
 function create_regional_demand(
         state_table::State,
-        rpc::DataFrame,
+        summary::National,
+        raw_data::Dict;
     )
+
+    rpc = raw_data[:rpc]
 
     domestic_demand_absorption = vcat(
             WiNDCRegional.absorption(state_table),
@@ -934,13 +1062,24 @@ function create_regional_demand(
 
 end
 
+"""
+    create_regional_margin_supply(
+        state_table::State,
+        summary::National,
+        raw_data::Dict;
+    )
 
+Raw data used:
+    - `rpc`
+"""
 function create_regional_margin_supply(
         state_table::State,
         summary::National,
-        rpc::DataFrame
+        raw_data::Dict;
     )
 
+    rpc = raw_data[:rpc]
+    
     margin_shares = table(state_table, :Margin_Demand) |>
         x -> groupby(x, [:col, :year, :region]) |>
         x -> combine(x, :value => sum => :value) |>

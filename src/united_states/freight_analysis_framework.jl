@@ -128,7 +128,7 @@ function load_faf_data(
             :trade_type,
             :sctg2,
         ],
-        regex_cols_to_keep = r"^value_(\d{4})$",
+        regex_cols_to_keep::Regex = r"^value_(\d{4})$",
         max_year = 2023,
     )
 
@@ -226,6 +226,7 @@ The computation has two steps:
 1. Identify non-trade goods, which are goods that do not appear in the FAF data.
    Pin the RPC to be the average over the traded goods.
 2. Compute the RPC as local / (local + national)
+3. Apply any adjusted demand values provided in the `adjusted_demand` dictionary.
 
 ## Arguments
 
@@ -249,9 +250,8 @@ The computation has two steps:
 function load_regional_purchase_coefficients(
     summary::WiNDCNational.National,
     state_path::String,
-    reprocessed_path::String,
-    data_directory::String;
-    adjusted_demand = Dict{Symbol, Float64} = Dict(),
+    reprocessed_path::String;
+    adjusted_demand::Dict{Symbol, Float64} = Dict(),
     state_fips::DataFrame = load_state_fips(),
     faf_map::DataFrame = load_faf_map(),
     cols_to_keep = [
@@ -262,13 +262,13 @@ function load_regional_purchase_coefficients(
         :trade_type,
         :sctg2,
     ],
-    regex_cols_to_keep = r"^value_(\d{4})$",
+    regex_cols_to_keep::Regex = r"^value_(\d{4})$",
     max_year = elements(summary, :year) |> x->maximum(x[!,:name]),
     )
 
     demand_trade = load_faf_data(
-        joinpath(data_directory, "FAF", state_path),
-        joinpath(data_directory, "FAF", reprocessed_path);
+        state_path,
+        reprocessed_path;
         state_fips = state_fips,
         faf_map = faf_map,
         cols_to_keep = cols_to_keep,
@@ -282,23 +282,22 @@ function load_regional_purchase_coefficients(
         x -> select(x, :name => :naics) |>
         x -> subset(x, :naics => ByRow(y -> !(y in trade_goods)))
 
-
     demand = vcat(
         demand_trade,
         demand_trade |>
             x -> groupby(x, [:year, :destination, :local]) |>
             x -> combine(x, :value => (y-> sum(y)/length(y)) => :value) |>
             x -> crossjoin(x, non_trade_goods)
-    ) |>
-    x -> unstack(x, :local, :value) |>
-    x -> transform(x,
-        [:local, :national] => ((l,n) -> l ./ (l .+ n)) => :rpc
-    ) |>
-    x -> select(x, :destination => :region, :year, :naics, :rpc) |>
-    dropmissing |>
-    x -> transform(x,
-        [:naics, :rpc] => ByRow((n, r) -> haskey(adjusted_demand, n) ? adjusted_demand[n] : r) => :rpc
-    )
+        ) |>
+        x -> unstack(x, :local, :value) |>
+        x -> transform(x,
+            [:local, :national] => ((l,n) -> l ./ (l .+ n)) => :rpc
+        ) |>
+        x -> select(x, :destination => :region, :year, :naics, :rpc) |>
+        dropmissing |>
+        x -> transform(x,
+            [:naics, :rpc] => ByRow((n, r) -> haskey(adjusted_demand, n) ? adjusted_demand[n] : r) => :rpc
+        )
 
     return demand
 end
