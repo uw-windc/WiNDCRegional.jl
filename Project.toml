@@ -11,6 +11,7 @@ JuMP = "4076af6c-e467-56ae-b986-b466b2749572"
 WiNDCContainer = "75ccf2c7-f350-4b24-b7dd-6f142b3d3146"
 WiNDCNational = "859d2a84-d038-44d0-959f-b84298eeb557"
 XLSX = "fdbf4ff8-1666-58a4-91e7-1b58723a45e0"
+YAML = "ddb6d928-2868-570f-bddf-ab3f9cf99eb6"
 
 [compat]
 CSV = "0.10.15"
@@ -20,6 +21,7 @@ JuMP = "1.29.3"
 WiNDCContainer = "0.3.0"
 WiNDCNational = "0.3.0"
 XLSX = "0.10.4"
+YAML = "0.4.16"
 julia = "1.6.7"
 
 [extras]
