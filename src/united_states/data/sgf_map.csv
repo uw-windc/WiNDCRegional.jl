@@ -1,0 +1,1702 @@
+naics,census,naics_description,sgf_code,sgf_description
+61,educat,Educational services,G12,Education
+61,educat,Educational services,F18,Education
+61,educat,Educational services,Q12,Education
+61,educat,Educational services,E12,Education
+61,educat,Educational services,M21,Education
+61,educat,Educational services,G21,Education
+61,educat,Educational services,E18,Education
+61,educat,Educational services,F12,Education
+61,educat,Educational services,M12,Education
+61,educat,Educational services,G16,Education
+61,educat,Educational services,E21,Education
+61,educat,Educational services,G18,Education
+61,educat,Educational services,Q18,Education
+61,educat,Educational services,F21,Education
+61,educat,Educational services,F16,Education
+61,educat,Educational services,J19,Education
+61,educat,Educational services,E16,Education
+61,educat,Educational services,M18,Education
+313TT,pubwel,Textile mills and textile product mills,E75,Public welfare
+315AL,pubwel,Apparel and leather and allied products,E75,Public welfare
+321,pubwel,Wood products,E75,Public welfare
+322,pubwel,Paper products,E75,Public welfare
+323,pubwel,Printing and related support activities,E75,Public welfare
+562,pubwel,Waste management and remediation services,E75,Public welfare
+624,pubwel,Social assistance,E75,Public welfare
+313TT,pubwel,Textile mills and textile product mills,E77,Public welfare
+315AL,pubwel,Apparel and leather and allied products,E77,Public welfare
+321,pubwel,Wood products,E77,Public welfare
+322,pubwel,Paper products,E77,Public welfare
+323,pubwel,Printing and related support activities,E77,Public welfare
+562,pubwel,Waste management and remediation services,E77,Public welfare
+624,pubwel,Social assistance,E77,Public welfare
+313TT,pubwel,Textile mills and textile product mills,G79,Public welfare
+315AL,pubwel,Apparel and leather and allied products,G79,Public welfare
+321,pubwel,Wood products,G79,Public welfare
+322,pubwel,Paper products,G79,Public welfare
+323,pubwel,Printing and related support activities,G79,Public welfare
+562,pubwel,Waste management and remediation services,G79,Public welfare
+624,pubwel,Social assistance,G79,Public welfare
+313TT,pubwel,Textile mills and textile product mills,M68,Public welfare
+315AL,pubwel,Apparel and leather and allied products,M68,Public welfare
+321,pubwel,Wood products,M68,Public welfare
+322,pubwel,Paper products,M68,Public welfare
+323,pubwel,Printing and related support activities,M68,Public welfare
+562,pubwel,Waste management and remediation services,M68,Public welfare
+624,pubwel,Social assistance,M68,Public welfare
+313TT,pubwel,Textile mills and textile product mills,F79,Public welfare
+315AL,pubwel,Apparel and leather and allied products,F79,Public welfare
+321,pubwel,Wood products,F79,Public welfare
+322,pubwel,Paper products,F79,Public welfare
+323,pubwel,Printing and related support activities,F79,Public welfare
+562,pubwel,Waste management and remediation services,F79,Public welfare
+624,pubwel,Social assistance,F79,Public welfare
+313TT,pubwel,Textile mills and textile product mills,F77,Public welfare
+315AL,pubwel,Apparel and leather and allied products,F77,Public welfare
+321,pubwel,Wood products,F77,Public welfare
+322,pubwel,Paper products,F77,Public welfare
+323,pubwel,Printing and related support activities,F77,Public welfare
+562,pubwel,Waste management and remediation services,F77,Public welfare
+624,pubwel,Social assistance,F77,Public welfare
+313TT,pubwel,Textile mills and textile product mills,E74,Public welfare
+315AL,pubwel,Apparel and leather and allied products,E74,Public welfare
+321,pubwel,Wood products,E74,Public welfare
+322,pubwel,Paper products,E74,Public welfare
+323,pubwel,Printing and related support activities,E74,Public welfare
+562,pubwel,Waste management and remediation services,E74,Public welfare
+624,pubwel,Social assistance,E74,Public welfare
+313TT,pubwel,Textile mills and textile product mills,G77,Public welfare
+315AL,pubwel,Apparel and leather and allied products,G77,Public welfare
+321,pubwel,Wood products,G77,Public welfare
+322,pubwel,Paper products,G77,Public welfare
+323,pubwel,Printing and related support activities,G77,Public welfare
+562,pubwel,Waste management and remediation services,G77,Public welfare
+624,pubwel,Social assistance,G77,Public welfare
+313TT,pubwel,Textile mills and textile product mills,E79,Public welfare
+315AL,pubwel,Apparel and leather and allied products,E79,Public welfare
+321,pubwel,Wood products,E79,Public welfare
+322,pubwel,Paper products,E79,Public welfare
+323,pubwel,Printing and related support activities,E79,Public welfare
+562,pubwel,Waste management and remediation services,E79,Public welfare
+624,pubwel,Social assistance,E79,Public welfare
+313TT,pubwel,Textile mills and textile product mills,M67,Public welfare
+315AL,pubwel,Apparel and leather and allied products,M67,Public welfare
+321,pubwel,Wood products,M67,Public welfare
+322,pubwel,Paper products,M67,Public welfare
+323,pubwel,Printing and related support activities,M67,Public welfare
+562,pubwel,Waste management and remediation services,M67,Public welfare
+624,pubwel,Social assistance,M67,Public welfare
+313TT,pubwel,Textile mills and textile product mills,M79,Public welfare
+315AL,pubwel,Apparel and leather and allied products,M79,Public welfare
+321,pubwel,Wood products,M79,Public welfare
+322,pubwel,Paper products,M79,Public welfare
+323,pubwel,Printing and related support activities,M79,Public welfare
+562,pubwel,Waste management and remediation services,M79,Public welfare
+624,pubwel,Social assistance,M79,Public welfare
+313TT,pubwel,Textile mills and textile product mills,S67,Public welfare
+315AL,pubwel,Apparel and leather and allied products,S67,Public welfare
+321,pubwel,Wood products,S67,Public welfare
+322,pubwel,Paper products,S67,Public welfare
+323,pubwel,Printing and related support activities,S67,Public welfare
+562,pubwel,Waste management and remediation services,S67,Public welfare
+624,pubwel,Social assistance,S67,Public welfare
+313TT,pubwel,Textile mills and textile product mills,J68,Public welfare
+315AL,pubwel,Apparel and leather and allied products,J68,Public welfare
+321,pubwel,Wood products,J68,Public welfare
+322,pubwel,Paper products,J68,Public welfare
+323,pubwel,Printing and related support activities,J68,Public welfare
+562,pubwel,Waste management and remediation services,J68,Public welfare
+624,pubwel,Social assistance,J68,Public welfare
+313TT,pubwel,Textile mills and textile product mills,J67,Public welfare
+315AL,pubwel,Apparel and leather and allied products,J67,Public welfare
+321,pubwel,Wood products,J67,Public welfare
+322,pubwel,Paper products,J67,Public welfare
+323,pubwel,Printing and related support activities,J67,Public welfare
+562,pubwel,Waste management and remediation services,J67,Public welfare
+624,pubwel,Social assistance,J67,Public welfare
+622,hosptl,Hospitals,F36,Hospitals
+622,hosptl,Hospitals,M36,Hospitals
+622,hosptl,Hospitals,G36,Hospitals
+622,hosptl,Hospitals,E36,Hospitals
+621,health,Ambulatory health care services,F32,Health
+623,health,Nursing and residential care facilities,F32,Health
+621,health,Ambulatory health care services,M32,Health
+623,health,Nursing and residential care facilities,M32,Health
+621,health,Ambulatory health care services,E32,Health
+623,health,Nursing and residential care facilities,E32,Health
+621,health,Ambulatory health care services,G32,Health
+623,health,Nursing and residential care facilities,G32,Health
+23,hghway,Construction,G45,Highways
+481,hghway,Air transportation,G45,Highways
+482,hghway,Rail transportation,G45,Highways
+483,hghway,Water transportation,G45,Highways
+484,hghway,Truck transportation,G45,Highways
+485,hghway,Transit and ground passenger transportation,G45,Highways
+486,hghway,Pipeline transportation,G45,Highways
+487OS,hghway,Other transportation and support activities,G45,Highways
+23,hghway,Construction,G44,Highways
+481,hghway,Air transportation,G44,Highways
+482,hghway,Rail transportation,G44,Highways
+483,hghway,Water transportation,G44,Highways
+484,hghway,Truck transportation,G44,Highways
+485,hghway,Transit and ground passenger transportation,G44,Highways
+486,hghway,Pipeline transportation,G44,Highways
+487OS,hghway,Other transportation and support activities,G44,Highways
+23,hghway,Construction,M44,Highways
+481,hghway,Air transportation,M44,Highways
+482,hghway,Rail transportation,M44,Highways
+483,hghway,Water transportation,M44,Highways
+484,hghway,Truck transportation,M44,Highways
+485,hghway,Transit and ground passenger transportation,M44,Highways
+486,hghway,Pipeline transportation,M44,Highways
+487OS,hghway,Other transportation and support activities,M44,Highways
+23,hghway,Construction,F44,Highways
+481,hghway,Air transportation,F44,Highways
+482,hghway,Rail transportation,F44,Highways
+483,hghway,Water transportation,F44,Highways
+484,hghway,Truck transportation,F44,Highways
+485,hghway,Transit and ground passenger transportation,F44,Highways
+486,hghway,Pipeline transportation,F44,Highways
+487OS,hghway,Other transportation and support activities,F44,Highways
+23,hghway,Construction,F45,Highways
+481,hghway,Air transportation,F45,Highways
+482,hghway,Rail transportation,F45,Highways
+483,hghway,Water transportation,F45,Highways
+484,hghway,Truck transportation,F45,Highways
+485,hghway,Transit and ground passenger transportation,F45,Highways
+486,hghway,Pipeline transportation,F45,Highways
+487OS,hghway,Other transportation and support activities,F45,Highways
+23,hghway,Construction,E44,Highways
+481,hghway,Air transportation,E44,Highways
+482,hghway,Rail transportation,E44,Highways
+483,hghway,Water transportation,E44,Highways
+484,hghway,Truck transportation,E44,Highways
+485,hghway,Transit and ground passenger transportation,E44,Highways
+486,hghway,Pipeline transportation,E44,Highways
+487OS,hghway,Other transportation and support activities,E44,Highways
+23,hghway,Construction,E45,Highways
+481,hghway,Air transportation,E45,Highways
+482,hghway,Rail transportation,E45,Highways
+483,hghway,Water transportation,E45,Highways
+484,hghway,Truck transportation,E45,Highways
+485,hghway,Transit and ground passenger transportation,E45,Highways
+486,hghway,Pipeline transportation,E45,Highways
+487OS,hghway,Other transportation and support activities,E45,Highways
+GFGD,police,Federal general government (defense),G62,Police protection
+GFGN,police,Federal general government (nondefense),G62,Police protection
+GFE,police,Federal government enterprises,G62,Police protection
+GSLG,police,State and local general government,G62,Police protection
+GSLE,police,State and local government enterprises,G62,Police protection
+GFGD,police,Federal general government (defense),E62,Police protection
+GFGN,police,Federal general government (nondefense),E62,Police protection
+GFE,police,Federal government enterprises,E62,Police protection
+GSLG,police,State and local general government,E62,Police protection
+GSLE,police,State and local government enterprises,E62,Police protection
+GFGD,police,Federal general government (defense),M62,Police protection
+GFGN,police,Federal general government (nondefense),M62,Police protection
+GFE,police,Federal government enterprises,M62,Police protection
+GSLG,police,State and local general government,M62,Police protection
+GSLE,police,State and local government enterprises,M62,Police protection
+GFGD,police,Federal general government (defense),F62,Police protection
+GFGN,police,Federal general government (nondefense),F62,Police protection
+GFE,police,Federal government enterprises,F62,Police protection
+GSLG,police,State and local general government,F62,Police protection
+GSLE,police,State and local government enterprises,F62,Police protection
+GFGD,correc,Federal general government (defense),G04,Correction
+GFGN,correc,Federal general government (nondefense),G04,Correction
+GFE,correc,Federal government enterprises,G04,Correction
+GSLG,correc,State and local general government,G04,Correction
+GSLE,correc,State and local government enterprises,G04,Correction
+GFGD,correc,Federal general government (defense),G05,Correction
+GFGN,correc,Federal general government (nondefense),G05,Correction
+GFE,correc,Federal government enterprises,G05,Correction
+GSLG,correc,State and local general government,G05,Correction
+GSLE,correc,State and local government enterprises,G05,Correction
+GFGD,correc,Federal general government (defense),M04,Correction
+GFGN,correc,Federal general government (nondefense),M04,Correction
+GFE,correc,Federal government enterprises,M04,Correction
+GSLG,correc,State and local general government,M04,Correction
+GSLE,correc,State and local government enterprises,M04,Correction
+GFGD,correc,Federal general government (defense),E05,Correction
+GFGN,correc,Federal general government (nondefense),E05,Correction
+GFE,correc,Federal government enterprises,E05,Correction
+GSLG,correc,State and local general government,E05,Correction
+GSLE,correc,State and local government enterprises,E05,Correction
+GFGD,correc,Federal general government (defense),E04,Correction
+GFGN,correc,Federal general government (nondefense),E04,Correction
+GFE,correc,Federal government enterprises,E04,Correction
+GSLG,correc,State and local general government,E04,Correction
+GSLE,correc,State and local government enterprises,E04,Correction
+GFGD,correc,Federal general government (defense),F04,Correction
+GFGN,correc,Federal general government (nondefense),F04,Correction
+GFE,correc,Federal government enterprises,F04,Correction
+GSLG,correc,State and local general government,F04,Correction
+GSLE,correc,State and local government enterprises,F04,Correction
+GFGD,correc,Federal general government (defense),F05,Correction
+GFGN,correc,Federal general government (nondefense),F05,Correction
+GFE,correc,Federal government enterprises,F05,Correction
+GSLG,correc,State and local general government,F05,Correction
+GSLE,correc,State and local government enterprises,F05,Correction
+GFGD,correc,Federal general government (defense),M05,Correction
+GFGN,correc,Federal general government (nondefense),M05,Correction
+GFE,correc,Federal government enterprises,M05,Correction
+GSLG,correc,State and local general government,M05,Correction
+GSLE,correc,State and local government enterprises,M05,Correction
+111CA,natres,Farms,E59,Natural resources
+211,natres,Oil and gas extraction,E59,Natural resources
+212,natres,Coal mining,E59,Natural resources
+213,natres,Support activities for mining,E59,Natural resources
+111CA,natres,Farms,F59,Natural resources
+211,natres,Oil and gas extraction,F59,Natural resources
+212,natres,Coal mining,F59,Natural resources
+213,natres,Support activities for mining,F59,Natural resources
+111CA,natres,Farms,F54,Natural resources
+211,natres,Oil and gas extraction,F54,Natural resources
+212,natres,Coal mining,F54,Natural resources
+213,natres,Support activities for mining,F54,Natural resources
+111CA,natres,Farms,G54,Natural resources
+211,natres,Oil and gas extraction,G54,Natural resources
+212,natres,Coal mining,G54,Natural resources
+213,natres,Support activities for mining,G54,Natural resources
+111CA,natres,Farms,M55,Natural resources
+211,natres,Oil and gas extraction,M55,Natural resources
+212,natres,Coal mining,M55,Natural resources
+213,natres,Support activities for mining,M55,Natural resources
+111CA,natres,Farms,E55,Natural resources
+211,natres,Oil and gas extraction,E55,Natural resources
+212,natres,Coal mining,E55,Natural resources
+213,natres,Support activities for mining,E55,Natural resources
+111CA,natres,Farms,M56,Natural resources
+211,natres,Oil and gas extraction,M56,Natural resources
+212,natres,Coal mining,M56,Natural resources
+213,natres,Support activities for mining,M56,Natural resources
+111CA,natres,Farms,G55,Natural resources
+211,natres,Oil and gas extraction,G55,Natural resources
+212,natres,Coal mining,G55,Natural resources
+213,natres,Support activities for mining,G55,Natural resources
+111CA,natres,Farms,F55,Natural resources
+211,natres,Oil and gas extraction,F55,Natural resources
+212,natres,Coal mining,F55,Natural resources
+213,natres,Support activities for mining,F55,Natural resources
+111CA,natres,Farms,F56,Natural resources
+211,natres,Oil and gas extraction,F56,Natural resources
+212,natres,Coal mining,F56,Natural resources
+213,natres,Support activities for mining,F56,Natural resources
+111CA,natres,Farms,M59,Natural resources
+211,natres,Oil and gas extraction,M59,Natural resources
+212,natres,Coal mining,M59,Natural resources
+213,natres,Support activities for mining,M59,Natural resources
+111CA,natres,Farms,M54,Natural resources
+211,natres,Oil and gas extraction,M54,Natural resources
+212,natres,Coal mining,M54,Natural resources
+213,natres,Support activities for mining,M54,Natural resources
+111CA,natres,Farms,G56,Natural resources
+211,natres,Oil and gas extraction,G56,Natural resources
+212,natres,Coal mining,G56,Natural resources
+213,natres,Support activities for mining,G56,Natural resources
+111CA,natres,Farms,E54,Natural resources
+211,natres,Oil and gas extraction,E54,Natural resources
+212,natres,Coal mining,E54,Natural resources
+213,natres,Support activities for mining,E54,Natural resources
+111CA,natres,Farms,E56,Natural resources
+211,natres,Oil and gas extraction,E56,Natural resources
+212,natres,Coal mining,E56,Natural resources
+213,natres,Support activities for mining,E56,Natural resources
+111CA,natres,Farms,G59,Natural resources
+211,natres,Oil and gas extraction,G59,Natural resources
+212,natres,Coal mining,G59,Natural resources
+213,natres,Support activities for mining,G59,Natural resources
+113FF,parkrc,"Forestry, fishing, and related activities",G61,Parks and recreation
+711AS,parkrc,"Performing arts, spectator sports, museums, and related activit",G61,Parks and recreation
+713,parkrc,"Amusements, gambling, and recreation industries",G61,Parks and recreation
+721,parkrc,Accommodation,G61,Parks and recreation
+113FF,parkrc,"Forestry, fishing, and related activities",E61,Parks and recreation
+711AS,parkrc,"Performing arts, spectator sports, museums, and related activit",E61,Parks and recreation
+713,parkrc,"Amusements, gambling, and recreation industries",E61,Parks and recreation
+721,parkrc,Accommodation,E61,Parks and recreation
+113FF,parkrc,"Forestry, fishing, and related activities",F61,Parks and recreation
+711AS,parkrc,"Performing arts, spectator sports, museums, and related activit",F61,Parks and recreation
+713,parkrc,"Amusements, gambling, and recreation industries",F61,Parks and recreation
+721,parkrc,Accommodation,F61,Parks and recreation
+113FF,parkrc,"Forestry, fishing, and related activities",M61,Parks and recreation
+711AS,parkrc,"Performing arts, spectator sports, museums, and related activit",M61,Parks and recreation
+713,parkrc,"Amusements, gambling, and recreation industries",M61,Parks and recreation
+721,parkrc,Accommodation,M61,Parks and recreation
+493,govadm,Warehousing and storage,G31,Governmental administration
+511,govadm,"Publishing industries, except internet (includes software)",G31,Governmental administration
+512,govadm,Motion picture and sound recording industries,G31,Governmental administration
+513,govadm,Broadcasting and telecommunications,G31,Governmental administration
+514,govadm,"Data processing, internet publishing, and other information",G31,Governmental administration
+HS,govadm,Housing,G31,Governmental administration
+ORE,govadm,Other real estate,G31,Governmental administration
+532RL,govadm,Rental and leasing services and lessors of intangible assets,G31,Governmental administration
+5411,govadm,Legal services,G31,Governmental administration
+5415,govadm,Computer systems design and related services,G31,Governmental administration
+5412OP,govadm,"Miscellaneous professional, scientific, and technical services",G31,Governmental administration
+55,govadm,Management of companies and enterprises,G31,Governmental administration
+561,govadm,Administrative and support services,G31,Governmental administration
+GFGD,govadm,Federal general government (defense),G31,Governmental administration
+GFGN,govadm,Federal general government (nondefense),G31,Governmental administration
+GFE,govadm,Federal government enterprises,G31,Governmental administration
+GSLG,govadm,State and local general government,G31,Governmental administration
+GSLE,govadm,State and local government enterprises,G31,Governmental administration
+493,govadm,Warehousing and storage,F31,Governmental administration
+511,govadm,"Publishing industries, except internet (includes software)",F31,Governmental administration
+512,govadm,Motion picture and sound recording industries,F31,Governmental administration
+513,govadm,Broadcasting and telecommunications,F31,Governmental administration
+514,govadm,"Data processing, internet publishing, and other information",F31,Governmental administration
+HS,govadm,Housing,F31,Governmental administration
+ORE,govadm,Other real estate,F31,Governmental administration
+532RL,govadm,Rental and leasing services and lessors of intangible assets,F31,Governmental administration
+5411,govadm,Legal services,F31,Governmental administration
+5415,govadm,Computer systems design and related services,F31,Governmental administration
+5412OP,govadm,"Miscellaneous professional, scientific, and technical services",F31,Governmental administration
+55,govadm,Management of companies and enterprises,F31,Governmental administration
+561,govadm,Administrative and support services,F31,Governmental administration
+GFGD,govadm,Federal general government (defense),F31,Governmental administration
+GFGN,govadm,Federal general government (nondefense),F31,Governmental administration
+GFE,govadm,Federal government enterprises,F31,Governmental administration
+GSLG,govadm,State and local general government,F31,Governmental administration
+GSLE,govadm,State and local government enterprises,F31,Governmental administration
+493,govadm,Warehousing and storage,M23,Governmental administration
+511,govadm,"Publishing industries, except internet (includes software)",M23,Governmental administration
+512,govadm,Motion picture and sound recording industries,M23,Governmental administration
+513,govadm,Broadcasting and telecommunications,M23,Governmental administration
+514,govadm,"Data processing, internet publishing, and other information",M23,Governmental administration
+HS,govadm,Housing,M23,Governmental administration
+ORE,govadm,Other real estate,M23,Governmental administration
+532RL,govadm,Rental and leasing services and lessors of intangible assets,M23,Governmental administration
+5411,govadm,Legal services,M23,Governmental administration
+5415,govadm,Computer systems design and related services,M23,Governmental administration
+5412OP,govadm,"Miscellaneous professional, scientific, and technical services",M23,Governmental administration
+55,govadm,Management of companies and enterprises,M23,Governmental administration
+561,govadm,Administrative and support services,M23,Governmental administration
+GFGD,govadm,Federal general government (defense),M23,Governmental administration
+GFGN,govadm,Federal general government (nondefense),M23,Governmental administration
+GFE,govadm,Federal government enterprises,M23,Governmental administration
+GSLG,govadm,State and local general government,M23,Governmental administration
+GSLE,govadm,State and local government enterprises,M23,Governmental administration
+493,govadm,Warehousing and storage,G26,Governmental administration
+511,govadm,"Publishing industries, except internet (includes software)",G26,Governmental administration
+512,govadm,Motion picture and sound recording industries,G26,Governmental administration
+513,govadm,Broadcasting and telecommunications,G26,Governmental administration
+514,govadm,"Data processing, internet publishing, and other information",G26,Governmental administration
+HS,govadm,Housing,G26,Governmental administration
+ORE,govadm,Other real estate,G26,Governmental administration
+532RL,govadm,Rental and leasing services and lessors of intangible assets,G26,Governmental administration
+5411,govadm,Legal services,G26,Governmental administration
+5415,govadm,Computer systems design and related services,G26,Governmental administration
+5412OP,govadm,"Miscellaneous professional, scientific, and technical services",G26,Governmental administration
+55,govadm,Management of companies and enterprises,G26,Governmental administration
+561,govadm,Administrative and support services,G26,Governmental administration
+GFGD,govadm,Federal general government (defense),G26,Governmental administration
+GFGN,govadm,Federal general government (nondefense),G26,Governmental administration
+GFE,govadm,Federal government enterprises,G26,Governmental administration
+GSLG,govadm,State and local general government,G26,Governmental administration
+GSLE,govadm,State and local government enterprises,G26,Governmental administration
+493,govadm,Warehousing and storage,M25,Governmental administration
+511,govadm,"Publishing industries, except internet (includes software)",M25,Governmental administration
+512,govadm,Motion picture and sound recording industries,M25,Governmental administration
+513,govadm,Broadcasting and telecommunications,M25,Governmental administration
+514,govadm,"Data processing, internet publishing, and other information",M25,Governmental administration
+HS,govadm,Housing,M25,Governmental administration
+ORE,govadm,Other real estate,M25,Governmental administration
+532RL,govadm,Rental and leasing services and lessors of intangible assets,M25,Governmental administration
+5411,govadm,Legal services,M25,Governmental administration
+5415,govadm,Computer systems design and related services,M25,Governmental administration
+5412OP,govadm,"Miscellaneous professional, scientific, and technical services",M25,Governmental administration
+55,govadm,Management of companies and enterprises,M25,Governmental administration
+561,govadm,Administrative and support services,M25,Governmental administration
+GFGD,govadm,Federal general government (defense),M25,Governmental administration
+GFGN,govadm,Federal general government (nondefense),M25,Governmental administration
+GFE,govadm,Federal government enterprises,M25,Governmental administration
+GSLG,govadm,State and local general government,M25,Governmental administration
+GSLE,govadm,State and local government enterprises,M25,Governmental administration
+493,govadm,Warehousing and storage,F26,Governmental administration
+511,govadm,"Publishing industries, except internet (includes software)",F26,Governmental administration
+512,govadm,Motion picture and sound recording industries,F26,Governmental administration
+513,govadm,Broadcasting and telecommunications,F26,Governmental administration
+514,govadm,"Data processing, internet publishing, and other information",F26,Governmental administration
+HS,govadm,Housing,F26,Governmental administration
+ORE,govadm,Other real estate,F26,Governmental administration
+532RL,govadm,Rental and leasing services and lessors of intangible assets,F26,Governmental administration
+5411,govadm,Legal services,F26,Governmental administration
+5415,govadm,Computer systems design and related services,F26,Governmental administration
+5412OP,govadm,"Miscellaneous professional, scientific, and technical services",F26,Governmental administration
+55,govadm,Management of companies and enterprises,F26,Governmental administration
+561,govadm,Administrative and support services,F26,Governmental administration
+GFGD,govadm,Federal general government (defense),F26,Governmental administration
+GFGN,govadm,Federal general government (nondefense),F26,Governmental administration
+GFE,govadm,Federal government enterprises,F26,Governmental administration
+GSLG,govadm,State and local general government,F26,Governmental administration
+GSLE,govadm,State and local government enterprises,F26,Governmental administration
+493,govadm,Warehousing and storage,F29,Governmental administration
+511,govadm,"Publishing industries, except internet (includes software)",F29,Governmental administration
+512,govadm,Motion picture and sound recording industries,F29,Governmental administration
+513,govadm,Broadcasting and telecommunications,F29,Governmental administration
+514,govadm,"Data processing, internet publishing, and other information",F29,Governmental administration
+HS,govadm,Housing,F29,Governmental administration
+ORE,govadm,Other real estate,F29,Governmental administration
+532RL,govadm,Rental and leasing services and lessors of intangible assets,F29,Governmental administration
+5411,govadm,Legal services,F29,Governmental administration
+5415,govadm,Computer systems design and related services,F29,Governmental administration
+5412OP,govadm,"Miscellaneous professional, scientific, and technical services",F29,Governmental administration
+55,govadm,Management of companies and enterprises,F29,Governmental administration
+561,govadm,Administrative and support services,F29,Governmental administration
+GFGD,govadm,Federal general government (defense),F29,Governmental administration
+GFGN,govadm,Federal general government (nondefense),F29,Governmental administration
+GFE,govadm,Federal government enterprises,F29,Governmental administration
+GSLG,govadm,State and local general government,F29,Governmental administration
+GSLE,govadm,State and local government enterprises,F29,Governmental administration
+493,govadm,Warehousing and storage,M29,Governmental administration
+511,govadm,"Publishing industries, except internet (includes software)",M29,Governmental administration
+512,govadm,Motion picture and sound recording industries,M29,Governmental administration
+513,govadm,Broadcasting and telecommunications,M29,Governmental administration
+514,govadm,"Data processing, internet publishing, and other information",M29,Governmental administration
+HS,govadm,Housing,M29,Governmental administration
+ORE,govadm,Other real estate,M29,Governmental administration
+532RL,govadm,Rental and leasing services and lessors of intangible assets,M29,Governmental administration
+5411,govadm,Legal services,M29,Governmental administration
+5415,govadm,Computer systems design and related services,M29,Governmental administration
+5412OP,govadm,"Miscellaneous professional, scientific, and technical services",M29,Governmental administration
+55,govadm,Management of companies and enterprises,M29,Governmental administration
+561,govadm,Administrative and support services,M29,Governmental administration
+GFGD,govadm,Federal general government (defense),M29,Governmental administration
+GFGN,govadm,Federal general government (nondefense),M29,Governmental administration
+GFE,govadm,Federal government enterprises,M29,Governmental administration
+GSLG,govadm,State and local general government,M29,Governmental administration
+GSLE,govadm,State and local government enterprises,M29,Governmental administration
+493,govadm,Warehousing and storage,G23,Governmental administration
+511,govadm,"Publishing industries, except internet (includes software)",G23,Governmental administration
+512,govadm,Motion picture and sound recording industries,G23,Governmental administration
+513,govadm,Broadcasting and telecommunications,G23,Governmental administration
+514,govadm,"Data processing, internet publishing, and other information",G23,Governmental administration
+HS,govadm,Housing,G23,Governmental administration
+ORE,govadm,Other real estate,G23,Governmental administration
+532RL,govadm,Rental and leasing services and lessors of intangible assets,G23,Governmental administration
+5411,govadm,Legal services,G23,Governmental administration
+5415,govadm,Computer systems design and related services,G23,Governmental administration
+5412OP,govadm,"Miscellaneous professional, scientific, and technical services",G23,Governmental administration
+55,govadm,Management of companies and enterprises,G23,Governmental administration
+561,govadm,Administrative and support services,G23,Governmental administration
+GFGD,govadm,Federal general government (defense),G23,Governmental administration
+GFGN,govadm,Federal general government (nondefense),G23,Governmental administration
+GFE,govadm,Federal government enterprises,G23,Governmental administration
+GSLG,govadm,State and local general government,G23,Governmental administration
+GSLE,govadm,State and local government enterprises,G23,Governmental administration
+493,govadm,Warehousing and storage,E23,Governmental administration
+511,govadm,"Publishing industries, except internet (includes software)",E23,Governmental administration
+512,govadm,Motion picture and sound recording industries,E23,Governmental administration
+513,govadm,Broadcasting and telecommunications,E23,Governmental administration
+514,govadm,"Data processing, internet publishing, and other information",E23,Governmental administration
+HS,govadm,Housing,E23,Governmental administration
+ORE,govadm,Other real estate,E23,Governmental administration
+532RL,govadm,Rental and leasing services and lessors of intangible assets,E23,Governmental administration
+5411,govadm,Legal services,E23,Governmental administration
+5415,govadm,Computer systems design and related services,E23,Governmental administration
+5412OP,govadm,"Miscellaneous professional, scientific, and technical services",E23,Governmental administration
+55,govadm,Management of companies and enterprises,E23,Governmental administration
+561,govadm,Administrative and support services,E23,Governmental administration
+GFGD,govadm,Federal general government (defense),E23,Governmental administration
+GFGN,govadm,Federal general government (nondefense),E23,Governmental administration
+GFE,govadm,Federal government enterprises,E23,Governmental administration
+GSLG,govadm,State and local general government,E23,Governmental administration
+GSLE,govadm,State and local government enterprises,E23,Governmental administration
+493,govadm,Warehousing and storage,E26,Governmental administration
+511,govadm,"Publishing industries, except internet (includes software)",E26,Governmental administration
+512,govadm,Motion picture and sound recording industries,E26,Governmental administration
+513,govadm,Broadcasting and telecommunications,E26,Governmental administration
+514,govadm,"Data processing, internet publishing, and other information",E26,Governmental administration
+HS,govadm,Housing,E26,Governmental administration
+ORE,govadm,Other real estate,E26,Governmental administration
+532RL,govadm,Rental and leasing services and lessors of intangible assets,E26,Governmental administration
+5411,govadm,Legal services,E26,Governmental administration
+5415,govadm,Computer systems design and related services,E26,Governmental administration
+5412OP,govadm,"Miscellaneous professional, scientific, and technical services",E26,Governmental administration
+55,govadm,Management of companies and enterprises,E26,Governmental administration
+561,govadm,Administrative and support services,E26,Governmental administration
+GFGD,govadm,Federal general government (defense),E26,Governmental administration
+GFGN,govadm,Federal general government (nondefense),E26,Governmental administration
+GFE,govadm,Federal government enterprises,E26,Governmental administration
+GSLG,govadm,State and local general government,E26,Governmental administration
+GSLE,govadm,State and local government enterprises,E26,Governmental administration
+493,govadm,Warehousing and storage,E29,Governmental administration
+511,govadm,"Publishing industries, except internet (includes software)",E29,Governmental administration
+512,govadm,Motion picture and sound recording industries,E29,Governmental administration
+513,govadm,Broadcasting and telecommunications,E29,Governmental administration
+514,govadm,"Data processing, internet publishing, and other information",E29,Governmental administration
+HS,govadm,Housing,E29,Governmental administration
+ORE,govadm,Other real estate,E29,Governmental administration
+532RL,govadm,Rental and leasing services and lessors of intangible assets,E29,Governmental administration
+5411,govadm,Legal services,E29,Governmental administration
+5415,govadm,Computer systems design and related services,E29,Governmental administration
+5412OP,govadm,"Miscellaneous professional, scientific, and technical services",E29,Governmental administration
+55,govadm,Management of companies and enterprises,E29,Governmental administration
+561,govadm,Administrative and support services,E29,Governmental administration
+GFGD,govadm,Federal general government (defense),E29,Governmental administration
+GFGN,govadm,Federal general government (nondefense),E29,Governmental administration
+GFE,govadm,Federal government enterprises,E29,Governmental administration
+GSLG,govadm,State and local general government,E29,Governmental administration
+GSLE,govadm,State and local government enterprises,E29,Governmental administration
+493,govadm,Warehousing and storage,G25,Governmental administration
+511,govadm,"Publishing industries, except internet (includes software)",G25,Governmental administration
+512,govadm,Motion picture and sound recording industries,G25,Governmental administration
+513,govadm,Broadcasting and telecommunications,G25,Governmental administration
+514,govadm,"Data processing, internet publishing, and other information",G25,Governmental administration
+HS,govadm,Housing,G25,Governmental administration
+ORE,govadm,Other real estate,G25,Governmental administration
+532RL,govadm,Rental and leasing services and lessors of intangible assets,G25,Governmental administration
+5411,govadm,Legal services,G25,Governmental administration
+5415,govadm,Computer systems design and related services,G25,Governmental administration
+5412OP,govadm,"Miscellaneous professional, scientific, and technical services",G25,Governmental administration
+55,govadm,Management of companies and enterprises,G25,Governmental administration
+561,govadm,Administrative and support services,G25,Governmental administration
+GFGD,govadm,Federal general government (defense),G25,Governmental administration
+GFGN,govadm,Federal general government (nondefense),G25,Governmental administration
+GFE,govadm,Federal government enterprises,G25,Governmental administration
+GSLG,govadm,State and local general government,G25,Governmental administration
+GSLE,govadm,State and local government enterprises,G25,Governmental administration
+493,govadm,Warehousing and storage,E25,Governmental administration
+511,govadm,"Publishing industries, except internet (includes software)",E25,Governmental administration
+512,govadm,Motion picture and sound recording industries,E25,Governmental administration
+513,govadm,Broadcasting and telecommunications,E25,Governmental administration
+514,govadm,"Data processing, internet publishing, and other information",E25,Governmental administration
+HS,govadm,Housing,E25,Governmental administration
+ORE,govadm,Other real estate,E25,Governmental administration
+532RL,govadm,Rental and leasing services and lessors of intangible assets,E25,Governmental administration
+5411,govadm,Legal services,E25,Governmental administration
+5415,govadm,Computer systems design and related services,E25,Governmental administration
+5412OP,govadm,"Miscellaneous professional, scientific, and technical services",E25,Governmental administration
+55,govadm,Management of companies and enterprises,E25,Governmental administration
+561,govadm,Administrative and support services,E25,Governmental administration
+GFGD,govadm,Federal general government (defense),E25,Governmental administration
+GFGN,govadm,Federal general government (nondefense),E25,Governmental administration
+GFE,govadm,Federal government enterprises,E25,Governmental administration
+GSLG,govadm,State and local general government,E25,Governmental administration
+GSLE,govadm,State and local government enterprises,E25,Governmental administration
+493,govadm,Warehousing and storage,E31,Governmental administration
+511,govadm,"Publishing industries, except internet (includes software)",E31,Governmental administration
+512,govadm,Motion picture and sound recording industries,E31,Governmental administration
+513,govadm,Broadcasting and telecommunications,E31,Governmental administration
+514,govadm,"Data processing, internet publishing, and other information",E31,Governmental administration
+HS,govadm,Housing,E31,Governmental administration
+ORE,govadm,Other real estate,E31,Governmental administration
+532RL,govadm,Rental and leasing services and lessors of intangible assets,E31,Governmental administration
+5411,govadm,Legal services,E31,Governmental administration
+5415,govadm,Computer systems design and related services,E31,Governmental administration
+5412OP,govadm,"Miscellaneous professional, scientific, and technical services",E31,Governmental administration
+55,govadm,Management of companies and enterprises,E31,Governmental administration
+561,govadm,Administrative and support services,E31,Governmental administration
+GFGD,govadm,Federal general government (defense),E31,Governmental administration
+GFGN,govadm,Federal general government (nondefense),E31,Governmental administration
+GFE,govadm,Federal government enterprises,E31,Governmental administration
+GSLG,govadm,State and local general government,E31,Governmental administration
+GSLE,govadm,State and local government enterprises,E31,Governmental administration
+493,govadm,Warehousing and storage,F23,Governmental administration
+511,govadm,"Publishing industries, except internet (includes software)",F23,Governmental administration
+512,govadm,Motion picture and sound recording industries,F23,Governmental administration
+513,govadm,Broadcasting and telecommunications,F23,Governmental administration
+514,govadm,"Data processing, internet publishing, and other information",F23,Governmental administration
+HS,govadm,Housing,F23,Governmental administration
+ORE,govadm,Other real estate,F23,Governmental administration
+532RL,govadm,Rental and leasing services and lessors of intangible assets,F23,Governmental administration
+5411,govadm,Legal services,F23,Governmental administration
+5415,govadm,Computer systems design and related services,F23,Governmental administration
+5412OP,govadm,"Miscellaneous professional, scientific, and technical services",F23,Governmental administration
+55,govadm,Management of companies and enterprises,F23,Governmental administration
+561,govadm,Administrative and support services,F23,Governmental administration
+GFGD,govadm,Federal general government (defense),F23,Governmental administration
+GFGN,govadm,Federal general government (nondefense),F23,Governmental administration
+GFE,govadm,Federal government enterprises,F23,Governmental administration
+GSLG,govadm,State and local general government,F23,Governmental administration
+GSLE,govadm,State and local government enterprises,F23,Governmental administration
+493,govadm,Warehousing and storage,G29,Governmental administration
+511,govadm,"Publishing industries, except internet (includes software)",G29,Governmental administration
+512,govadm,Motion picture and sound recording industries,G29,Governmental administration
+513,govadm,Broadcasting and telecommunications,G29,Governmental administration
+514,govadm,"Data processing, internet publishing, and other information",G29,Governmental administration
+HS,govadm,Housing,G29,Governmental administration
+ORE,govadm,Other real estate,G29,Governmental administration
+532RL,govadm,Rental and leasing services and lessors of intangible assets,G29,Governmental administration
+5411,govadm,Legal services,G29,Governmental administration
+5415,govadm,Computer systems design and related services,G29,Governmental administration
+5412OP,govadm,"Miscellaneous professional, scientific, and technical services",G29,Governmental administration
+55,govadm,Management of companies and enterprises,G29,Governmental administration
+561,govadm,Administrative and support services,G29,Governmental administration
+GFGD,govadm,Federal general government (defense),G29,Governmental administration
+GFGN,govadm,Federal general government (nondefense),G29,Governmental administration
+GFE,govadm,Federal government enterprises,G29,Governmental administration
+GSLG,govadm,State and local general government,G29,Governmental administration
+GSLE,govadm,State and local government enterprises,G29,Governmental administration
+493,govadm,Warehousing and storage,F25,Governmental administration
+511,govadm,"Publishing industries, except internet (includes software)",F25,Governmental administration
+512,govadm,Motion picture and sound recording industries,F25,Governmental administration
+513,govadm,Broadcasting and telecommunications,F25,Governmental administration
+514,govadm,"Data processing, internet publishing, and other information",F25,Governmental administration
+HS,govadm,Housing,F25,Governmental administration
+ORE,govadm,Other real estate,F25,Governmental administration
+532RL,govadm,Rental and leasing services and lessors of intangible assets,F25,Governmental administration
+5411,govadm,Legal services,F25,Governmental administration
+5415,govadm,Computer systems design and related services,F25,Governmental administration
+5412OP,govadm,"Miscellaneous professional, scientific, and technical services",F25,Governmental administration
+55,govadm,Management of companies and enterprises,F25,Governmental administration
+561,govadm,Administrative and support services,F25,Governmental administration
+GFGD,govadm,Federal general government (defense),F25,Governmental administration
+GFGN,govadm,Federal general government (nondefense),F25,Governmental administration
+GFE,govadm,Federal government enterprises,F25,Governmental administration
+GSLG,govadm,State and local general government,F25,Governmental administration
+GSLE,govadm,State and local government enterprises,F25,Governmental administration
+521CI,intgen,"Federal Reserve banks, credit intermediation, and related activ",I89,Interest on general debt
+523,intgen,"Securities, commodity contracts, and investments",I89,Interest on general debt
+524,intgen,Insurance carriers and related activities,I89,Interest on general debt
+525,intgen,"Funds, trusts, and other financial vehicles",I89,Interest on general debt
+324,othuna,Petroleum refineries,G89,Other and unallocable
+325,othuna,Chemical products,G89,Other and unallocable
+326,othuna,Plastics and rubber products,G89,Other and unallocable
+327,othuna,Nonmetallic mineral products,G89,Other and unallocable
+331,othuna,Primary metals,G89,Other and unallocable
+332,othuna,Fabricated metal products,G89,Other and unallocable
+333,othuna,Machinery,G89,Other and unallocable
+334,othuna,Computer and electronic products,G89,Other and unallocable
+335,othuna,"Electrical equipment, appliances, and components",G89,Other and unallocable
+3361MV,othuna,"Motor vehicles, bodies and trailers, and parts manufacturing",G89,Other and unallocable
+3364OT,othuna,Other transportation equipment,G89,Other and unallocable
+337,othuna,Furniture and related products,G89,Other and unallocable
+339,othuna,Miscellaneous manufacturing,G89,Other and unallocable
+42,othuna,Wholesale trade,G89,Other and unallocable
+441,othuna,Motor vehicle and parts dealers,G89,Other and unallocable
+452,othuna,General merchandise stores,G89,Other and unallocable
+4A0,othuna,Other retail,G89,Other and unallocable
+81,othuna,"Other services, except government",G89,Other and unallocable
+Used,othuna,"Scrap, used and secondhand goods",G89,Other and unallocable
+Other,othuna,Noncomparable imports and rest-of-the-world adjustment,G89,Other and unallocable
+324,othuna,Petroleum refineries,F85,Other and unallocable
+325,othuna,Chemical products,F85,Other and unallocable
+326,othuna,Plastics and rubber products,F85,Other and unallocable
+327,othuna,Nonmetallic mineral products,F85,Other and unallocable
+331,othuna,Primary metals,F85,Other and unallocable
+332,othuna,Fabricated metal products,F85,Other and unallocable
+333,othuna,Machinery,F85,Other and unallocable
+334,othuna,Computer and electronic products,F85,Other and unallocable
+335,othuna,"Electrical equipment, appliances, and components",F85,Other and unallocable
+3361MV,othuna,"Motor vehicles, bodies and trailers, and parts manufacturing",F85,Other and unallocable
+3364OT,othuna,Other transportation equipment,F85,Other and unallocable
+337,othuna,Furniture and related products,F85,Other and unallocable
+339,othuna,Miscellaneous manufacturing,F85,Other and unallocable
+42,othuna,Wholesale trade,F85,Other and unallocable
+441,othuna,Motor vehicle and parts dealers,F85,Other and unallocable
+452,othuna,General merchandise stores,F85,Other and unallocable
+4A0,othuna,Other retail,F85,Other and unallocable
+81,othuna,"Other services, except government",F85,Other and unallocable
+Used,othuna,"Scrap, used and secondhand goods",F85,Other and unallocable
+Other,othuna,Noncomparable imports and rest-of-the-world adjustment,F85,Other and unallocable
+324,othuna,Petroleum refineries,M60,Other and unallocable
+325,othuna,Chemical products,M60,Other and unallocable
+326,othuna,Plastics and rubber products,M60,Other and unallocable
+327,othuna,Nonmetallic mineral products,M60,Other and unallocable
+331,othuna,Primary metals,M60,Other and unallocable
+332,othuna,Fabricated metal products,M60,Other and unallocable
+333,othuna,Machinery,M60,Other and unallocable
+334,othuna,Computer and electronic products,M60,Other and unallocable
+335,othuna,"Electrical equipment, appliances, and components",M60,Other and unallocable
+3361MV,othuna,"Motor vehicles, bodies and trailers, and parts manufacturing",M60,Other and unallocable
+3364OT,othuna,Other transportation equipment,M60,Other and unallocable
+337,othuna,Furniture and related products,M60,Other and unallocable
+339,othuna,Miscellaneous manufacturing,M60,Other and unallocable
+42,othuna,Wholesale trade,M60,Other and unallocable
+441,othuna,Motor vehicle and parts dealers,M60,Other and unallocable
+452,othuna,General merchandise stores,M60,Other and unallocable
+4A0,othuna,Other retail,M60,Other and unallocable
+81,othuna,"Other services, except government",M60,Other and unallocable
+Used,othuna,"Scrap, used and secondhand goods",M60,Other and unallocable
+Other,othuna,Noncomparable imports and rest-of-the-world adjustment,M60,Other and unallocable
+324,othuna,Petroleum refineries,F03,Other and unallocable
+325,othuna,Chemical products,F03,Other and unallocable
+326,othuna,Plastics and rubber products,F03,Other and unallocable
+327,othuna,Nonmetallic mineral products,F03,Other and unallocable
+331,othuna,Primary metals,F03,Other and unallocable
+332,othuna,Fabricated metal products,F03,Other and unallocable
+333,othuna,Machinery,F03,Other and unallocable
+334,othuna,Computer and electronic products,F03,Other and unallocable
+335,othuna,"Electrical equipment, appliances, and components",F03,Other and unallocable
+3361MV,othuna,"Motor vehicles, bodies and trailers, and parts manufacturing",F03,Other and unallocable
+3364OT,othuna,Other transportation equipment,F03,Other and unallocable
+337,othuna,Furniture and related products,F03,Other and unallocable
+339,othuna,Miscellaneous manufacturing,F03,Other and unallocable
+42,othuna,Wholesale trade,F03,Other and unallocable
+441,othuna,Motor vehicle and parts dealers,F03,Other and unallocable
+452,othuna,General merchandise stores,F03,Other and unallocable
+4A0,othuna,Other retail,F03,Other and unallocable
+81,othuna,"Other services, except government",F03,Other and unallocable
+Used,othuna,"Scrap, used and secondhand goods",F03,Other and unallocable
+Other,othuna,Noncomparable imports and rest-of-the-world adjustment,F03,Other and unallocable
+324,othuna,Petroleum refineries,F66,Other and unallocable
+325,othuna,Chemical products,F66,Other and unallocable
+326,othuna,Plastics and rubber products,F66,Other and unallocable
+327,othuna,Nonmetallic mineral products,F66,Other and unallocable
+331,othuna,Primary metals,F66,Other and unallocable
+332,othuna,Fabricated metal products,F66,Other and unallocable
+333,othuna,Machinery,F66,Other and unallocable
+334,othuna,Computer and electronic products,F66,Other and unallocable
+335,othuna,"Electrical equipment, appliances, and components",F66,Other and unallocable
+3361MV,othuna,"Motor vehicles, bodies and trailers, and parts manufacturing",F66,Other and unallocable
+3364OT,othuna,Other transportation equipment,F66,Other and unallocable
+337,othuna,Furniture and related products,F66,Other and unallocable
+339,othuna,Miscellaneous manufacturing,F66,Other and unallocable
+42,othuna,Wholesale trade,F66,Other and unallocable
+441,othuna,Motor vehicle and parts dealers,F66,Other and unallocable
+452,othuna,General merchandise stores,F66,Other and unallocable
+4A0,othuna,Other retail,F66,Other and unallocable
+81,othuna,"Other services, except government",F66,Other and unallocable
+Used,othuna,"Scrap, used and secondhand goods",F66,Other and unallocable
+Other,othuna,Noncomparable imports and rest-of-the-world adjustment,F66,Other and unallocable
+324,othuna,Petroleum refineries,M50,Other and unallocable
+325,othuna,Chemical products,M50,Other and unallocable
+326,othuna,Plastics and rubber products,M50,Other and unallocable
+327,othuna,Nonmetallic mineral products,M50,Other and unallocable
+331,othuna,Primary metals,M50,Other and unallocable
+332,othuna,Fabricated metal products,M50,Other and unallocable
+333,othuna,Machinery,M50,Other and unallocable
+334,othuna,Computer and electronic products,M50,Other and unallocable
+335,othuna,"Electrical equipment, appliances, and components",M50,Other and unallocable
+3361MV,othuna,"Motor vehicles, bodies and trailers, and parts manufacturing",M50,Other and unallocable
+3364OT,othuna,Other transportation equipment,M50,Other and unallocable
+337,othuna,Furniture and related products,M50,Other and unallocable
+339,othuna,Miscellaneous manufacturing,M50,Other and unallocable
+42,othuna,Wholesale trade,M50,Other and unallocable
+441,othuna,Motor vehicle and parts dealers,M50,Other and unallocable
+452,othuna,General merchandise stores,M50,Other and unallocable
+4A0,othuna,Other retail,M50,Other and unallocable
+81,othuna,"Other services, except government",M50,Other and unallocable
+Used,othuna,"Scrap, used and secondhand goods",M50,Other and unallocable
+Other,othuna,Noncomparable imports and rest-of-the-world adjustment,M50,Other and unallocable
+324,othuna,Petroleum refineries,E22,Other and unallocable
+325,othuna,Chemical products,E22,Other and unallocable
+326,othuna,Plastics and rubber products,E22,Other and unallocable
+327,othuna,Nonmetallic mineral products,E22,Other and unallocable
+331,othuna,Primary metals,E22,Other and unallocable
+332,othuna,Fabricated metal products,E22,Other and unallocable
+333,othuna,Machinery,E22,Other and unallocable
+334,othuna,Computer and electronic products,E22,Other and unallocable
+335,othuna,"Electrical equipment, appliances, and components",E22,Other and unallocable
+3361MV,othuna,"Motor vehicles, bodies and trailers, and parts manufacturing",E22,Other and unallocable
+3364OT,othuna,Other transportation equipment,E22,Other and unallocable
+337,othuna,Furniture and related products,E22,Other and unallocable
+339,othuna,Miscellaneous manufacturing,E22,Other and unallocable
+42,othuna,Wholesale trade,E22,Other and unallocable
+441,othuna,Motor vehicle and parts dealers,E22,Other and unallocable
+452,othuna,General merchandise stores,E22,Other and unallocable
+4A0,othuna,Other retail,E22,Other and unallocable
+81,othuna,"Other services, except government",E22,Other and unallocable
+Used,othuna,"Scrap, used and secondhand goods",E22,Other and unallocable
+Other,othuna,Noncomparable imports and rest-of-the-world adjustment,E22,Other and unallocable
+324,othuna,Petroleum refineries,M89,Other and unallocable
+325,othuna,Chemical products,M89,Other and unallocable
+326,othuna,Plastics and rubber products,M89,Other and unallocable
+327,othuna,Nonmetallic mineral products,M89,Other and unallocable
+331,othuna,Primary metals,M89,Other and unallocable
+332,othuna,Fabricated metal products,M89,Other and unallocable
+333,othuna,Machinery,M89,Other and unallocable
+334,othuna,Computer and electronic products,M89,Other and unallocable
+335,othuna,"Electrical equipment, appliances, and components",M89,Other and unallocable
+3361MV,othuna,"Motor vehicles, bodies and trailers, and parts manufacturing",M89,Other and unallocable
+3364OT,othuna,Other transportation equipment,M89,Other and unallocable
+337,othuna,Furniture and related products,M89,Other and unallocable
+339,othuna,Miscellaneous manufacturing,M89,Other and unallocable
+42,othuna,Wholesale trade,M89,Other and unallocable
+441,othuna,Motor vehicle and parts dealers,M89,Other and unallocable
+452,othuna,General merchandise stores,M89,Other and unallocable
+4A0,othuna,Other retail,M89,Other and unallocable
+81,othuna,"Other services, except government",M89,Other and unallocable
+Used,othuna,"Scrap, used and secondhand goods",M89,Other and unallocable
+Other,othuna,Noncomparable imports and rest-of-the-world adjustment,M89,Other and unallocable
+324,othuna,Petroleum refineries,M81,Other and unallocable
+325,othuna,Chemical products,M81,Other and unallocable
+326,othuna,Plastics and rubber products,M81,Other and unallocable
+327,othuna,Nonmetallic mineral products,M81,Other and unallocable
+331,othuna,Primary metals,M81,Other and unallocable
+332,othuna,Fabricated metal products,M81,Other and unallocable
+333,othuna,Machinery,M81,Other and unallocable
+334,othuna,Computer and electronic products,M81,Other and unallocable
+335,othuna,"Electrical equipment, appliances, and components",M81,Other and unallocable
+3361MV,othuna,"Motor vehicles, bodies and trailers, and parts manufacturing",M81,Other and unallocable
+3364OT,othuna,Other transportation equipment,M81,Other and unallocable
+337,othuna,Furniture and related products,M81,Other and unallocable
+339,othuna,Miscellaneous manufacturing,M81,Other and unallocable
+42,othuna,Wholesale trade,M81,Other and unallocable
+441,othuna,Motor vehicle and parts dealers,M81,Other and unallocable
+452,othuna,General merchandise stores,M81,Other and unallocable
+4A0,othuna,Other retail,M81,Other and unallocable
+81,othuna,"Other services, except government",M81,Other and unallocable
+Used,othuna,"Scrap, used and secondhand goods",M81,Other and unallocable
+Other,othuna,Noncomparable imports and rest-of-the-world adjustment,M81,Other and unallocable
+324,othuna,Petroleum refineries,E85,Other and unallocable
+325,othuna,Chemical products,E85,Other and unallocable
+326,othuna,Plastics and rubber products,E85,Other and unallocable
+327,othuna,Nonmetallic mineral products,E85,Other and unallocable
+331,othuna,Primary metals,E85,Other and unallocable
+332,othuna,Fabricated metal products,E85,Other and unallocable
+333,othuna,Machinery,E85,Other and unallocable
+334,othuna,Computer and electronic products,E85,Other and unallocable
+335,othuna,"Electrical equipment, appliances, and components",E85,Other and unallocable
+3361MV,othuna,"Motor vehicles, bodies and trailers, and parts manufacturing",E85,Other and unallocable
+3364OT,othuna,Other transportation equipment,E85,Other and unallocable
+337,othuna,Furniture and related products,E85,Other and unallocable
+339,othuna,Miscellaneous manufacturing,E85,Other and unallocable
+42,othuna,Wholesale trade,E85,Other and unallocable
+441,othuna,Motor vehicle and parts dealers,E85,Other and unallocable
+452,othuna,General merchandise stores,E85,Other and unallocable
+4A0,othuna,Other retail,E85,Other and unallocable
+81,othuna,"Other services, except government",E85,Other and unallocable
+Used,othuna,"Scrap, used and secondhand goods",E85,Other and unallocable
+Other,othuna,Noncomparable imports and rest-of-the-world adjustment,E85,Other and unallocable
+324,othuna,Petroleum refineries,F50,Other and unallocable
+325,othuna,Chemical products,F50,Other and unallocable
+326,othuna,Plastics and rubber products,F50,Other and unallocable
+327,othuna,Nonmetallic mineral products,F50,Other and unallocable
+331,othuna,Primary metals,F50,Other and unallocable
+332,othuna,Fabricated metal products,F50,Other and unallocable
+333,othuna,Machinery,F50,Other and unallocable
+334,othuna,Computer and electronic products,F50,Other and unallocable
+335,othuna,"Electrical equipment, appliances, and components",F50,Other and unallocable
+3361MV,othuna,"Motor vehicles, bodies and trailers, and parts manufacturing",F50,Other and unallocable
+3364OT,othuna,Other transportation equipment,F50,Other and unallocable
+337,othuna,Furniture and related products,F50,Other and unallocable
+339,othuna,Miscellaneous manufacturing,F50,Other and unallocable
+42,othuna,Wholesale trade,F50,Other and unallocable
+441,othuna,Motor vehicle and parts dealers,F50,Other and unallocable
+452,othuna,General merchandise stores,F50,Other and unallocable
+4A0,othuna,Other retail,F50,Other and unallocable
+81,othuna,"Other services, except government",F50,Other and unallocable
+Used,othuna,"Scrap, used and secondhand goods",F50,Other and unallocable
+Other,othuna,Noncomparable imports and rest-of-the-world adjustment,F50,Other and unallocable
+324,othuna,Petroleum refineries,G22,Other and unallocable
+325,othuna,Chemical products,G22,Other and unallocable
+326,othuna,Plastics and rubber products,G22,Other and unallocable
+327,othuna,Nonmetallic mineral products,G22,Other and unallocable
+331,othuna,Primary metals,G22,Other and unallocable
+332,othuna,Fabricated metal products,G22,Other and unallocable
+333,othuna,Machinery,G22,Other and unallocable
+334,othuna,Computer and electronic products,G22,Other and unallocable
+335,othuna,"Electrical equipment, appliances, and components",G22,Other and unallocable
+3361MV,othuna,"Motor vehicles, bodies and trailers, and parts manufacturing",G22,Other and unallocable
+3364OT,othuna,Other transportation equipment,G22,Other and unallocable
+337,othuna,Furniture and related products,G22,Other and unallocable
+339,othuna,Miscellaneous manufacturing,G22,Other and unallocable
+42,othuna,Wholesale trade,G22,Other and unallocable
+441,othuna,Motor vehicle and parts dealers,G22,Other and unallocable
+452,othuna,General merchandise stores,G22,Other and unallocable
+4A0,othuna,Other retail,G22,Other and unallocable
+81,othuna,"Other services, except government",G22,Other and unallocable
+Used,othuna,"Scrap, used and secondhand goods",G22,Other and unallocable
+Other,othuna,Noncomparable imports and rest-of-the-world adjustment,G22,Other and unallocable
+324,othuna,Petroleum refineries,E89,Other and unallocable
+325,othuna,Chemical products,E89,Other and unallocable
+326,othuna,Plastics and rubber products,E89,Other and unallocable
+327,othuna,Nonmetallic mineral products,E89,Other and unallocable
+331,othuna,Primary metals,E89,Other and unallocable
+332,othuna,Fabricated metal products,E89,Other and unallocable
+333,othuna,Machinery,E89,Other and unallocable
+334,othuna,Computer and electronic products,E89,Other and unallocable
+335,othuna,"Electrical equipment, appliances, and components",E89,Other and unallocable
+3361MV,othuna,"Motor vehicles, bodies and trailers, and parts manufacturing",E89,Other and unallocable
+3364OT,othuna,Other transportation equipment,E89,Other and unallocable
+337,othuna,Furniture and related products,E89,Other and unallocable
+339,othuna,Miscellaneous manufacturing,E89,Other and unallocable
+42,othuna,Wholesale trade,E89,Other and unallocable
+441,othuna,Motor vehicle and parts dealers,E89,Other and unallocable
+452,othuna,General merchandise stores,E89,Other and unallocable
+4A0,othuna,Other retail,E89,Other and unallocable
+81,othuna,"Other services, except government",E89,Other and unallocable
+Used,othuna,"Scrap, used and secondhand goods",E89,Other and unallocable
+Other,othuna,Noncomparable imports and rest-of-the-world adjustment,E89,Other and unallocable
+324,othuna,Petroleum refineries,G85,Other and unallocable
+325,othuna,Chemical products,G85,Other and unallocable
+326,othuna,Plastics and rubber products,G85,Other and unallocable
+327,othuna,Nonmetallic mineral products,G85,Other and unallocable
+331,othuna,Primary metals,G85,Other and unallocable
+332,othuna,Fabricated metal products,G85,Other and unallocable
+333,othuna,Machinery,G85,Other and unallocable
+334,othuna,Computer and electronic products,G85,Other and unallocable
+335,othuna,"Electrical equipment, appliances, and components",G85,Other and unallocable
+3361MV,othuna,"Motor vehicles, bodies and trailers, and parts manufacturing",G85,Other and unallocable
+3364OT,othuna,Other transportation equipment,G85,Other and unallocable
+337,othuna,Furniture and related products,G85,Other and unallocable
+339,othuna,Miscellaneous manufacturing,G85,Other and unallocable
+42,othuna,Wholesale trade,G85,Other and unallocable
+441,othuna,Motor vehicle and parts dealers,G85,Other and unallocable
+452,othuna,General merchandise stores,G85,Other and unallocable
+4A0,othuna,Other retail,G85,Other and unallocable
+81,othuna,"Other services, except government",G85,Other and unallocable
+Used,othuna,"Scrap, used and secondhand goods",G85,Other and unallocable
+Other,othuna,Noncomparable imports and rest-of-the-world adjustment,G85,Other and unallocable
+324,othuna,Petroleum refineries,E87,Other and unallocable
+325,othuna,Chemical products,E87,Other and unallocable
+326,othuna,Plastics and rubber products,E87,Other and unallocable
+327,othuna,Nonmetallic mineral products,E87,Other and unallocable
+331,othuna,Primary metals,E87,Other and unallocable
+332,othuna,Fabricated metal products,E87,Other and unallocable
+333,othuna,Machinery,E87,Other and unallocable
+334,othuna,Computer and electronic products,E87,Other and unallocable
+335,othuna,"Electrical equipment, appliances, and components",E87,Other and unallocable
+3361MV,othuna,"Motor vehicles, bodies and trailers, and parts manufacturing",E87,Other and unallocable
+3364OT,othuna,Other transportation equipment,E87,Other and unallocable
+337,othuna,Furniture and related products,E87,Other and unallocable
+339,othuna,Miscellaneous manufacturing,E87,Other and unallocable
+42,othuna,Wholesale trade,E87,Other and unallocable
+441,othuna,Motor vehicle and parts dealers,E87,Other and unallocable
+452,othuna,General merchandise stores,E87,Other and unallocable
+4A0,othuna,Other retail,E87,Other and unallocable
+81,othuna,"Other services, except government",E87,Other and unallocable
+Used,othuna,"Scrap, used and secondhand goods",E87,Other and unallocable
+Other,othuna,Noncomparable imports and rest-of-the-world adjustment,E87,Other and unallocable
+324,othuna,Petroleum refineries,G81,Other and unallocable
+325,othuna,Chemical products,G81,Other and unallocable
+326,othuna,Plastics and rubber products,G81,Other and unallocable
+327,othuna,Nonmetallic mineral products,G81,Other and unallocable
+331,othuna,Primary metals,G81,Other and unallocable
+332,othuna,Fabricated metal products,G81,Other and unallocable
+333,othuna,Machinery,G81,Other and unallocable
+334,othuna,Computer and electronic products,G81,Other and unallocable
+335,othuna,"Electrical equipment, appliances, and components",G81,Other and unallocable
+3361MV,othuna,"Motor vehicles, bodies and trailers, and parts manufacturing",G81,Other and unallocable
+3364OT,othuna,Other transportation equipment,G81,Other and unallocable
+337,othuna,Furniture and related products,G81,Other and unallocable
+339,othuna,Miscellaneous manufacturing,G81,Other and unallocable
+42,othuna,Wholesale trade,G81,Other and unallocable
+441,othuna,Motor vehicle and parts dealers,G81,Other and unallocable
+452,othuna,General merchandise stores,G81,Other and unallocable
+4A0,othuna,Other retail,G81,Other and unallocable
+81,othuna,"Other services, except government",G81,Other and unallocable
+Used,othuna,"Scrap, used and secondhand goods",G81,Other and unallocable
+Other,othuna,Noncomparable imports and rest-of-the-world adjustment,G81,Other and unallocable
+324,othuna,Petroleum refineries,G01,Other and unallocable
+325,othuna,Chemical products,G01,Other and unallocable
+326,othuna,Plastics and rubber products,G01,Other and unallocable
+327,othuna,Nonmetallic mineral products,G01,Other and unallocable
+331,othuna,Primary metals,G01,Other and unallocable
+332,othuna,Fabricated metal products,G01,Other and unallocable
+333,othuna,Machinery,G01,Other and unallocable
+334,othuna,Computer and electronic products,G01,Other and unallocable
+335,othuna,"Electrical equipment, appliances, and components",G01,Other and unallocable
+3361MV,othuna,"Motor vehicles, bodies and trailers, and parts manufacturing",G01,Other and unallocable
+3364OT,othuna,Other transportation equipment,G01,Other and unallocable
+337,othuna,Furniture and related products,G01,Other and unallocable
+339,othuna,Miscellaneous manufacturing,G01,Other and unallocable
+42,othuna,Wholesale trade,G01,Other and unallocable
+441,othuna,Motor vehicle and parts dealers,G01,Other and unallocable
+452,othuna,General merchandise stores,G01,Other and unallocable
+4A0,othuna,Other retail,G01,Other and unallocable
+81,othuna,"Other services, except government",G01,Other and unallocable
+Used,othuna,"Scrap, used and secondhand goods",G01,Other and unallocable
+Other,othuna,Noncomparable imports and rest-of-the-world adjustment,G01,Other and unallocable
+324,othuna,Petroleum refineries,G50,Other and unallocable
+325,othuna,Chemical products,G50,Other and unallocable
+326,othuna,Plastics and rubber products,G50,Other and unallocable
+327,othuna,Nonmetallic mineral products,G50,Other and unallocable
+331,othuna,Primary metals,G50,Other and unallocable
+332,othuna,Fabricated metal products,G50,Other and unallocable
+333,othuna,Machinery,G50,Other and unallocable
+334,othuna,Computer and electronic products,G50,Other and unallocable
+335,othuna,"Electrical equipment, appliances, and components",G50,Other and unallocable
+3361MV,othuna,"Motor vehicles, bodies and trailers, and parts manufacturing",G50,Other and unallocable
+3364OT,othuna,Other transportation equipment,G50,Other and unallocable
+337,othuna,Furniture and related products,G50,Other and unallocable
+339,othuna,Miscellaneous manufacturing,G50,Other and unallocable
+42,othuna,Wholesale trade,G50,Other and unallocable
+441,othuna,Motor vehicle and parts dealers,G50,Other and unallocable
+452,othuna,General merchandise stores,G50,Other and unallocable
+4A0,othuna,Other retail,G50,Other and unallocable
+81,othuna,"Other services, except government",G50,Other and unallocable
+Used,othuna,"Scrap, used and secondhand goods",G50,Other and unallocable
+Other,othuna,Noncomparable imports and rest-of-the-world adjustment,G50,Other and unallocable
+324,othuna,Petroleum refineries,F22,Other and unallocable
+325,othuna,Chemical products,F22,Other and unallocable
+326,othuna,Plastics and rubber products,F22,Other and unallocable
+327,othuna,Nonmetallic mineral products,F22,Other and unallocable
+331,othuna,Primary metals,F22,Other and unallocable
+332,othuna,Fabricated metal products,F22,Other and unallocable
+333,othuna,Machinery,F22,Other and unallocable
+334,othuna,Computer and electronic products,F22,Other and unallocable
+335,othuna,"Electrical equipment, appliances, and components",F22,Other and unallocable
+3361MV,othuna,"Motor vehicles, bodies and trailers, and parts manufacturing",F22,Other and unallocable
+3364OT,othuna,Other transportation equipment,F22,Other and unallocable
+337,othuna,Furniture and related products,F22,Other and unallocable
+339,othuna,Miscellaneous manufacturing,F22,Other and unallocable
+42,othuna,Wholesale trade,F22,Other and unallocable
+441,othuna,Motor vehicle and parts dealers,F22,Other and unallocable
+452,othuna,General merchandise stores,F22,Other and unallocable
+4A0,othuna,Other retail,F22,Other and unallocable
+81,othuna,"Other services, except government",F22,Other and unallocable
+Used,othuna,"Scrap, used and secondhand goods",F22,Other and unallocable
+Other,othuna,Noncomparable imports and rest-of-the-world adjustment,F22,Other and unallocable
+324,othuna,Petroleum refineries,F52,Other and unallocable
+325,othuna,Chemical products,F52,Other and unallocable
+326,othuna,Plastics and rubber products,F52,Other and unallocable
+327,othuna,Nonmetallic mineral products,F52,Other and unallocable
+331,othuna,Primary metals,F52,Other and unallocable
+332,othuna,Fabricated metal products,F52,Other and unallocable
+333,othuna,Machinery,F52,Other and unallocable
+334,othuna,Computer and electronic products,F52,Other and unallocable
+335,othuna,"Electrical equipment, appliances, and components",F52,Other and unallocable
+3361MV,othuna,"Motor vehicles, bodies and trailers, and parts manufacturing",F52,Other and unallocable
+3364OT,othuna,Other transportation equipment,F52,Other and unallocable
+337,othuna,Furniture and related products,F52,Other and unallocable
+339,othuna,Miscellaneous manufacturing,F52,Other and unallocable
+42,othuna,Wholesale trade,F52,Other and unallocable
+441,othuna,Motor vehicle and parts dealers,F52,Other and unallocable
+452,othuna,General merchandise stores,F52,Other and unallocable
+4A0,othuna,Other retail,F52,Other and unallocable
+81,othuna,"Other services, except government",F52,Other and unallocable
+Used,othuna,"Scrap, used and secondhand goods",F52,Other and unallocable
+Other,othuna,Noncomparable imports and rest-of-the-world adjustment,F52,Other and unallocable
+324,othuna,Petroleum refineries,F87,Other and unallocable
+325,othuna,Chemical products,F87,Other and unallocable
+326,othuna,Plastics and rubber products,F87,Other and unallocable
+327,othuna,Nonmetallic mineral products,F87,Other and unallocable
+331,othuna,Primary metals,F87,Other and unallocable
+332,othuna,Fabricated metal products,F87,Other and unallocable
+333,othuna,Machinery,F87,Other and unallocable
+334,othuna,Computer and electronic products,F87,Other and unallocable
+335,othuna,"Electrical equipment, appliances, and components",F87,Other and unallocable
+3361MV,othuna,"Motor vehicles, bodies and trailers, and parts manufacturing",F87,Other and unallocable
+3364OT,othuna,Other transportation equipment,F87,Other and unallocable
+337,othuna,Furniture and related products,F87,Other and unallocable
+339,othuna,Miscellaneous manufacturing,F87,Other and unallocable
+42,othuna,Wholesale trade,F87,Other and unallocable
+441,othuna,Motor vehicle and parts dealers,F87,Other and unallocable
+452,othuna,General merchandise stores,F87,Other and unallocable
+4A0,othuna,Other retail,F87,Other and unallocable
+81,othuna,"Other services, except government",F87,Other and unallocable
+Used,othuna,"Scrap, used and secondhand goods",F87,Other and unallocable
+Other,othuna,Noncomparable imports and rest-of-the-world adjustment,F87,Other and unallocable
+324,othuna,Petroleum refineries,M66,Other and unallocable
+325,othuna,Chemical products,M66,Other and unallocable
+326,othuna,Plastics and rubber products,M66,Other and unallocable
+327,othuna,Nonmetallic mineral products,M66,Other and unallocable
+331,othuna,Primary metals,M66,Other and unallocable
+332,othuna,Fabricated metal products,M66,Other and unallocable
+333,othuna,Machinery,M66,Other and unallocable
+334,othuna,Computer and electronic products,M66,Other and unallocable
+335,othuna,"Electrical equipment, appliances, and components",M66,Other and unallocable
+3361MV,othuna,"Motor vehicles, bodies and trailers, and parts manufacturing",M66,Other and unallocable
+3364OT,othuna,Other transportation equipment,M66,Other and unallocable
+337,othuna,Furniture and related products,M66,Other and unallocable
+339,othuna,Miscellaneous manufacturing,M66,Other and unallocable
+42,othuna,Wholesale trade,M66,Other and unallocable
+441,othuna,Motor vehicle and parts dealers,M66,Other and unallocable
+452,othuna,General merchandise stores,M66,Other and unallocable
+4A0,othuna,Other retail,M66,Other and unallocable
+81,othuna,"Other services, except government",M66,Other and unallocable
+Used,othuna,"Scrap, used and secondhand goods",M66,Other and unallocable
+Other,othuna,Noncomparable imports and rest-of-the-world adjustment,M66,Other and unallocable
+324,othuna,Petroleum refineries,E50,Other and unallocable
+325,othuna,Chemical products,E50,Other and unallocable
+326,othuna,Plastics and rubber products,E50,Other and unallocable
+327,othuna,Nonmetallic mineral products,E50,Other and unallocable
+331,othuna,Primary metals,E50,Other and unallocable
+332,othuna,Fabricated metal products,E50,Other and unallocable
+333,othuna,Machinery,E50,Other and unallocable
+334,othuna,Computer and electronic products,E50,Other and unallocable
+335,othuna,"Electrical equipment, appliances, and components",E50,Other and unallocable
+3361MV,othuna,"Motor vehicles, bodies and trailers, and parts manufacturing",E50,Other and unallocable
+3364OT,othuna,Other transportation equipment,E50,Other and unallocable
+337,othuna,Furniture and related products,E50,Other and unallocable
+339,othuna,Miscellaneous manufacturing,E50,Other and unallocable
+42,othuna,Wholesale trade,E50,Other and unallocable
+441,othuna,Motor vehicle and parts dealers,E50,Other and unallocable
+452,othuna,General merchandise stores,E50,Other and unallocable
+4A0,othuna,Other retail,E50,Other and unallocable
+81,othuna,"Other services, except government",E50,Other and unallocable
+Used,othuna,"Scrap, used and secondhand goods",E50,Other and unallocable
+Other,othuna,Noncomparable imports and rest-of-the-world adjustment,E50,Other and unallocable
+324,othuna,Petroleum refineries,G87,Other and unallocable
+325,othuna,Chemical products,G87,Other and unallocable
+326,othuna,Plastics and rubber products,G87,Other and unallocable
+327,othuna,Nonmetallic mineral products,G87,Other and unallocable
+331,othuna,Primary metals,G87,Other and unallocable
+332,othuna,Fabricated metal products,G87,Other and unallocable
+333,othuna,Machinery,G87,Other and unallocable
+334,othuna,Computer and electronic products,G87,Other and unallocable
+335,othuna,"Electrical equipment, appliances, and components",G87,Other and unallocable
+3361MV,othuna,"Motor vehicles, bodies and trailers, and parts manufacturing",G87,Other and unallocable
+3364OT,othuna,Other transportation equipment,G87,Other and unallocable
+337,othuna,Furniture and related products,G87,Other and unallocable
+339,othuna,Miscellaneous manufacturing,G87,Other and unallocable
+42,othuna,Wholesale trade,G87,Other and unallocable
+441,othuna,Motor vehicle and parts dealers,G87,Other and unallocable
+452,othuna,General merchandise stores,G87,Other and unallocable
+4A0,othuna,Other retail,G87,Other and unallocable
+81,othuna,"Other services, except government",G87,Other and unallocable
+Used,othuna,"Scrap, used and secondhand goods",G87,Other and unallocable
+Other,othuna,Noncomparable imports and rest-of-the-world adjustment,G87,Other and unallocable
+324,othuna,Petroleum refineries,E60,Other and unallocable
+325,othuna,Chemical products,E60,Other and unallocable
+326,othuna,Plastics and rubber products,E60,Other and unallocable
+327,othuna,Nonmetallic mineral products,E60,Other and unallocable
+331,othuna,Primary metals,E60,Other and unallocable
+332,othuna,Fabricated metal products,E60,Other and unallocable
+333,othuna,Machinery,E60,Other and unallocable
+334,othuna,Computer and electronic products,E60,Other and unallocable
+335,othuna,"Electrical equipment, appliances, and components",E60,Other and unallocable
+3361MV,othuna,"Motor vehicles, bodies and trailers, and parts manufacturing",E60,Other and unallocable
+3364OT,othuna,Other transportation equipment,E60,Other and unallocable
+337,othuna,Furniture and related products,E60,Other and unallocable
+339,othuna,Miscellaneous manufacturing,E60,Other and unallocable
+42,othuna,Wholesale trade,E60,Other and unallocable
+441,othuna,Motor vehicle and parts dealers,E60,Other and unallocable
+452,othuna,General merchandise stores,E60,Other and unallocable
+4A0,othuna,Other retail,E60,Other and unallocable
+81,othuna,"Other services, except government",E60,Other and unallocable
+Used,othuna,"Scrap, used and secondhand goods",E60,Other and unallocable
+Other,othuna,Noncomparable imports and rest-of-the-world adjustment,E60,Other and unallocable
+324,othuna,Petroleum refineries,F80,Other and unallocable
+325,othuna,Chemical products,F80,Other and unallocable
+326,othuna,Plastics and rubber products,F80,Other and unallocable
+327,othuna,Nonmetallic mineral products,F80,Other and unallocable
+331,othuna,Primary metals,F80,Other and unallocable
+332,othuna,Fabricated metal products,F80,Other and unallocable
+333,othuna,Machinery,F80,Other and unallocable
+334,othuna,Computer and electronic products,F80,Other and unallocable
+335,othuna,"Electrical equipment, appliances, and components",F80,Other and unallocable
+3361MV,othuna,"Motor vehicles, bodies and trailers, and parts manufacturing",F80,Other and unallocable
+3364OT,othuna,Other transportation equipment,F80,Other and unallocable
+337,othuna,Furniture and related products,F80,Other and unallocable
+339,othuna,Miscellaneous manufacturing,F80,Other and unallocable
+42,othuna,Wholesale trade,F80,Other and unallocable
+441,othuna,Motor vehicle and parts dealers,F80,Other and unallocable
+452,othuna,General merchandise stores,F80,Other and unallocable
+4A0,othuna,Other retail,F80,Other and unallocable
+81,othuna,"Other services, except government",F80,Other and unallocable
+Used,othuna,"Scrap, used and secondhand goods",F80,Other and unallocable
+Other,othuna,Noncomparable imports and rest-of-the-world adjustment,F80,Other and unallocable
+324,othuna,Petroleum refineries,F81,Other and unallocable
+325,othuna,Chemical products,F81,Other and unallocable
+326,othuna,Plastics and rubber products,F81,Other and unallocable
+327,othuna,Nonmetallic mineral products,F81,Other and unallocable
+331,othuna,Primary metals,F81,Other and unallocable
+332,othuna,Fabricated metal products,F81,Other and unallocable
+333,othuna,Machinery,F81,Other and unallocable
+334,othuna,Computer and electronic products,F81,Other and unallocable
+335,othuna,"Electrical equipment, appliances, and components",F81,Other and unallocable
+3361MV,othuna,"Motor vehicles, bodies and trailers, and parts manufacturing",F81,Other and unallocable
+3364OT,othuna,Other transportation equipment,F81,Other and unallocable
+337,othuna,Furniture and related products,F81,Other and unallocable
+339,othuna,Miscellaneous manufacturing,F81,Other and unallocable
+42,othuna,Wholesale trade,F81,Other and unallocable
+441,othuna,Motor vehicle and parts dealers,F81,Other and unallocable
+452,othuna,General merchandise stores,F81,Other and unallocable
+4A0,othuna,Other retail,F81,Other and unallocable
+81,othuna,"Other services, except government",F81,Other and unallocable
+Used,othuna,"Scrap, used and secondhand goods",F81,Other and unallocable
+Other,othuna,Noncomparable imports and rest-of-the-world adjustment,F81,Other and unallocable
+324,othuna,Petroleum refineries,M52,Other and unallocable
+325,othuna,Chemical products,M52,Other and unallocable
+326,othuna,Plastics and rubber products,M52,Other and unallocable
+327,othuna,Nonmetallic mineral products,M52,Other and unallocable
+331,othuna,Primary metals,M52,Other and unallocable
+332,othuna,Fabricated metal products,M52,Other and unallocable
+333,othuna,Machinery,M52,Other and unallocable
+334,othuna,Computer and electronic products,M52,Other and unallocable
+335,othuna,"Electrical equipment, appliances, and components",M52,Other and unallocable
+3361MV,othuna,"Motor vehicles, bodies and trailers, and parts manufacturing",M52,Other and unallocable
+3364OT,othuna,Other transportation equipment,M52,Other and unallocable
+337,othuna,Furniture and related products,M52,Other and unallocable
+339,othuna,Miscellaneous manufacturing,M52,Other and unallocable
+42,othuna,Wholesale trade,M52,Other and unallocable
+441,othuna,Motor vehicle and parts dealers,M52,Other and unallocable
+452,othuna,General merchandise stores,M52,Other and unallocable
+4A0,othuna,Other retail,M52,Other and unallocable
+81,othuna,"Other services, except government",M52,Other and unallocable
+Used,othuna,"Scrap, used and secondhand goods",M52,Other and unallocable
+Other,othuna,Noncomparable imports and rest-of-the-world adjustment,M52,Other and unallocable
+324,othuna,Petroleum refineries,G80,Other and unallocable
+325,othuna,Chemical products,G80,Other and unallocable
+326,othuna,Plastics and rubber products,G80,Other and unallocable
+327,othuna,Nonmetallic mineral products,G80,Other and unallocable
+331,othuna,Primary metals,G80,Other and unallocable
+332,othuna,Fabricated metal products,G80,Other and unallocable
+333,othuna,Machinery,G80,Other and unallocable
+334,othuna,Computer and electronic products,G80,Other and unallocable
+335,othuna,"Electrical equipment, appliances, and components",G80,Other and unallocable
+3361MV,othuna,"Motor vehicles, bodies and trailers, and parts manufacturing",G80,Other and unallocable
+3364OT,othuna,Other transportation equipment,G80,Other and unallocable
+337,othuna,Furniture and related products,G80,Other and unallocable
+339,othuna,Miscellaneous manufacturing,G80,Other and unallocable
+42,othuna,Wholesale trade,G80,Other and unallocable
+441,othuna,Motor vehicle and parts dealers,G80,Other and unallocable
+452,othuna,General merchandise stores,G80,Other and unallocable
+4A0,othuna,Other retail,G80,Other and unallocable
+81,othuna,"Other services, except government",G80,Other and unallocable
+Used,othuna,"Scrap, used and secondhand goods",G80,Other and unallocable
+Other,othuna,Noncomparable imports and rest-of-the-world adjustment,G80,Other and unallocable
+324,othuna,Petroleum refineries,E66,Other and unallocable
+325,othuna,Chemical products,E66,Other and unallocable
+326,othuna,Plastics and rubber products,E66,Other and unallocable
+327,othuna,Nonmetallic mineral products,E66,Other and unallocable
+331,othuna,Primary metals,E66,Other and unallocable
+332,othuna,Fabricated metal products,E66,Other and unallocable
+333,othuna,Machinery,E66,Other and unallocable
+334,othuna,Computer and electronic products,E66,Other and unallocable
+335,othuna,"Electrical equipment, appliances, and components",E66,Other and unallocable
+3361MV,othuna,"Motor vehicles, bodies and trailers, and parts manufacturing",E66,Other and unallocable
+3364OT,othuna,Other transportation equipment,E66,Other and unallocable
+337,othuna,Furniture and related products,E66,Other and unallocable
+339,othuna,Miscellaneous manufacturing,E66,Other and unallocable
+42,othuna,Wholesale trade,E66,Other and unallocable
+441,othuna,Motor vehicle and parts dealers,E66,Other and unallocable
+452,othuna,General merchandise stores,E66,Other and unallocable
+4A0,othuna,Other retail,E66,Other and unallocable
+81,othuna,"Other services, except government",E66,Other and unallocable
+Used,othuna,"Scrap, used and secondhand goods",E66,Other and unallocable
+Other,othuna,Noncomparable imports and rest-of-the-world adjustment,E66,Other and unallocable
+324,othuna,Petroleum refineries,G60,Other and unallocable
+325,othuna,Chemical products,G60,Other and unallocable
+326,othuna,Plastics and rubber products,G60,Other and unallocable
+327,othuna,Nonmetallic mineral products,G60,Other and unallocable
+331,othuna,Primary metals,G60,Other and unallocable
+332,othuna,Fabricated metal products,G60,Other and unallocable
+333,othuna,Machinery,G60,Other and unallocable
+334,othuna,Computer and electronic products,G60,Other and unallocable
+335,othuna,"Electrical equipment, appliances, and components",G60,Other and unallocable
+3361MV,othuna,"Motor vehicles, bodies and trailers, and parts manufacturing",G60,Other and unallocable
+3364OT,othuna,Other transportation equipment,G60,Other and unallocable
+337,othuna,Furniture and related products,G60,Other and unallocable
+339,othuna,Miscellaneous manufacturing,G60,Other and unallocable
+42,othuna,Wholesale trade,G60,Other and unallocable
+441,othuna,Motor vehicle and parts dealers,G60,Other and unallocable
+452,othuna,General merchandise stores,G60,Other and unallocable
+4A0,othuna,Other retail,G60,Other and unallocable
+81,othuna,"Other services, except government",G60,Other and unallocable
+Used,othuna,"Scrap, used and secondhand goods",G60,Other and unallocable
+Other,othuna,Noncomparable imports and rest-of-the-world adjustment,G60,Other and unallocable
+324,othuna,Petroleum refineries,S89,Other and unallocable
+325,othuna,Chemical products,S89,Other and unallocable
+326,othuna,Plastics and rubber products,S89,Other and unallocable
+327,othuna,Nonmetallic mineral products,S89,Other and unallocable
+331,othuna,Primary metals,S89,Other and unallocable
+332,othuna,Fabricated metal products,S89,Other and unallocable
+333,othuna,Machinery,S89,Other and unallocable
+334,othuna,Computer and electronic products,S89,Other and unallocable
+335,othuna,"Electrical equipment, appliances, and components",S89,Other and unallocable
+3361MV,othuna,"Motor vehicles, bodies and trailers, and parts manufacturing",S89,Other and unallocable
+3364OT,othuna,Other transportation equipment,S89,Other and unallocable
+337,othuna,Furniture and related products,S89,Other and unallocable
+339,othuna,Miscellaneous manufacturing,S89,Other and unallocable
+42,othuna,Wholesale trade,S89,Other and unallocable
+441,othuna,Motor vehicle and parts dealers,S89,Other and unallocable
+452,othuna,General merchandise stores,S89,Other and unallocable
+4A0,othuna,Other retail,S89,Other and unallocable
+81,othuna,"Other services, except government",S89,Other and unallocable
+Used,othuna,"Scrap, used and secondhand goods",S89,Other and unallocable
+Other,othuna,Noncomparable imports and rest-of-the-world adjustment,S89,Other and unallocable
+324,othuna,Petroleum refineries,F89,Other and unallocable
+325,othuna,Chemical products,F89,Other and unallocable
+326,othuna,Plastics and rubber products,F89,Other and unallocable
+327,othuna,Nonmetallic mineral products,F89,Other and unallocable
+331,othuna,Primary metals,F89,Other and unallocable
+332,othuna,Fabricated metal products,F89,Other and unallocable
+333,othuna,Machinery,F89,Other and unallocable
+334,othuna,Computer and electronic products,F89,Other and unallocable
+335,othuna,"Electrical equipment, appliances, and components",F89,Other and unallocable
+3361MV,othuna,"Motor vehicles, bodies and trailers, and parts manufacturing",F89,Other and unallocable
+3364OT,othuna,Other transportation equipment,F89,Other and unallocable
+337,othuna,Furniture and related products,F89,Other and unallocable
+339,othuna,Miscellaneous manufacturing,F89,Other and unallocable
+42,othuna,Wholesale trade,F89,Other and unallocable
+441,othuna,Motor vehicle and parts dealers,F89,Other and unallocable
+452,othuna,General merchandise stores,F89,Other and unallocable
+4A0,othuna,Other retail,F89,Other and unallocable
+81,othuna,"Other services, except government",F89,Other and unallocable
+Used,othuna,"Scrap, used and secondhand goods",F89,Other and unallocable
+Other,othuna,Noncomparable imports and rest-of-the-world adjustment,F89,Other and unallocable
+324,othuna,Petroleum refineries,E80,Other and unallocable
+325,othuna,Chemical products,E80,Other and unallocable
+326,othuna,Plastics and rubber products,E80,Other and unallocable
+327,othuna,Nonmetallic mineral products,E80,Other and unallocable
+331,othuna,Primary metals,E80,Other and unallocable
+332,othuna,Fabricated metal products,E80,Other and unallocable
+333,othuna,Machinery,E80,Other and unallocable
+334,othuna,Computer and electronic products,E80,Other and unallocable
+335,othuna,"Electrical equipment, appliances, and components",E80,Other and unallocable
+3361MV,othuna,"Motor vehicles, bodies and trailers, and parts manufacturing",E80,Other and unallocable
+3364OT,othuna,Other transportation equipment,E80,Other and unallocable
+337,othuna,Furniture and related products,E80,Other and unallocable
+339,othuna,Miscellaneous manufacturing,E80,Other and unallocable
+42,othuna,Wholesale trade,E80,Other and unallocable
+441,othuna,Motor vehicle and parts dealers,E80,Other and unallocable
+452,othuna,General merchandise stores,E80,Other and unallocable
+4A0,othuna,Other retail,E80,Other and unallocable
+81,othuna,"Other services, except government",E80,Other and unallocable
+Used,othuna,"Scrap, used and secondhand goods",E80,Other and unallocable
+Other,othuna,Noncomparable imports and rest-of-the-world adjustment,E80,Other and unallocable
+324,othuna,Petroleum refineries,G52,Other and unallocable
+325,othuna,Chemical products,G52,Other and unallocable
+326,othuna,Plastics and rubber products,G52,Other and unallocable
+327,othuna,Nonmetallic mineral products,G52,Other and unallocable
+331,othuna,Primary metals,G52,Other and unallocable
+332,othuna,Fabricated metal products,G52,Other and unallocable
+333,othuna,Machinery,G52,Other and unallocable
+334,othuna,Computer and electronic products,G52,Other and unallocable
+335,othuna,"Electrical equipment, appliances, and components",G52,Other and unallocable
+3361MV,othuna,"Motor vehicles, bodies and trailers, and parts manufacturing",G52,Other and unallocable
+3364OT,othuna,Other transportation equipment,G52,Other and unallocable
+337,othuna,Furniture and related products,G52,Other and unallocable
+339,othuna,Miscellaneous manufacturing,G52,Other and unallocable
+42,othuna,Wholesale trade,G52,Other and unallocable
+441,othuna,Motor vehicle and parts dealers,G52,Other and unallocable
+452,othuna,General merchandise stores,G52,Other and unallocable
+4A0,othuna,Other retail,G52,Other and unallocable
+81,othuna,"Other services, except government",G52,Other and unallocable
+Used,othuna,"Scrap, used and secondhand goods",G52,Other and unallocable
+Other,othuna,Noncomparable imports and rest-of-the-world adjustment,G52,Other and unallocable
+324,othuna,Petroleum refineries,G66,Other and unallocable
+325,othuna,Chemical products,G66,Other and unallocable
+326,othuna,Plastics and rubber products,G66,Other and unallocable
+327,othuna,Nonmetallic mineral products,G66,Other and unallocable
+331,othuna,Primary metals,G66,Other and unallocable
+332,othuna,Fabricated metal products,G66,Other and unallocable
+333,othuna,Machinery,G66,Other and unallocable
+334,othuna,Computer and electronic products,G66,Other and unallocable
+335,othuna,"Electrical equipment, appliances, and components",G66,Other and unallocable
+3361MV,othuna,"Motor vehicles, bodies and trailers, and parts manufacturing",G66,Other and unallocable
+3364OT,othuna,Other transportation equipment,G66,Other and unallocable
+337,othuna,Furniture and related products,G66,Other and unallocable
+339,othuna,Miscellaneous manufacturing,G66,Other and unallocable
+42,othuna,Wholesale trade,G66,Other and unallocable
+441,othuna,Motor vehicle and parts dealers,G66,Other and unallocable
+452,othuna,General merchandise stores,G66,Other and unallocable
+4A0,othuna,Other retail,G66,Other and unallocable
+81,othuna,"Other services, except government",G66,Other and unallocable
+Used,othuna,"Scrap, used and secondhand goods",G66,Other and unallocable
+Other,othuna,Noncomparable imports and rest-of-the-world adjustment,G66,Other and unallocable
+324,othuna,Petroleum refineries,F01,Other and unallocable
+325,othuna,Chemical products,F01,Other and unallocable
+326,othuna,Plastics and rubber products,F01,Other and unallocable
+327,othuna,Nonmetallic mineral products,F01,Other and unallocable
+331,othuna,Primary metals,F01,Other and unallocable
+332,othuna,Fabricated metal products,F01,Other and unallocable
+333,othuna,Machinery,F01,Other and unallocable
+334,othuna,Computer and electronic products,F01,Other and unallocable
+335,othuna,"Electrical equipment, appliances, and components",F01,Other and unallocable
+3361MV,othuna,"Motor vehicles, bodies and trailers, and parts manufacturing",F01,Other and unallocable
+3364OT,othuna,Other transportation equipment,F01,Other and unallocable
+337,othuna,Furniture and related products,F01,Other and unallocable
+339,othuna,Miscellaneous manufacturing,F01,Other and unallocable
+42,othuna,Wholesale trade,F01,Other and unallocable
+441,othuna,Motor vehicle and parts dealers,F01,Other and unallocable
+452,othuna,General merchandise stores,F01,Other and unallocable
+4A0,othuna,Other retail,F01,Other and unallocable
+81,othuna,"Other services, except government",F01,Other and unallocable
+Used,othuna,"Scrap, used and secondhand goods",F01,Other and unallocable
+Other,othuna,Noncomparable imports and rest-of-the-world adjustment,F01,Other and unallocable
+324,othuna,Petroleum refineries,F60,Other and unallocable
+325,othuna,Chemical products,F60,Other and unallocable
+326,othuna,Plastics and rubber products,F60,Other and unallocable
+327,othuna,Nonmetallic mineral products,F60,Other and unallocable
+331,othuna,Primary metals,F60,Other and unallocable
+332,othuna,Fabricated metal products,F60,Other and unallocable
+333,othuna,Machinery,F60,Other and unallocable
+334,othuna,Computer and electronic products,F60,Other and unallocable
+335,othuna,"Electrical equipment, appliances, and components",F60,Other and unallocable
+3361MV,othuna,"Motor vehicles, bodies and trailers, and parts manufacturing",F60,Other and unallocable
+3364OT,othuna,Other transportation equipment,F60,Other and unallocable
+337,othuna,Furniture and related products,F60,Other and unallocable
+339,othuna,Miscellaneous manufacturing,F60,Other and unallocable
+42,othuna,Wholesale trade,F60,Other and unallocable
+441,othuna,Motor vehicle and parts dealers,F60,Other and unallocable
+452,othuna,General merchandise stores,F60,Other and unallocable
+4A0,othuna,Other retail,F60,Other and unallocable
+81,othuna,"Other services, except government",F60,Other and unallocable
+Used,othuna,"Scrap, used and secondhand goods",F60,Other and unallocable
+Other,othuna,Noncomparable imports and rest-of-the-world adjustment,F60,Other and unallocable
+324,othuna,Petroleum refineries,E01,Other and unallocable
+325,othuna,Chemical products,E01,Other and unallocable
+326,othuna,Plastics and rubber products,E01,Other and unallocable
+327,othuna,Nonmetallic mineral products,E01,Other and unallocable
+331,othuna,Primary metals,E01,Other and unallocable
+332,othuna,Fabricated metal products,E01,Other and unallocable
+333,othuna,Machinery,E01,Other and unallocable
+334,othuna,Computer and electronic products,E01,Other and unallocable
+335,othuna,"Electrical equipment, appliances, and components",E01,Other and unallocable
+3361MV,othuna,"Motor vehicles, bodies and trailers, and parts manufacturing",E01,Other and unallocable
+3364OT,othuna,Other transportation equipment,E01,Other and unallocable
+337,othuna,Furniture and related products,E01,Other and unallocable
+339,othuna,Miscellaneous manufacturing,E01,Other and unallocable
+42,othuna,Wholesale trade,E01,Other and unallocable
+441,othuna,Motor vehicle and parts dealers,E01,Other and unallocable
+452,othuna,General merchandise stores,E01,Other and unallocable
+4A0,othuna,Other retail,E01,Other and unallocable
+81,othuna,"Other services, except government",E01,Other and unallocable
+Used,othuna,"Scrap, used and secondhand goods",E01,Other and unallocable
+Other,othuna,Noncomparable imports and rest-of-the-world adjustment,E01,Other and unallocable
+324,othuna,Petroleum refineries,E03,Other and unallocable
+325,othuna,Chemical products,E03,Other and unallocable
+326,othuna,Plastics and rubber products,E03,Other and unallocable
+327,othuna,Nonmetallic mineral products,E03,Other and unallocable
+331,othuna,Primary metals,E03,Other and unallocable
+332,othuna,Fabricated metal products,E03,Other and unallocable
+333,othuna,Machinery,E03,Other and unallocable
+334,othuna,Computer and electronic products,E03,Other and unallocable
+335,othuna,"Electrical equipment, appliances, and components",E03,Other and unallocable
+3361MV,othuna,"Motor vehicles, bodies and trailers, and parts manufacturing",E03,Other and unallocable
+3364OT,othuna,Other transportation equipment,E03,Other and unallocable
+337,othuna,Furniture and related products,E03,Other and unallocable
+339,othuna,Miscellaneous manufacturing,E03,Other and unallocable
+42,othuna,Wholesale trade,E03,Other and unallocable
+441,othuna,Motor vehicle and parts dealers,E03,Other and unallocable
+452,othuna,General merchandise stores,E03,Other and unallocable
+4A0,othuna,Other retail,E03,Other and unallocable
+81,othuna,"Other services, except government",E03,Other and unallocable
+Used,othuna,"Scrap, used and secondhand goods",E03,Other and unallocable
+Other,othuna,Noncomparable imports and rest-of-the-world adjustment,E03,Other and unallocable
+324,othuna,Petroleum refineries,M01,Other and unallocable
+325,othuna,Chemical products,M01,Other and unallocable
+326,othuna,Plastics and rubber products,M01,Other and unallocable
+327,othuna,Nonmetallic mineral products,M01,Other and unallocable
+331,othuna,Primary metals,M01,Other and unallocable
+332,othuna,Fabricated metal products,M01,Other and unallocable
+333,othuna,Machinery,M01,Other and unallocable
+334,othuna,Computer and electronic products,M01,Other and unallocable
+335,othuna,"Electrical equipment, appliances, and components",M01,Other and unallocable
+3361MV,othuna,"Motor vehicles, bodies and trailers, and parts manufacturing",M01,Other and unallocable
+3364OT,othuna,Other transportation equipment,M01,Other and unallocable
+337,othuna,Furniture and related products,M01,Other and unallocable
+339,othuna,Miscellaneous manufacturing,M01,Other and unallocable
+42,othuna,Wholesale trade,M01,Other and unallocable
+441,othuna,Motor vehicle and parts dealers,M01,Other and unallocable
+452,othuna,General merchandise stores,M01,Other and unallocable
+4A0,othuna,Other retail,M01,Other and unallocable
+81,othuna,"Other services, except government",M01,Other and unallocable
+Used,othuna,"Scrap, used and secondhand goods",M01,Other and unallocable
+Other,othuna,Noncomparable imports and rest-of-the-world adjustment,M01,Other and unallocable
+324,othuna,Petroleum refineries,M80,Other and unallocable
+325,othuna,Chemical products,M80,Other and unallocable
+326,othuna,Plastics and rubber products,M80,Other and unallocable
+327,othuna,Nonmetallic mineral products,M80,Other and unallocable
+331,othuna,Primary metals,M80,Other and unallocable
+332,othuna,Fabricated metal products,M80,Other and unallocable
+333,othuna,Machinery,M80,Other and unallocable
+334,othuna,Computer and electronic products,M80,Other and unallocable
+335,othuna,"Electrical equipment, appliances, and components",M80,Other and unallocable
+3361MV,othuna,"Motor vehicles, bodies and trailers, and parts manufacturing",M80,Other and unallocable
+3364OT,othuna,Other transportation equipment,M80,Other and unallocable
+337,othuna,Furniture and related products,M80,Other and unallocable
+339,othuna,Miscellaneous manufacturing,M80,Other and unallocable
+42,othuna,Wholesale trade,M80,Other and unallocable
+441,othuna,Motor vehicle and parts dealers,M80,Other and unallocable
+452,othuna,General merchandise stores,M80,Other and unallocable
+4A0,othuna,Other retail,M80,Other and unallocable
+81,othuna,"Other services, except government",M80,Other and unallocable
+Used,othuna,"Scrap, used and secondhand goods",M80,Other and unallocable
+Other,othuna,Noncomparable imports and rest-of-the-world adjustment,M80,Other and unallocable
+324,othuna,Petroleum refineries,M87,Other and unallocable
+325,othuna,Chemical products,M87,Other and unallocable
+326,othuna,Plastics and rubber products,M87,Other and unallocable
+327,othuna,Nonmetallic mineral products,M87,Other and unallocable
+331,othuna,Primary metals,M87,Other and unallocable
+332,othuna,Fabricated metal products,M87,Other and unallocable
+333,othuna,Machinery,M87,Other and unallocable
+334,othuna,Computer and electronic products,M87,Other and unallocable
+335,othuna,"Electrical equipment, appliances, and components",M87,Other and unallocable
+3361MV,othuna,"Motor vehicles, bodies and trailers, and parts manufacturing",M87,Other and unallocable
+3364OT,othuna,Other transportation equipment,M87,Other and unallocable
+337,othuna,Furniture and related products,M87,Other and unallocable
+339,othuna,Miscellaneous manufacturing,M87,Other and unallocable
+42,othuna,Wholesale trade,M87,Other and unallocable
+441,othuna,Motor vehicle and parts dealers,M87,Other and unallocable
+452,othuna,General merchandise stores,M87,Other and unallocable
+4A0,othuna,Other retail,M87,Other and unallocable
+81,othuna,"Other services, except government",M87,Other and unallocable
+Used,othuna,"Scrap, used and secondhand goods",M87,Other and unallocable
+Other,othuna,Noncomparable imports and rest-of-the-world adjustment,M87,Other and unallocable
+324,othuna,Petroleum refineries,E81,Other and unallocable
+325,othuna,Chemical products,E81,Other and unallocable
+326,othuna,Plastics and rubber products,E81,Other and unallocable
+327,othuna,Nonmetallic mineral products,E81,Other and unallocable
+331,othuna,Primary metals,E81,Other and unallocable
+332,othuna,Fabricated metal products,E81,Other and unallocable
+333,othuna,Machinery,E81,Other and unallocable
+334,othuna,Computer and electronic products,E81,Other and unallocable
+335,othuna,"Electrical equipment, appliances, and components",E81,Other and unallocable
+3361MV,othuna,"Motor vehicles, bodies and trailers, and parts manufacturing",E81,Other and unallocable
+3364OT,othuna,Other transportation equipment,E81,Other and unallocable
+337,othuna,Furniture and related products,E81,Other and unallocable
+339,othuna,Miscellaneous manufacturing,E81,Other and unallocable
+42,othuna,Wholesale trade,E81,Other and unallocable
+441,othuna,Motor vehicle and parts dealers,E81,Other and unallocable
+452,othuna,General merchandise stores,E81,Other and unallocable
+4A0,othuna,Other retail,E81,Other and unallocable
+81,othuna,"Other services, except government",E81,Other and unallocable
+Used,othuna,"Scrap, used and secondhand goods",E81,Other and unallocable
+Other,othuna,Noncomparable imports and rest-of-the-world adjustment,E81,Other and unallocable
+324,othuna,Petroleum refineries,G03,Other and unallocable
+325,othuna,Chemical products,G03,Other and unallocable
+326,othuna,Plastics and rubber products,G03,Other and unallocable
+327,othuna,Nonmetallic mineral products,G03,Other and unallocable
+331,othuna,Primary metals,G03,Other and unallocable
+332,othuna,Fabricated metal products,G03,Other and unallocable
+333,othuna,Machinery,G03,Other and unallocable
+334,othuna,Computer and electronic products,G03,Other and unallocable
+335,othuna,"Electrical equipment, appliances, and components",G03,Other and unallocable
+3361MV,othuna,"Motor vehicles, bodies and trailers, and parts manufacturing",G03,Other and unallocable
+3364OT,othuna,Other transportation equipment,G03,Other and unallocable
+337,othuna,Furniture and related products,G03,Other and unallocable
+339,othuna,Miscellaneous manufacturing,G03,Other and unallocable
+42,othuna,Wholesale trade,G03,Other and unallocable
+441,othuna,Motor vehicle and parts dealers,G03,Other and unallocable
+452,othuna,General merchandise stores,G03,Other and unallocable
+4A0,othuna,Other retail,G03,Other and unallocable
+81,othuna,"Other services, except government",G03,Other and unallocable
+Used,othuna,"Scrap, used and secondhand goods",G03,Other and unallocable
+Other,othuna,Noncomparable imports and rest-of-the-world adjustment,G03,Other and unallocable
+324,othuna,Petroleum refineries,E52,Other and unallocable
+325,othuna,Chemical products,E52,Other and unallocable
+326,othuna,Plastics and rubber products,E52,Other and unallocable
+327,othuna,Nonmetallic mineral products,E52,Other and unallocable
+331,othuna,Primary metals,E52,Other and unallocable
+332,othuna,Fabricated metal products,E52,Other and unallocable
+333,othuna,Machinery,E52,Other and unallocable
+334,othuna,Computer and electronic products,E52,Other and unallocable
+335,othuna,"Electrical equipment, appliances, and components",E52,Other and unallocable
+3361MV,othuna,"Motor vehicles, bodies and trailers, and parts manufacturing",E52,Other and unallocable
+3364OT,othuna,Other transportation equipment,E52,Other and unallocable
+337,othuna,Furniture and related products,E52,Other and unallocable
+339,othuna,Miscellaneous manufacturing,E52,Other and unallocable
+42,othuna,Wholesale trade,E52,Other and unallocable
+441,othuna,Motor vehicle and parts dealers,E52,Other and unallocable
+452,othuna,General merchandise stores,E52,Other and unallocable
+4A0,othuna,Other retail,E52,Other and unallocable
+81,othuna,"Other services, except government",E52,Other and unallocable
+Used,othuna,"Scrap, used and secondhand goods",E52,Other and unallocable
+Other,othuna,Noncomparable imports and rest-of-the-world adjustment,E52,Other and unallocable
+22,utlexp,"Electric power generation, transmission, and distribution",E92,Utility expenditure
+GFGD,utlexp,Federal general government (defense),E92,Utility expenditure
+GFGN,utlexp,Federal general government (nondefense),E92,Utility expenditure
+GFE,utlexp,Federal government enterprises,E92,Utility expenditure
+GSLG,utlexp,State and local general government,E92,Utility expenditure
+GSLE,utlexp,State and local government enterprises,E92,Utility expenditure
+22,utlexp,"Electric power generation, transmission, and distribution",F94,Utility expenditure
+GFGD,utlexp,Federal general government (defense),F94,Utility expenditure
+GFGN,utlexp,Federal general government (nondefense),F94,Utility expenditure
+GFE,utlexp,Federal government enterprises,F94,Utility expenditure
+GSLG,utlexp,State and local general government,F94,Utility expenditure
+GSLE,utlexp,State and local government enterprises,F94,Utility expenditure
+22,utlexp,"Electric power generation, transmission, and distribution",F91,Utility expenditure
+GFGD,utlexp,Federal general government (defense),F91,Utility expenditure
+GFGN,utlexp,Federal general government (nondefense),F91,Utility expenditure
+GFE,utlexp,Federal government enterprises,F91,Utility expenditure
+GSLG,utlexp,State and local general government,F91,Utility expenditure
+GSLE,utlexp,State and local government enterprises,F91,Utility expenditure
+22,utlexp,"Electric power generation, transmission, and distribution",I94,Utility expenditure
+GFGD,utlexp,Federal general government (defense),I94,Utility expenditure
+GFGN,utlexp,Federal general government (nondefense),I94,Utility expenditure
+GFE,utlexp,Federal government enterprises,I94,Utility expenditure
+GSLG,utlexp,State and local general government,I94,Utility expenditure
+GSLE,utlexp,State and local government enterprises,I94,Utility expenditure
+22,utlexp,"Electric power generation, transmission, and distribution",F92,Utility expenditure
+GFGD,utlexp,Federal general government (defense),F92,Utility expenditure
+GFGN,utlexp,Federal general government (nondefense),F92,Utility expenditure
+GFE,utlexp,Federal government enterprises,F92,Utility expenditure
+GSLG,utlexp,State and local general government,F92,Utility expenditure
+GSLE,utlexp,State and local government enterprises,F92,Utility expenditure
+22,utlexp,"Electric power generation, transmission, and distribution",I92,Utility expenditure
+GFGD,utlexp,Federal general government (defense),I92,Utility expenditure
+GFGN,utlexp,Federal general government (nondefense),I92,Utility expenditure
+GFE,utlexp,Federal government enterprises,I92,Utility expenditure
+GSLG,utlexp,State and local general government,I92,Utility expenditure
+GSLE,utlexp,State and local government enterprises,I92,Utility expenditure
+22,utlexp,"Electric power generation, transmission, and distribution",G93,Utility expenditure
+GFGD,utlexp,Federal general government (defense),G93,Utility expenditure
+GFGN,utlexp,Federal general government (nondefense),G93,Utility expenditure
+GFE,utlexp,Federal government enterprises,G93,Utility expenditure
+GSLG,utlexp,State and local general government,G93,Utility expenditure
+GSLE,utlexp,State and local government enterprises,G93,Utility expenditure
+22,utlexp,"Electric power generation, transmission, and distribution",E94,Utility expenditure
+GFGD,utlexp,Federal general government (defense),E94,Utility expenditure
+GFGN,utlexp,Federal general government (nondefense),E94,Utility expenditure
+GFE,utlexp,Federal government enterprises,E94,Utility expenditure
+GSLG,utlexp,State and local general government,E94,Utility expenditure
+GSLE,utlexp,State and local government enterprises,E94,Utility expenditure
+22,utlexp,"Electric power generation, transmission, and distribution",G94,Utility expenditure
+GFGD,utlexp,Federal general government (defense),G94,Utility expenditure
+GFGN,utlexp,Federal general government (nondefense),G94,Utility expenditure
+GFE,utlexp,Federal government enterprises,G94,Utility expenditure
+GSLG,utlexp,State and local general government,G94,Utility expenditure
+GSLE,utlexp,State and local government enterprises,G94,Utility expenditure
+22,utlexp,"Electric power generation, transmission, and distribution",I93,Utility expenditure
+GFGD,utlexp,Federal general government (defense),I93,Utility expenditure
+GFGN,utlexp,Federal general government (nondefense),I93,Utility expenditure
+GFE,utlexp,Federal government enterprises,I93,Utility expenditure
+GSLG,utlexp,State and local general government,I93,Utility expenditure
+GSLE,utlexp,State and local government enterprises,I93,Utility expenditure
+22,utlexp,"Electric power generation, transmission, and distribution",G91,Utility expenditure
+GFGD,utlexp,Federal general government (defense),G91,Utility expenditure
+GFGN,utlexp,Federal general government (nondefense),G91,Utility expenditure
+GFE,utlexp,Federal government enterprises,G91,Utility expenditure
+GSLG,utlexp,State and local general government,G91,Utility expenditure
+GSLE,utlexp,State and local government enterprises,G91,Utility expenditure
+22,utlexp,"Electric power generation, transmission, and distribution",F93,Utility expenditure
+GFGD,utlexp,Federal general government (defense),F93,Utility expenditure
+GFGN,utlexp,Federal general government (nondefense),F93,Utility expenditure
+GFE,utlexp,Federal government enterprises,F93,Utility expenditure
+GSLG,utlexp,State and local general government,F93,Utility expenditure
+GSLE,utlexp,State and local government enterprises,F93,Utility expenditure
+22,utlexp,"Electric power generation, transmission, and distribution",M91,Utility expenditure
+GFGD,utlexp,Federal general government (defense),M91,Utility expenditure
+GFGN,utlexp,Federal general government (nondefense),M91,Utility expenditure
+GFE,utlexp,Federal government enterprises,M91,Utility expenditure
+GSLG,utlexp,State and local general government,M91,Utility expenditure
+GSLE,utlexp,State and local government enterprises,M91,Utility expenditure
+22,utlexp,"Electric power generation, transmission, and distribution",M94,Utility expenditure
+GFGD,utlexp,Federal general government (defense),M94,Utility expenditure
+GFGN,utlexp,Federal general government (nondefense),M94,Utility expenditure
+GFE,utlexp,Federal government enterprises,M94,Utility expenditure
+GSLG,utlexp,State and local general government,M94,Utility expenditure
+GSLE,utlexp,State and local government enterprises,M94,Utility expenditure
+22,utlexp,"Electric power generation, transmission, and distribution",E93,Utility expenditure
+GFGD,utlexp,Federal general government (defense),E93,Utility expenditure
+GFGN,utlexp,Federal general government (nondefense),E93,Utility expenditure
+GFE,utlexp,Federal government enterprises,E93,Utility expenditure
+GSLG,utlexp,State and local general government,E93,Utility expenditure
+GSLE,utlexp,State and local government enterprises,E93,Utility expenditure
+22,utlexp,"Electric power generation, transmission, and distribution",G92,Utility expenditure
+GFGD,utlexp,Federal general government (defense),G92,Utility expenditure
+GFGN,utlexp,Federal general government (nondefense),G92,Utility expenditure
+GFE,utlexp,Federal government enterprises,G92,Utility expenditure
+GSLG,utlexp,State and local general government,G92,Utility expenditure
+GSLE,utlexp,State and local government enterprises,G92,Utility expenditure
+22,utlexp,"Electric power generation, transmission, and distribution",I91,Utility expenditure
+GFGD,utlexp,Federal general government (defense),I91,Utility expenditure
+GFGN,utlexp,Federal general government (nondefense),I91,Utility expenditure
+GFE,utlexp,Federal government enterprises,I91,Utility expenditure
+GSLG,utlexp,State and local general government,I91,Utility expenditure
+GSLE,utlexp,State and local government enterprises,I91,Utility expenditure
+22,utlexp,"Electric power generation, transmission, and distribution",M92,Utility expenditure
+GFGD,utlexp,Federal general government (defense),M92,Utility expenditure
+GFGN,utlexp,Federal general government (nondefense),M92,Utility expenditure
+GFE,utlexp,Federal government enterprises,M92,Utility expenditure
+GSLG,utlexp,State and local general government,M92,Utility expenditure
+GSLE,utlexp,State and local government enterprises,M92,Utility expenditure
+22,utlexp,"Electric power generation, transmission, and distribution",E91,Utility expenditure
+GFGD,utlexp,Federal general government (defense),E91,Utility expenditure
+GFGN,utlexp,Federal general government (nondefense),E91,Utility expenditure
+GFE,utlexp,Federal government enterprises,E91,Utility expenditure
+GSLG,utlexp,State and local general government,E91,Utility expenditure
+GSLE,utlexp,State and local government enterprises,E91,Utility expenditure
+22,utlexp,"Electric power generation, transmission, and distribution",M93,Utility expenditure
+GFGD,utlexp,Federal general government (defense),M93,Utility expenditure
+GFGN,utlexp,Federal general government (nondefense),M93,Utility expenditure
+GFE,utlexp,Federal government enterprises,M93,Utility expenditure
+GSLG,utlexp,State and local general government,M93,Utility expenditure
+GSLE,utlexp,State and local government enterprises,M93,Utility expenditure
+311FT,liqexp,Food and beverage and tobacco products,G90,Liquor stores expenditure
+445,liqexp,Food and beverage stores,G90,Liquor stores expenditure
+722,liqexp,Food services and drinking places,G90,Liquor stores expenditure
+311FT,liqexp,Food and beverage and tobacco products,E90,Liquor stores expenditure
+445,liqexp,Food and beverage stores,E90,Liquor stores expenditure
+722,liqexp,Food services and drinking places,E90,Liquor stores expenditure
+311FT,liqexp,Food and beverage and tobacco products,F90,Liquor stores expenditure
+445,liqexp,Food and beverage stores,F90,Liquor stores expenditure
+722,liqexp,Food services and drinking places,F90,Liquor stores expenditure

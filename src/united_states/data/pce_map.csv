@@ -1,0 +1,74 @@
+LineCode,description_pcs,naics,description
+9,Food and beverages purchased for off-premises consumption,111CA,Farms
+6,Recreational goods and vehicles,113FF,"Forestry, fishing, and related activities"
+11,Gasoline and other energy goods,211,Oil and gas extraction
+11,Gasoline and other energy goods,212,Coal mining
+12,Other nondurable goods,213,Support activities for mining
+15,Housing and utilities,22,"Electric power generation, transmission, and distribution"
+7,Other durable goods,23,Construction
+5,Furnishings and durable household equipment,321,Wood products
+7,Other durable goods,327,Nonmetallic mineral products
+7,Other durable goods,331,Primary metals
+7,Other durable goods,332,Fabricated metal products
+7,Other durable goods,333,Machinery
+6,Recreational goods and vehicles,334,Computer and electronic products
+6,Recreational goods and vehicles,335,"Electrical equipment, appliances, and components"
+4,Motor vehicles and parts,3361MV,"Motor vehicles, bodies and trailers, and parts manufacturing"
+4,Motor vehicles and parts,3364OT,Other transportation equipment
+5,Furnishings and durable household equipment,337,Furniture and related products
+7,Other durable goods,339,Miscellaneous manufacturing
+9,Food and beverages purchased for off-premises consumption,311FT,Food and beverage and tobacco products
+10,Clothing and footwear,313TT,Textile mills and textile product mills
+10,Clothing and footwear,315AL,Apparel and leather and allied products
+7,Other durable goods,322,Paper products
+7,Other durable goods,323,Printing and related support activities
+7,Other durable goods,324,Petroleum refineries
+7,Other durable goods,325,Chemical products
+7,Other durable goods,326,Plastics and rubber products
+7,Other durable goods,42,Wholesale trade
+4,Motor vehicles and parts,441,Motor vehicle and parts dealers
+9,Food and beverages purchased for off-premises consumption,445,Food and beverage stores
+12,Other nondurable goods,452,General merchandise stores
+12,Other nondurable goods,4A0,Other retail
+17,Transportation services,481,Air transportation
+17,Transportation services,482,Rail transportation
+17,Transportation services,483,Water transportation
+17,Transportation services,484,Truck transportation
+17,Transportation services,485,Transit and ground passenger transportation
+17,Transportation services,486,Pipeline transportation
+17,Transportation services,487OS,Other transportation and support activities
+21,Other services,493,Warehousing and storage
+21,Other services,511,"Publishing industries, except internet (includes software)"
+21,Other services,512,Motion picture and sound recording industries
+21,Other services,513,Broadcasting and telecommunications
+21,Other services,514,"Data processing, internet publishing, and other information"
+20,Financial services and insurance,521CI,"Federal Reserve banks, credit intermediation, and related activ"
+20,Financial services and insurance,523,"Securities, commodity contracts, and investments"
+20,Financial services and insurance,524,Insurance carriers and related activities
+20,Financial services and insurance,525,"Funds, trusts, and other financial vehicles"
+15,Housing and utilities,HS,Housing
+15,Housing and utilities,ORE,Other real estate
+18,Recreation services,532RL,Rental and leasing services and lessors of intangible assets
+21,Other services,5411,Legal services
+21,Other services,5415,Computer systems design and related services
+21,Other services,5412OP,"Miscellaneous professional, scientific, and technical services"
+21,Other services,55,Management of companies and enterprises
+21,Other services,561,Administrative and support services
+15,Housing and utilities,562,Waste management and remediation services
+14,Household consumption expenditures (for services),61,Educational services
+16,Health care,621,Ambulatory health care services
+16,Health care,622,Hospitals
+16,Health care,623,Nursing and residential care facilities
+16,Health care,624,Social assistance
+18,Recreation services,711AS,"Performing arts, spectator sports, museums, and related activit"
+18,Recreation services,713,"Amusements, gambling, and recreation industries"
+18,Recreation services,721,Accommodation
+19,Food services and accommodations,722,Food services and drinking places
+21,Other services,81,"Other services, except government"
+23,Gross output of nonprofit institutions,GFGD,Federal general government (defense)
+23,Gross output of nonprofit institutions,GFGN,Federal general government (nondefense)
+23,Gross output of nonprofit institutions,GFE,Federal government enterprises
+23,Gross output of nonprofit institutions,GSLG,State and local general government
+23,Gross output of nonprofit institutions,GSLE,State and local government enterprises
+23,Gross output of nonprofit institutions,Other,Noncomparable imports and rest-of-the-world adjustment
+23,Gross output of nonprofit institutions,Used,"Scrap, used and secondhand goods"

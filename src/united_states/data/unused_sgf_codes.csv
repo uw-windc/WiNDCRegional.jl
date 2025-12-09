@@ -1,0 +1,1105 @@
+census,sgf_code,sgf_description
+totrev,B89,Total revenue
+totrev,B94,Total revenue
+totrev,A61,Total revenue
+totrev,D92,Total revenue
+totrev,A94,Total revenue
+totrev,T28,Total revenue
+totrev,Y51,Total revenue
+totrev,T19,Total revenue
+totrev,B50,Total revenue
+totrev,B59,Total revenue
+totrev,A93,Total revenue
+totrev,B42,Total revenue
+totrev,A60,Total revenue
+totrev,A87,Total revenue
+totrev,B54,Total revenue
+totrev,A18,Total revenue
+totrev,X08,Total revenue
+totrev,T10,Total revenue
+totrev,A50,Total revenue
+totrev,D42,Total revenue
+totrev,T09,Total revenue
+totrev,B43,Total revenue
+totrev,Y52,Total revenue
+totrev,T23,Total revenue
+totrev,T20,Total revenue
+totrev,D50,Total revenue
+totrev,A91,Total revenue
+totrev,U99,Total revenue
+totrev,U41,Total revenue
+totrev,B91,Total revenue
+totrev,T25,Total revenue
+totrev,U30,Total revenue
+totrev,U11,Total revenue
+totrev,T01,Total revenue
+totrev,A10,Total revenue
+totrev,U95,Total revenue
+totrev,D91,Total revenue
+totrev,A45,Total revenue
+totrev,U01,Total revenue
+totrev,A12,Total revenue
+totrev,A01,Total revenue
+totrev,Y11,Total revenue
+totrev,B92,Total revenue
+totrev,X01,Total revenue
+totrev,T21,Total revenue
+totrev,D46,Total revenue
+totrev,D21,Total revenue
+totrev,U40,Total revenue
+totrev,A16,Total revenue
+totrev,B21,Total revenue
+totrev,A56,Total revenue
+totrev,T15,Total revenue
+totrev,U50,Total revenue
+totrev,B22,Total revenue
+totrev,A03,Total revenue
+totrev,T51,Total revenue
+totrev,D80,Total revenue
+totrev,A09,Total revenue
+totrev,A80,Total revenue
+totrev,A89,Total revenue
+totrev,A44,Total revenue
+totrev,D89,Total revenue
+totrev,Y04,Total revenue
+totrev,U20,Total revenue
+totrev,Y02,Total revenue
+totrev,T11,Total revenue
+totrev,B01,Total revenue
+totrev,D94,Total revenue
+totrev,B79,Total revenue
+totrev,T40,Total revenue
+totrev,D79,Total revenue
+totrev,Y01,Total revenue
+totrev,A90,Total revenue
+totrev,A21,Total revenue
+totrev,T24,Total revenue
+totrev,U21,Total revenue
+totrev,T27,Total revenue
+totrev,A36,Total revenue
+totrev,B30,Total revenue
+totrev,B46,Total revenue
+totrev,T53,Total revenue
+totrev,D93,Total revenue
+totrev,T13,Total revenue
+totrev,A92,Total revenue
+totrev,A54,Total revenue
+totrev,T29,Total revenue
+totrev,A81,Total revenue
+totrev,X02,Total revenue
+totrev,T12,Total revenue
+totrev,T22,Total revenue
+totrev,D30,Total revenue
+totrev,Y12,Total revenue
+totrev,T50,Total revenue
+totrev,X05,Total revenue
+totrev,B80,Total revenue
+totrev,T14,Total revenue
+totrev,T16,Total revenue
+totrev,T41,Total revenue
+totrev,T99,Total revenue
+totrev,A59,Total revenue
+totrev,B93,Total revenue
+genrev,B89,General revenue
+genrev,B94,General revenue
+genrev,A61,General revenue
+genrev,D92,General revenue
+genrev,T28,General revenue
+genrev,T19,General revenue
+genrev,B50,General revenue
+genrev,B59,General revenue
+genrev,B42,General revenue
+genrev,A60,General revenue
+genrev,A87,General revenue
+genrev,B54,General revenue
+genrev,A18,General revenue
+genrev,T10,General revenue
+genrev,A50,General revenue
+genrev,D42,General revenue
+genrev,T09,General revenue
+genrev,B43,General revenue
+genrev,T23,General revenue
+genrev,T20,General revenue
+genrev,D50,General revenue
+genrev,U99,General revenue
+genrev,U41,General revenue
+genrev,B91,General revenue
+genrev,T25,General revenue
+genrev,U30,General revenue
+genrev,U11,General revenue
+genrev,T01,General revenue
+genrev,A10,General revenue
+genrev,U95,General revenue
+genrev,D91,General revenue
+genrev,A45,General revenue
+genrev,U01,General revenue
+genrev,A12,General revenue
+genrev,A01,General revenue
+genrev,B92,General revenue
+genrev,T21,General revenue
+genrev,D46,General revenue
+genrev,D21,General revenue
+genrev,U40,General revenue
+genrev,A16,General revenue
+genrev,B21,General revenue
+genrev,A56,General revenue
+genrev,T15,General revenue
+genrev,U50,General revenue
+genrev,B22,General revenue
+genrev,A03,General revenue
+genrev,T51,General revenue
+genrev,D80,General revenue
+genrev,A09,General revenue
+genrev,A80,General revenue
+genrev,A89,General revenue
+genrev,A44,General revenue
+genrev,D89,General revenue
+genrev,U20,General revenue
+genrev,T11,General revenue
+genrev,B01,General revenue
+genrev,D94,General revenue
+genrev,B79,General revenue
+genrev,T40,General revenue
+genrev,D79,General revenue
+genrev,A21,General revenue
+genrev,T24,General revenue
+genrev,U21,General revenue
+genrev,T27,General revenue
+genrev,A36,General revenue
+genrev,B30,General revenue
+genrev,B46,General revenue
+genrev,T53,General revenue
+genrev,D93,General revenue
+genrev,T13,General revenue
+genrev,A54,General revenue
+genrev,T29,General revenue
+genrev,A81,General revenue
+genrev,T12,General revenue
+genrev,T22,General revenue
+genrev,D30,General revenue
+genrev,T50,General revenue
+genrev,B80,General revenue
+genrev,T14,General revenue
+genrev,T16,General revenue
+genrev,T41,General revenue
+genrev,T99,General revenue
+genrev,A59,General revenue
+genrev,B93,General revenue
+intrev,B89,Intergovernmental revenue
+intrev,B94,Intergovernmental revenue
+intrev,B22,Intergovernmental revenue
+intrev,D92,Intergovernmental revenue
+intrev,D50,Intergovernmental revenue
+intrev,D80,Intergovernmental revenue
+intrev,B93,Intergovernmental revenue
+intrev,B30,Intergovernmental revenue
+intrev,B46,Intergovernmental revenue
+intrev,D93,Intergovernmental revenue
+intrev,B91,Intergovernmental revenue
+intrev,B50,Intergovernmental revenue
+intrev,D89,Intergovernmental revenue
+intrev,B59,Intergovernmental revenue
+intrev,B42,Intergovernmental revenue
+intrev,B54,Intergovernmental revenue
+intrev,D91,Intergovernmental revenue
+intrev,D30,Intergovernmental revenue
+intrev,B92,Intergovernmental revenue
+intrev,B01,Intergovernmental revenue
+intrev,D94,Intergovernmental revenue
+intrev,D46,Intergovernmental revenue
+intrev,D42,Intergovernmental revenue
+intrev,B79,Intergovernmental revenue
+intrev,D21,Intergovernmental revenue
+intrev,D79,Intergovernmental revenue
+intrev,B80,Intergovernmental revenue
+intrev,B43,Intergovernmental revenue
+intrev,B21,Intergovernmental revenue
+taxrev,T23,Taxes
+taxrev,T27,Taxes
+taxrev,T51,Taxes
+taxrev,T20,Taxes
+taxrev,T28,Taxes
+taxrev,T53,Taxes
+taxrev,T13,Taxes
+taxrev,T19,Taxes
+taxrev,T29,Taxes
+taxrev,T25,Taxes
+taxrev,T01,Taxes
+taxrev,T12,Taxes
+taxrev,T22,Taxes
+taxrev,T11,Taxes
+taxrev,T50,Taxes
+taxrev,T10,Taxes
+taxrev,T21,Taxes
+taxrev,T09,Taxes
+taxrev,T14,Taxes
+taxrev,T40,Taxes
+taxrev,T16,Taxes
+taxrev,T41,Taxes
+taxrev,T24,Taxes
+taxrev,T99,Taxes
+taxrev,T15,Taxes
+gsales,T09,General sales
+ssales,T12,Selective sales
+ssales,T11,Selective sales
+ssales,T10,Selective sales
+ssales,T13,Selective sales
+ssales,T14,Selective sales
+ssales,T16,Selective sales
+ssales,T19,Selective sales
+ssales,T15,Selective sales
+lictax,T23,License taxes
+lictax,T22,License taxes
+lictax,T27,License taxes
+lictax,T20,License taxes
+lictax,T28,License taxes
+lictax,T21,License taxes
+lictax,T24,License taxes
+lictax,T25,License taxes
+lictax,T29,License taxes
+indtax,T40,Individual income tax
+cortax,T41,Corporate income tax
+othtax,T53,Other taxes
+othtax,T99,Other taxes
+othtax,T51,Other taxes
+othtax,T01,Other taxes
+othtax,T50,Other taxes
+curchg,A56,Current charge
+curchg,A03,Current charge
+curchg,A61,Current charge
+curchg,A09,Current charge
+curchg,A36,Current charge
+curchg,A80,Current charge
+curchg,A89,Current charge
+curchg,A44,Current charge
+curchg,A54,Current charge
+curchg,A81,Current charge
+curchg,A87,Current charge
+curchg,A60,Current charge
+curchg,A10,Current charge
+curchg,A18,Current charge
+curchg,A45,Current charge
+curchg,A12,Current charge
+curchg,A01,Current charge
+curchg,A50,Current charge
+curchg,A16,Current charge
+curchg,A59,Current charge
+curchg,A21,Current charge
+mscrev,U21,Miscellaneous general revenue
+mscrev,U95,Miscellaneous general revenue
+mscrev,U50,Miscellaneous general revenue
+mscrev,U01,Miscellaneous general revenue
+mscrev,U20,Miscellaneous general revenue
+mscrev,U99,Miscellaneous general revenue
+mscrev,U41,Miscellaneous general revenue
+mscrev,U40,Miscellaneous general revenue
+mscrev,U30,Miscellaneous general revenue
+mscrev,U11,Miscellaneous general revenue
+utlrev,A91,Utility revenue
+utlrev,A92,Utility revenue
+utlrev,A93,Utility revenue
+utlrev,A94,Utility revenue
+liqrev,A90,Liquor stores revenue
+insrev,X02,Insurance trust revenue
+insrev,Y02,Insurance trust revenue
+insrev,Y12,Insurance trust revenue
+insrev,X08,Insurance trust revenue
+insrev,Y11,Insurance trust revenue
+insrev,X01,Insurance trust revenue
+insrev,X05,Insurance trust revenue
+insrev,Y04,Insurance trust revenue
+insrev,Y51,Insurance trust revenue
+insrev,Y01,Insurance trust revenue
+insrev,Y52,Insurance trust revenue
+insrev,Y50,Insurance trust revenue
+totexp,F94,Total expenditure
+totexp,F32,Total expenditure
+totexp,M55,Total expenditure
+totexp,Q12,Total expenditure
+totexp,F26,Total expenditure
+totexp,M50,Total expenditure
+totexp,E22,Total expenditure
+totexp,E62,Total expenditure
+totexp,E85,Total expenditure
+totexp,G04,Total expenditure
+totexp,G44,Total expenditure
+totexp,G22,Total expenditure
+totexp,M68,Total expenditure
+totexp,G25,Total expenditure
+totexp,M94,Total expenditure
+totexp,F21,Total expenditure
+totexp,G29,Total expenditure
+totexp,E54,Total expenditure
+totexp,M92,Total expenditure
+totexp,Y53,Total expenditure
+totexp,E59,Total expenditure
+totexp,E32,Total expenditure
+totexp,Y14,Total expenditure
+totexp,G55,Total expenditure
+totexp,S89,Total expenditure
+totexp,F12,Total expenditure
+totexp,F89,Total expenditure
+totexp,F45,Total expenditure
+totexp,M12,Total expenditure
+totexp,M05,Total expenditure
+totexp,F60,Total expenditure
+totexp,G03,Total expenditure
+totexp,F55,Total expenditure
+totexp,E26,Total expenditure
+totexp,M54,Total expenditure
+totexp,E04,Total expenditure
+totexp,G18,Total expenditure
+totexp,G92,Total expenditure
+totexp,F23,Total expenditure
+totexp,F16,Total expenditure
+totexp,E92,Total expenditure
+totexp,G27,Total expenditure
+totexp,F03,Total expenditure
+totexp,G36,Total expenditure
+totexp,E77,Total expenditure
+totexp,F90,Total expenditure
+totexp,M79,Total expenditure
+totexp,E12,Total expenditure
+totexp,E90,Total expenditure
+totexp,M21,Total expenditure
+totexp,I92,Total expenditure
+totexp,M29,Total expenditure
+totexp,J67,Total expenditure
+totexp,F50,Total expenditure
+totexp,G05,Total expenditure
+totexp,G85,Total expenditure
+totexp,E44,Total expenditure
+totexp,E05,Total expenditure
+totexp,G81,Total expenditure
+totexp,G50,Total expenditure
+totexp,M59,Total expenditure
+totexp,F04,Total expenditure
+totexp,M91,Total expenditure
+totexp,F80,Total expenditure
+totexp,M23,Total expenditure
+totexp,F81,Total expenditure
+totexp,G26,Total expenditure
+totexp,F18,Total expenditure
+totexp,J68,Total expenditure
+totexp,F29,Total expenditure
+totexp,M36,Total expenditure
+totexp,E94,Total expenditure
+totexp,G94,Total expenditure
+totexp,G52,Total expenditure
+totexp,M80,Total expenditure
+totexp,G45,Total expenditure
+totexp,G62,Total expenditure
+totexp,M01,Total expenditure
+totexp,M87,Total expenditure
+totexp,F27,Total expenditure
+totexp,E74,Total expenditure
+totexp,E25,Total expenditure
+totexp,Q18,Total expenditure
+totexp,G21,Total expenditure
+totexp,E52,Total expenditure
+totexp,M04,Total expenditure
+totexp,F91,Total expenditure
+totexp,E27,Total expenditure
+totexp,M25,Total expenditure
+totexp,G32,Total expenditure
+totexp,I89,Total expenditure
+totexp,M89,Total expenditure
+totexp,M81,Total expenditure
+totexp,I93,Total expenditure
+totexp,G91,Total expenditure
+totexp,E75,Total expenditure
+totexp,E89,Total expenditure
+totexp,F56,Total expenditure
+totexp,E87,Total expenditure
+totexp,E29,Total expenditure
+totexp,E45,Total expenditure
+totexp,F87,Total expenditure
+totexp,M66,Total expenditure
+totexp,Y05,Total expenditure
+totexp,M44,Total expenditure
+totexp,E50,Total expenditure
+totexp,I91,Total expenditure
+totexp,G87,Total expenditure
+totexp,S67,Total expenditure
+totexp,G16,Total expenditure
+totexp,G90,Total expenditure
+totexp,M93,Total expenditure
+totexp,F25,Total expenditure
+totexp,F54,Total expenditure
+totexp,G61,Total expenditure
+totexp,G31,Total expenditure
+totexp,G77,Total expenditure
+totexp,M67,Total expenditure
+totexp,E55,Total expenditure
+totexp,M52,Total expenditure
+totexp,E56,Total expenditure
+totexp,E66,Total expenditure
+totexp,G93,Total expenditure
+totexp,E80,Total expenditure
+totexp,G66,Total expenditure
+totexp,F01,Total expenditure
+totexp,F61,Total expenditure
+totexp,E01,Total expenditure
+totexp,E03,Total expenditure
+totexp,M27,Total expenditure
+totexp,E81,Total expenditure
+totexp,E16,Total expenditure
+totexp,G89,Total expenditure
+totexp,F59,Total expenditure
+totexp,F85,Total expenditure
+totexp,M60,Total expenditure
+totexp,F66,Total expenditure
+totexp,F31,Total expenditure
+totexp,F79,Total expenditure
+totexp,M32,Total expenditure
+totexp,F05,Total expenditure
+totexp,M56,Total expenditure
+totexp,M61,Total expenditure
+totexp,F62,Total expenditure
+totexp,G23,Total expenditure
+totexp,E61,Total expenditure
+totexp,G79,Total expenditure
+totexp,E21,Total expenditure
+totexp,G01,Total expenditure
+totexp,E36,Total expenditure
+totexp,F22,Total expenditure
+totexp,F52,Total expenditure
+totexp,E31,Total expenditure
+totexp,X11,Total expenditure
+totexp,E60,Total expenditure
+totexp,E91,Total expenditure
+totexp,M18,Total expenditure
+totexp,M30,Total expenditure
+totexp,M62,Total expenditure
+totexp,G12,Total expenditure
+totexp,F77,Total expenditure
+totexp,G54,Total expenditure
+totexp,E79,Total expenditure
+totexp,I94,Total expenditure
+totexp,F92,Total expenditure
+totexp,J85,Total expenditure
+totexp,G80,Total expenditure
+totexp,E18,Total expenditure
+totexp,G60,Total expenditure
+totexp,F44,Total expenditure
+totexp,F93,Total expenditure
+totexp,E23,Total expenditure
+totexp,E93,Total expenditure
+totexp,Y06,Total expenditure
+totexp,G56,Total expenditure
+totexp,X12,Total expenditure
+totexp,F36,Total expenditure
+totexp,J19,Total expenditure
+totexp,G59,Total expenditure
+intexp,M60,Intergovernmental expenditure
+intexp,M04,Intergovernmental expenditure
+intexp,M32,Intergovernmental expenditure
+intexp,M55,Intergovernmental expenditure
+intexp,M25,Intergovernmental expenditure
+intexp,Q12,Intergovernmental expenditure
+intexp,M79,Intergovernmental expenditure
+intexp,M50,Intergovernmental expenditure
+intexp,M21,Intergovernmental expenditure
+intexp,M56,Intergovernmental expenditure
+intexp,M89,Intergovernmental expenditure
+intexp,M81,Intergovernmental expenditure
+intexp,M61,Intergovernmental expenditure
+intexp,M29,Intergovernmental expenditure
+intexp,M68,Intergovernmental expenditure
+intexp,M59,Intergovernmental expenditure
+intexp,M91,Intergovernmental expenditure
+intexp,M94,Intergovernmental expenditure
+intexp,M66,Intergovernmental expenditure
+intexp,M44,Intergovernmental expenditure
+intexp,S67,Intergovernmental expenditure
+intexp,M92,Intergovernmental expenditure
+intexp,M18,Intergovernmental expenditure
+intexp,M93,Intergovernmental expenditure
+intexp,M62,Intergovernmental expenditure
+intexp,M23,Intergovernmental expenditure
+intexp,M67,Intergovernmental expenditure
+intexp,M52,Intergovernmental expenditure
+intexp,S89,Intergovernmental expenditure
+intexp,M36,Intergovernmental expenditure
+intexp,M12,Intergovernmental expenditure
+intexp,M05,Intergovernmental expenditure
+intexp,M80,Intergovernmental expenditure
+intexp,M27,Intergovernmental expenditure
+intexp,M01,Intergovernmental expenditure
+intexp,M87,Intergovernmental expenditure
+intexp,M54,Intergovernmental expenditure
+intexp,Q18,Intergovernmental expenditure
+intexp,M30,Intergovernmental expenditure
+direxp,F94,Direct expenditure
+direxp,F32,Direct expenditure
+direxp,F26,Direct expenditure
+direxp,E22,Direct expenditure
+direxp,E62,Direct expenditure
+direxp,E85,Direct expenditure
+direxp,G04,Direct expenditure
+direxp,G44,Direct expenditure
+direxp,G22,Direct expenditure
+direxp,G25,Direct expenditure
+direxp,F21,Direct expenditure
+direxp,G29,Direct expenditure
+direxp,E54,Direct expenditure
+direxp,Y53,Direct expenditure
+direxp,E59,Direct expenditure
+direxp,E32,Direct expenditure
+direxp,Y14,Direct expenditure
+direxp,G55,Direct expenditure
+direxp,F12,Direct expenditure
+direxp,F89,Direct expenditure
+direxp,F45,Direct expenditure
+direxp,F60,Direct expenditure
+direxp,G03,Direct expenditure
+direxp,F55,Direct expenditure
+direxp,E26,Direct expenditure
+direxp,E04,Direct expenditure
+direxp,G18,Direct expenditure
+direxp,G92,Direct expenditure
+direxp,F23,Direct expenditure
+direxp,F16,Direct expenditure
+direxp,E92,Direct expenditure
+direxp,G27,Direct expenditure
+direxp,F03,Direct expenditure
+direxp,G36,Direct expenditure
+direxp,E77,Direct expenditure
+direxp,F90,Direct expenditure
+direxp,E12,Direct expenditure
+direxp,E90,Direct expenditure
+direxp,I92,Direct expenditure
+direxp,J67,Direct expenditure
+direxp,F50,Direct expenditure
+direxp,G05,Direct expenditure
+direxp,G85,Direct expenditure
+direxp,E44,Direct expenditure
+direxp,E05,Direct expenditure
+direxp,G81,Direct expenditure
+direxp,G50,Direct expenditure
+direxp,F04,Direct expenditure
+direxp,F80,Direct expenditure
+direxp,F81,Direct expenditure
+direxp,G26,Direct expenditure
+direxp,F18,Direct expenditure
+direxp,J68,Direct expenditure
+direxp,F29,Direct expenditure
+direxp,E94,Direct expenditure
+direxp,G94,Direct expenditure
+direxp,G52,Direct expenditure
+direxp,G45,Direct expenditure
+direxp,G62,Direct expenditure
+direxp,F27,Direct expenditure
+direxp,E74,Direct expenditure
+direxp,E25,Direct expenditure
+direxp,G21,Direct expenditure
+direxp,E52,Direct expenditure
+direxp,F91,Direct expenditure
+direxp,E27,Direct expenditure
+direxp,G32,Direct expenditure
+direxp,I89,Direct expenditure
+direxp,I93,Direct expenditure
+direxp,G91,Direct expenditure
+direxp,E75,Direct expenditure
+direxp,E89,Direct expenditure
+direxp,F56,Direct expenditure
+direxp,E87,Direct expenditure
+direxp,E29,Direct expenditure
+direxp,E45,Direct expenditure
+direxp,F87,Direct expenditure
+direxp,Y05,Direct expenditure
+direxp,E50,Direct expenditure
+direxp,I91,Direct expenditure
+direxp,G87,Direct expenditure
+direxp,G16,Direct expenditure
+direxp,G90,Direct expenditure
+direxp,F25,Direct expenditure
+direxp,F54,Direct expenditure
+direxp,G61,Direct expenditure
+direxp,G31,Direct expenditure
+direxp,G77,Direct expenditure
+direxp,E55,Direct expenditure
+direxp,E56,Direct expenditure
+direxp,E66,Direct expenditure
+direxp,G93,Direct expenditure
+direxp,E80,Direct expenditure
+direxp,G66,Direct expenditure
+direxp,F01,Direct expenditure
+direxp,F61,Direct expenditure
+direxp,E01,Direct expenditure
+direxp,E03,Direct expenditure
+direxp,E81,Direct expenditure
+direxp,E16,Direct expenditure
+direxp,G89,Direct expenditure
+direxp,F59,Direct expenditure
+direxp,F85,Direct expenditure
+direxp,F66,Direct expenditure
+direxp,F31,Direct expenditure
+direxp,F79,Direct expenditure
+direxp,F05,Direct expenditure
+direxp,F62,Direct expenditure
+direxp,G23,Direct expenditure
+direxp,E61,Direct expenditure
+direxp,G79,Direct expenditure
+direxp,E21,Direct expenditure
+direxp,G01,Direct expenditure
+direxp,E36,Direct expenditure
+direxp,F22,Direct expenditure
+direxp,F52,Direct expenditure
+direxp,E31,Direct expenditure
+direxp,X11,Direct expenditure
+direxp,E60,Direct expenditure
+direxp,E91,Direct expenditure
+direxp,G12,Direct expenditure
+direxp,F77,Direct expenditure
+direxp,G54,Direct expenditure
+direxp,E79,Direct expenditure
+direxp,I94,Direct expenditure
+direxp,F92,Direct expenditure
+direxp,J85,Direct expenditure
+direxp,G80,Direct expenditure
+direxp,E18,Direct expenditure
+direxp,G60,Direct expenditure
+direxp,F44,Direct expenditure
+direxp,F93,Direct expenditure
+direxp,E23,Direct expenditure
+direxp,E93,Direct expenditure
+direxp,Y06,Direct expenditure
+direxp,G56,Direct expenditure
+direxp,X12,Direct expenditure
+direxp,F36,Direct expenditure
+direxp,J19,Direct expenditure
+direxp,G59,Direct expenditure
+curopr,E92,Current operation
+curopr,E77,Current operation
+curopr,E27,Current operation
+curopr,E12,Current operation
+curopr,E22,Current operation
+curopr,E90,Current operation
+curopr,E62,Current operation
+curopr,E85,Current operation
+curopr,E61,Current operation
+curopr,E75,Current operation
+curopr,E21,Current operation
+curopr,E89,Current operation
+curopr,E44,Current operation
+curopr,E05,Current operation
+curopr,E29,Current operation
+curopr,E87,Current operation
+curopr,E36,Current operation
+curopr,E45,Current operation
+curopr,E31,Current operation
+curopr,E50,Current operation
+curopr,E54,Current operation
+curopr,E60,Current operation
+curopr,E91,Current operation
+curopr,E59,Current operation
+curopr,E32,Current operation
+curopr,E79,Current operation
+curopr,E55,Current operation
+curopr,E66,Current operation
+curopr,E18,Current operation
+curopr,E94,Current operation
+curopr,E80,Current operation
+curopr,E23,Current operation
+curopr,E01,Current operation
+curopr,E03,Current operation
+curopr,E74,Current operation
+curopr,E26,Current operation
+curopr,E04,Current operation
+curopr,E93,Current operation
+curopr,E25,Current operation
+curopr,E81,Current operation
+curopr,E56,Current operation
+curopr,E16,Current operation
+curopr,E52,Current operation
+capout,F94,Capital outlay
+capout,F32,Capital outlay
+capout,F91,Capital outlay
+capout,G32,Capital outlay
+capout,F26,Capital outlay
+capout,G04,Capital outlay
+capout,G91,Capital outlay
+capout,G44,Capital outlay
+capout,G22,Capital outlay
+capout,F56,Capital outlay
+capout,G25,Capital outlay
+capout,F87,Capital outlay
+capout,F21,Capital outlay
+capout,G29,Capital outlay
+capout,G87,Capital outlay
+capout,G16,Capital outlay
+capout,G90,Capital outlay
+capout,F25,Capital outlay
+capout,F54,Capital outlay
+capout,G61,Capital outlay
+capout,G31,Capital outlay
+capout,G77,Capital outlay
+capout,G55,Capital outlay
+capout,G93,Capital outlay
+capout,F12,Capital outlay
+capout,F89,Capital outlay
+capout,F45,Capital outlay
+capout,G66,Capital outlay
+capout,F01,Capital outlay
+capout,F60,Capital outlay
+capout,F61,Capital outlay
+capout,G03,Capital outlay
+capout,F55,Capital outlay
+capout,G18,Capital outlay
+capout,G92,Capital outlay
+capout,F23,Capital outlay
+capout,F16,Capital outlay
+capout,G89,Capital outlay
+capout,F59,Capital outlay
+capout,G27,Capital outlay
+capout,F03,Capital outlay
+capout,G36,Capital outlay
+capout,F85,Capital outlay
+capout,F66,Capital outlay
+capout,F90,Capital outlay
+capout,F31,Capital outlay
+capout,F79,Capital outlay
+capout,F05,Capital outlay
+capout,F62,Capital outlay
+capout,G23,Capital outlay
+capout,F50,Capital outlay
+capout,G05,Capital outlay
+capout,G79,Capital outlay
+capout,G85,Capital outlay
+capout,G81,Capital outlay
+capout,G50,Capital outlay
+capout,G01,Capital outlay
+capout,F04,Capital outlay
+capout,F22,Capital outlay
+capout,F52,Capital outlay
+capout,F80,Capital outlay
+capout,G12,Capital outlay
+capout,F81,Capital outlay
+capout,G26,Capital outlay
+capout,F18,Capital outlay
+capout,F77,Capital outlay
+capout,G54,Capital outlay
+capout,F92,Capital outlay
+capout,F29,Capital outlay
+capout,G80,Capital outlay
+capout,G60,Capital outlay
+capout,F44,Capital outlay
+capout,G94,Capital outlay
+capout,G52,Capital outlay
+capout,F93,Capital outlay
+capout,G45,Capital outlay
+capout,G62,Capital outlay
+capout,F27,Capital outlay
+capout,G56,Capital outlay
+capout,F36,Capital outlay
+capout,G21,Capital outlay
+capout,G59,Capital outlay
+insben,Y06,Insurance benefits and repayments
+insben,Y05,Insurance benefits and repayments
+insben,X12,Insurance benefits and repayments
+insben,X11,Insurance benefits and repayments
+insben,Y14,Insurance benefits and repayments
+insben,Y53,Insurance benefits and repayments
+subsid,J68,Assistance and subsidies
+subsid,J85,Assistance and subsidies
+subsid,J67,Assistance and subsidies
+subsid,J19,Assistance and subsidies
+intrst,I89,Interest on debt
+intrst,I92,Interest on debt
+intrst,I91,Interest on debt
+intrst,I94,Interest on debt
+intrst,I93,Interest on debt
+salary,Z00,Exhibit: Salaries and wages
+genexp,F32,General expenditure
+genexp,M55,General expenditure
+genexp,Q12,General expenditure
+genexp,F26,General expenditure
+genexp,M50,General expenditure
+genexp,E22,General expenditure
+genexp,E62,General expenditure
+genexp,E85,General expenditure
+genexp,G04,General expenditure
+genexp,G44,General expenditure
+genexp,G22,General expenditure
+genexp,M68,General expenditure
+genexp,G25,General expenditure
+genexp,M94,General expenditure
+genexp,F21,General expenditure
+genexp,G29,General expenditure
+genexp,E54,General expenditure
+genexp,M92,General expenditure
+genexp,E59,General expenditure
+genexp,E32,General expenditure
+genexp,G55,General expenditure
+genexp,S89,General expenditure
+genexp,F12,General expenditure
+genexp,F89,General expenditure
+genexp,F45,General expenditure
+genexp,M12,General expenditure
+genexp,M05,General expenditure
+genexp,F60,General expenditure
+genexp,F55,General expenditure
+genexp,E26,General expenditure
+genexp,M54,General expenditure
+genexp,E04,General expenditure
+genexp,G18,General expenditure
+genexp,F23,General expenditure
+genexp,F16,General expenditure
+genexp,G27,General expenditure
+genexp,F03,General expenditure
+genexp,G36,General expenditure
+genexp,E77,General expenditure
+genexp,M79,General expenditure
+genexp,E12,General expenditure
+genexp,M21,General expenditure
+genexp,M29,General expenditure
+genexp,J67,General expenditure
+genexp,F50,General expenditure
+genexp,G05,General expenditure
+genexp,G85,General expenditure
+genexp,F36,General expenditure
+genexp,E44,General expenditure
+genexp,E05,General expenditure
+genexp,G81,General expenditure
+genexp,G50,General expenditure
+genexp,M59,General expenditure
+genexp,F04,General expenditure
+genexp,M91,General expenditure
+genexp,F80,General expenditure
+genexp,M23,General expenditure
+genexp,F81,General expenditure
+genexp,G26,General expenditure
+genexp,F18,General expenditure
+genexp,J68,General expenditure
+genexp,F29,General expenditure
+genexp,M36,General expenditure
+genexp,G52,General expenditure
+genexp,M80,General expenditure
+genexp,G45,General expenditure
+genexp,G62,General expenditure
+genexp,M01,General expenditure
+genexp,M87,General expenditure
+genexp,F27,General expenditure
+genexp,E74,General expenditure
+genexp,E25,General expenditure
+genexp,Q18,General expenditure
+genexp,G21,General expenditure
+genexp,E52,General expenditure
+genexp,M04,General expenditure
+genexp,E27,General expenditure
+genexp,M25,General expenditure
+genexp,G32,General expenditure
+genexp,I89,General expenditure
+genexp,M89,General expenditure
+genexp,M81,General expenditure
+genexp,E75,General expenditure
+genexp,E89,General expenditure
+genexp,F56,General expenditure
+genexp,E87,General expenditure
+genexp,E29,General expenditure
+genexp,E45,General expenditure
+genexp,F87,General expenditure
+genexp,M66,General expenditure
+genexp,M44,General expenditure
+genexp,E50,General expenditure
+genexp,S67,General expenditure
+genexp,G87,General expenditure
+genexp,G16,General expenditure
+genexp,M93,General expenditure
+genexp,F25,General expenditure
+genexp,F54,General expenditure
+genexp,G61,General expenditure
+genexp,G31,General expenditure
+genexp,G77,General expenditure
+genexp,M67,General expenditure
+genexp,E55,General expenditure
+genexp,M52,General expenditure
+genexp,E56,General expenditure
+genexp,E66,General expenditure
+genexp,E80,General expenditure
+genexp,G66,General expenditure
+genexp,F01,General expenditure
+genexp,F61,General expenditure
+genexp,E01,General expenditure
+genexp,E03,General expenditure
+genexp,M27,General expenditure
+genexp,E81,General expenditure
+genexp,E16,General expenditure
+genexp,G89,General expenditure
+genexp,F59,General expenditure
+genexp,F85,General expenditure
+genexp,M60,General expenditure
+genexp,F66,General expenditure
+genexp,F31,General expenditure
+genexp,F79,General expenditure
+genexp,M32,General expenditure
+genexp,F05,General expenditure
+genexp,M56,General expenditure
+genexp,M61,General expenditure
+genexp,F62,General expenditure
+genexp,G23,General expenditure
+genexp,E61,General expenditure
+genexp,G79,General expenditure
+genexp,E21,General expenditure
+genexp,G01,General expenditure
+genexp,E36,General expenditure
+genexp,F22,General expenditure
+genexp,F52,General expenditure
+genexp,E31,General expenditure
+genexp,E60,General expenditure
+genexp,M18,General expenditure
+genexp,M30,General expenditure
+genexp,M62,General expenditure
+genexp,G12,General expenditure
+genexp,F77,General expenditure
+genexp,G54,General expenditure
+genexp,E79,General expenditure
+genexp,J85,General expenditure
+genexp,G80,General expenditure
+genexp,E18,General expenditure
+genexp,G60,General expenditure
+genexp,F44,General expenditure
+genexp,E23,General expenditure
+genexp,G56,General expenditure
+genexp,G03,General expenditure
+genexp,J19,General expenditure
+genexp,G59,General expenditure
+dirgex,F32,Direct general expenditure
+dirgex,E27,Direct general expenditure
+dirgex,G32,Direct general expenditure
+dirgex,F26,Direct general expenditure
+dirgex,I89,Direct general expenditure
+dirgex,E22,Direct general expenditure
+dirgex,E62,Direct general expenditure
+dirgex,E85,Direct general expenditure
+dirgex,G04,Direct general expenditure
+dirgex,G44,Direct general expenditure
+dirgex,G22,Direct general expenditure
+dirgex,E75,Direct general expenditure
+dirgex,E89,Direct general expenditure
+dirgex,F56,Direct general expenditure
+dirgex,G25,Direct general expenditure
+dirgex,E87,Direct general expenditure
+dirgex,E29,Direct general expenditure
+dirgex,E45,Direct general expenditure
+dirgex,F87,Direct general expenditure
+dirgex,F21,Direct general expenditure
+dirgex,G29,Direct general expenditure
+dirgex,E50,Direct general expenditure
+dirgex,G87,Direct general expenditure
+dirgex,E54,Direct general expenditure
+dirgex,G16,Direct general expenditure
+dirgex,F25,Direct general expenditure
+dirgex,E59,Direct general expenditure
+dirgex,F54,Direct general expenditure
+dirgex,G61,Direct general expenditure
+dirgex,G31,Direct general expenditure
+dirgex,E32,Direct general expenditure
+dirgex,G77,Direct general expenditure
+dirgex,E55,Direct general expenditure
+dirgex,E56,Direct general expenditure
+dirgex,E66,Direct general expenditure
+dirgex,G55,Direct general expenditure
+dirgex,F12,Direct general expenditure
+dirgex,F89,Direct general expenditure
+dirgex,F45,Direct general expenditure
+dirgex,E80,Direct general expenditure
+dirgex,G66,Direct general expenditure
+dirgex,F01,Direct general expenditure
+dirgex,F60,Direct general expenditure
+dirgex,F61,Direct general expenditure
+dirgex,E01,Direct general expenditure
+dirgex,E03,Direct general expenditure
+dirgex,G03,Direct general expenditure
+dirgex,F55,Direct general expenditure
+dirgex,E26,Direct general expenditure
+dirgex,E04,Direct general expenditure
+dirgex,G18,Direct general expenditure
+dirgex,E81,Direct general expenditure
+dirgex,F23,Direct general expenditure
+dirgex,F16,Direct general expenditure
+dirgex,E16,Direct general expenditure
+dirgex,G89,Direct general expenditure
+dirgex,F59,Direct general expenditure
+dirgex,G27,Direct general expenditure
+dirgex,F03,Direct general expenditure
+dirgex,G36,Direct general expenditure
+dirgex,E77,Direct general expenditure
+dirgex,F85,Direct general expenditure
+dirgex,F66,Direct general expenditure
+dirgex,F31,Direct general expenditure
+dirgex,F79,Direct general expenditure
+dirgex,E12,Direct general expenditure
+dirgex,F05,Direct general expenditure
+dirgex,G59,Direct general expenditure
+dirgex,J67,Direct general expenditure
+dirgex,F62,Direct general expenditure
+dirgex,G23,Direct general expenditure
+dirgex,E61,Direct general expenditure
+dirgex,F50,Direct general expenditure
+dirgex,G05,Direct general expenditure
+dirgex,G79,Direct general expenditure
+dirgex,G85,Direct general expenditure
+dirgex,E21,Direct general expenditure
+dirgex,E44,Direct general expenditure
+dirgex,E05,Direct general expenditure
+dirgex,G81,Direct general expenditure
+dirgex,G50,Direct general expenditure
+dirgex,G01,Direct general expenditure
+dirgex,F04,Direct general expenditure
+dirgex,E36,Direct general expenditure
+dirgex,F22,Direct general expenditure
+dirgex,F52,Direct general expenditure
+dirgex,E31,Direct general expenditure
+dirgex,E60,Direct general expenditure
+dirgex,F80,Direct general expenditure
+dirgex,G12,Direct general expenditure
+dirgex,F81,Direct general expenditure
+dirgex,G26,Direct general expenditure
+dirgex,F18,Direct general expenditure
+dirgex,F77,Direct general expenditure
+dirgex,G54,Direct general expenditure
+dirgex,E79,Direct general expenditure
+dirgex,J85,Direct general expenditure
+dirgex,J68,Direct general expenditure
+dirgex,F29,Direct general expenditure
+dirgex,G80,Direct general expenditure
+dirgex,E18,Direct general expenditure
+dirgex,G60,Direct general expenditure
+dirgex,F44,Direct general expenditure
+dirgex,G52,Direct general expenditure
+dirgex,G45,Direct general expenditure
+dirgex,E23,Direct general expenditure
+dirgex,G62,Direct general expenditure
+dirgex,F27,Direct general expenditure
+dirgex,E74,Direct general expenditure
+dirgex,E25,Direct general expenditure
+dirgex,G56,Direct general expenditure
+dirgex,F36,Direct general expenditure
+dirgex,G21,Direct general expenditure
+dirgex,J19,Direct general expenditure
+dirgex,E52,Direct general expenditure
+insexp,Y06,Insurance trust expenditure
+insexp,Y05,Insurance trust expenditure
+insexp,X12,Insurance trust expenditure
+insexp,X11,Insurance trust expenditure
+insexp,Y14,Insurance trust expenditure
+insexp,Y53,Insurance trust expenditure
+debtfy,44T,Debt at end of fiscal year
+debtfy,49U,Debt at end of fiscal year
+debtfy,64V,Debt at end of fiscal year
+cashsh,Y21,Cash and security holdings
+cashsh,Y61,Cash and security holdings
+cashsh,X30,Cash and security holdings
+cashsh,X42,Cash and security holdings
+cashsh,W61,Cash and security holdings
+cashsh,Z78,Cash and security holdings
+cashsh,X47,Cash and security holdings
+cashsh,X44,Cash and security holdings
+cashsh,Z77,Cash and security holdings
+cashsh,X21,Cash and security holdings
+cashsh,Y08,Cash and security holdings
+cashsh,W31,Cash and security holdings
+cashsh,W01,Cash and security holdings
+cashsh,Y07,Cash and security holdings

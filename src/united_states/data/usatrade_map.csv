@@ -1,0 +1,110 @@
+naics4,description_naics4,naics,description
+1111,Oilseeds & Grains,111CA,Farms
+1112,Vegetables & Melons,111CA,Farms
+1113,Fruits & Tree Nuts,111CA,Farms
+1114,"Mushrooms, Nursery & Related Products",111CA,Farms
+1119,Other Agricultural Products,111CA,Farms
+1121,Cattle,111CA,Farms
+1122,Swine,111CA,Farms
+1123,Poultry & Eggs,111CA,Farms
+1124,"Sheep, Goats & Fine Animal Hair",111CA,Farms
+1125,Farmed Fish And Related Products,111CA,Farms
+1129,Other Animals,111CA,Farms
+1132,Forestry Products,113FF,"Forestry, fishing, and related activities"
+1133,Timber & Logs,113FF,"Forestry, fishing, and related activities"
+1141,"Fish, Fresh/chilled/frozen & Other Marine Products",113FF,"Forestry, fishing, and related activities"
+2111,Oil & Gas,211,Oil and gas extraction
+2121,Coal & Petroleum Gases,212,"Mining, except oil and gas"
+2122,Coal & Petroleum Gases,212,"Mining, except oil and gas"
+2123,Coal & Petroleum Gases,212,"Mining, except oil and gas"
+3211,Sawmill & Wood Products,321,Wood products
+3212,"Veneer, Plywood & Engineered Wood Products",321,Wood products
+3219,Other Wood Products,321,Wood products
+3271,Clay & Refractory Products,327,Nonmetallic mineral products
+3272,Glass & Glass Products,327,Nonmetallic mineral products
+3273,Cement & Concrete Products,327,Nonmetallic mineral products
+3274,Lime & Gypsum Products,327,Nonmetallic mineral products
+3279,Other Nonmetallic Mineral Products,327,Nonmetallic mineral products
+3311,Iron & Steel & Ferroalloy,331,Primary metals
+3312,Steel Products From Purchased Steel,331,Primary metals
+3313,Alumina & Aluminum  & Processing,331,Primary metals
+3314,Nonferrous (exc Alum) & Processing,331,Primary metals
+3315,Foundries,332,Fabricated metal products
+3321,Crowns/closures/seals & Other Packing Accessories,332,Fabricated metal products
+3322,Cutlery & Handtools,332,Fabricated metal products
+3323,Architectural & Structural Metals,332,Fabricated metal products
+3324,"Boilers, Tanks & Shipping Containers",332,Fabricated metal products
+3325,Hardware,332,Fabricated metal products
+3326,Springs & Wire Products,332,Fabricated metal products
+3327,Bolts/nuts/scrws/rivts/washrs & Other Turned Prods,332,Fabricated metal products
+3329,Other Fabricated Metal Products,332,Fabricated metal products
+3331,Ag & Construction &  Machinery,332,Fabricated metal products
+3332,Industrial Machinery,333,Machinery
+3333,Commercial & Service Industry Machinery,333,Machinery
+3334,Hvac & Commercial Refrigeration Equipment,333,Machinery
+3335,Metalworking Machinery,333,Machinery
+3336,"Engines, Turbines & Power Transmsn Equip",333,Machinery
+3339,Other General Purpose Machinery,333,Machinery
+3341,Computer Equipment,334,Computer and electronic products
+3342,Communications Equipment,334,Computer and electronic products
+3343,Audio & Video Equipment,334,Computer and electronic products
+3344,Semiconductors & Other Electronic Components,334,Computer and electronic products
+3345,Navigational/measuring/medical/control Instrument,334,Computer and electronic products
+3346,Magnetic & Optical Media,334,Computer and electronic products
+3351,Electric Lighting Equipment,335,"Electrical equipment, appliances, and components"
+3352,"Household Appliances And Misc Machines, Nesoi",335,"Electrical equipment, appliances, and components"
+3353,Electrical Equipment,335,"Electrical equipment, appliances, and components"
+3359,"Electrical Equipment & Components, Nesoi",335,"Electrical equipment, appliances, and components"
+3361,Motor Vehicles,3361MV,"Motor vehicles, bodies and trailers, and parts"
+3362,Motor Vehicle Bodies & Trailers,3361MV,"Motor vehicles, bodies and trailers, and parts"
+3363,Motor Vehicle Parts,3361MV,"Motor vehicles, bodies and trailers, and parts"
+3364,Aerospace Products & Parts,3364OT,Other transportation equipment
+3365,Railroad Rolling Stock,3364OT,Other transportation equipment
+3366,Ships & Boats,3364OT,Other transportation equipment
+3369,"Transportation Equipment, Nesoi",3364OT,Other transportation equipment
+3371,Household & Institutional Furn & Kitchen Cabinets,337,Furniture and related products
+3372,Office Furniture (including Fixtures),337,Furniture and related products
+3379,"Furniture Related Products, Nesoi",337,Furniture and related products
+3391,Medical Equipment & Supplies,339,Miscellaneous manufacturing
+3399,Miscellaneous Manufactured Commodities,339,Miscellaneous manufacturing
+3111,Animal Foods,311FT,Food and beverage and tobacco products
+3112,Grain & Oilseed Milling Products,311FT,Food and beverage and tobacco products
+3113,Sugar & Confectionery Products,311FT,Food and beverage and tobacco products
+3114,Fruits & Veg Preserves & Specialty Foods,311FT,Food and beverage and tobacco products
+3115,Dairy Products,311FT,Food and beverage and tobacco products
+3116,Meat Products & Meat Packaging Products,311FT,Food and beverage and tobacco products
+3117,"Seafood Prods, Prepared, Canned & Packaged",311FT,Food and beverage and tobacco products
+3118,Bakery & Tortilla Products,311FT,Food and beverage and tobacco products
+3119,"Foods, Nesoi",311FT,Food and beverage and tobacco products
+3121,Beverages,311FT,Food and beverage and tobacco products
+3122,Tobacco Products,311FT,Food and beverage and tobacco products
+3131,"Fibers, Yarns & Threads",313TT,Textile mills and textile product mills
+3132,Fabrics,313TT,Textile mills and textile product mills
+3133,Finished & Coated Textile Fabrics,313TT,Textile mills and textile product mills
+3141,Textile Furnishings,313TT,Textile mills and textile product mills
+3149,Other Textile Products,313TT,Textile mills and textile product mills
+3151,Knit Apparel,315AL,Apparel and leather and allied products
+3152,Apparel,315AL,Apparel and leather and allied products
+3159,Apparel Accessories,315AL,Apparel and leather and allied products
+3161,Leather & Hide Tanning,315AL,Apparel and leather and allied products
+3162,Footwear,315AL,Apparel and leather and allied products
+3169,Other Leather Products,315AL,Apparel and leather and allied products
+3221,"Pulp, Paper & Paperboard Mill Products",322,Paper products
+3222,Converted Paper Products,322,Paper products
+3231,"Printed Matter And Related Products, Nesoi",323,Printing and related support activities
+3241,Petroleum & Coal Products,324,Petroleum and coal products
+3251,Basic Chemicals,325,Chemical products
+3252,"Resin, Syn Rubber, Artf & Syn Fibers/fil",325,Chemical products
+3253,"Pesticides, Fertilizers & Oth Agri Chemicals",325,Chemical products
+3254,Pharmaceuticals & Medicines,325,Chemical products
+3255,"Paints, Coatings & Adhesives",325,Chemical products
+3256,"Soaps, Cleaning Compounds & Toilet Preparations",325,Chemical products
+3259,Other Chemical Products & Preparations,325,Chemical products
+3261,Plastics Products,326,Plastics and rubber products
+3262,Rubber Products,326,Plastics and rubber products
+5112,"Software, Nesoi",511,"Publishing industries, except internet (includes software)"
+9800,Goods Returned (exports For Canada Only),Other,Noncomparable imports and rest-of-the-world adjustment
+9900,Other Special Classification Provisions,Other,Noncomparable imports and rest-of-the-world adjustment
+9100,Waste And Scrap,Used,"Scrap, used and secondhand goods"
+9200,Used Or Second-hand Merchandise,Used,"Scrap, used and secondhand goods"
+9300,Used Or Second-hand Merchandise,Used,"Scrap, used and secondhand goods"
