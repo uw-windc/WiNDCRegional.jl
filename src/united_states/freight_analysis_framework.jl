@@ -22,7 +22,6 @@ function faf_cols_to_keep(i,name, cols_to_keep, regex_cols_to_keep, max_year)
     end
 
     return true
-#    return (name in cols_to_keep) || !isnothing(match(regex_cols_to_keep, string(name)))
 end
 
 raw"""
@@ -62,7 +61,7 @@ function load_faf_base(
     )
 
     df = CSV.read(
-        path, #joinpath(base_dir, "FAF", "FAF5.7.1_State.csv"),
+        path, 
         DataFrame;
         select = (i,name) -> faf_cols_to_keep(i,name, cols_to_keep, regex_cols_to_keep, max_year),
         types = Dict(
