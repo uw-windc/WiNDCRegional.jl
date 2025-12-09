@@ -374,3 +374,16 @@ function extend_data(X::DataFrame, column::Symbol, exisiting_data, new_data)
             dropmissing
 
 end
+
+
+"""
+    load_regional_yaml(path::String)
+
+Load a YAML file containing regional configuration data. Ensure the file is 
+formatted correctly with proper field names and structure.
+
+"""
+function load_regional_yaml(path::String)
+    info = YAML.load_file(path)
+    return info
+end
