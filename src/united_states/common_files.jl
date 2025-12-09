@@ -5,10 +5,17 @@
         )
 
 Load a CSV file containing state FIPS codes and state names. The default path is
-set to "data/state_fips.csv" relative to this file's directory. You can specify
+set to `data/state_fips.csv` relative to this file's directory. You can specify
 which columns to keep using the `cols_to_keep` argument.
 
 Returns a DataFrame with the specified columns as Strings.
+
+## Optional Arguments
+
+- `path::String`: Path to the state FIPS CSV file.
+- `cols_to_keep::Vector{Symbol}`: Columns to keep from the CSV file. Default is `[:fips, :state]`.
+
+It is recommended to keep the columns `:fips` and `:state` for proper mapping.
 """
 function load_state_fips(;
         path = joinpath(@__DIR__, "data", "state_fips.csv"),
@@ -36,7 +43,12 @@ end
 Load a CSV file containing industry codes. The default path is set to
 "data/industry_codes.csv" relative to this file's directory.
 
-Returns a DataFrame with the `naics` column as Symbol and drops rows with missing values.
+Returns a DataFrame with two columns, `LineCode` and `naics`. The `naics` column 
+is converted to a Symbol and and missing values are dropped.
+
+## Optional Arguments
+
+- `path::String`: Path to the industry codes CSV file.
 """
 function load_industry_codes(;
         path = joinpath(@__DIR__, "data", "industry_codes.csv"),
@@ -55,7 +67,22 @@ function load_industry_codes(;
 
 end
 
+"""
+    load_pce_map(;
+            path = joinpath(@__DIR__, "data", "pce_map.csv"),
+        )
 
+Load the PCE to NAICS mapping file. The default path is set to `data/pce_map.csv`
+relative to this file's directory.
+
+Returns a DataFrame with four columns: `Line Code`, `description_pcs`, `naics`, 
+and `description`. It is recommended you mirror this structure if you provide 
+your own mapping file.
+
+## Optional Arguments
+
+- `path::String`: Path to the PCE mapping CSV file.
+"""
 function load_pce_map(;
         path = joinpath(@__DIR__, "data", "pce_map.csv"),
     )
@@ -68,7 +95,25 @@ function load_pce_map(;
 
 end
 
+"""
+    load_faf_map(; 
+            path = joinpath(@__DIR__,  "data", "faf_map.csv"),
+            keep_cols::Vector{Symbol} = [:sctg2, :naics]
+        )
 
+Load the FAF to NAICS mapping file. Optionally keep only a subset of columns, by
+specifying the `keep_cols` argument. 
+
+Returns a DataFrame with the specified columns. The `naics` column is converted
+to a Symbol.
+
+## Optional Arguments
+
+- `path::String`: Path to the FAF mapping CSV file.
+- `keep_cols::Vector{Symbol}`: Columns to keep from the CSV file. Default is 
+`[:sctg2, :naics]`.
+
+"""
 function load_faf_map(; 
         path = joinpath(@__DIR__,  "data", "faf_map.csv"),
         keep_cols::Vector{Symbol} = [:sctg2, :naics]
@@ -84,7 +129,24 @@ function load_faf_map(;
     return df
 end
 
+"""
+    load_usatrade_map(;
+            path = joinpath(@__DIR__, "data", "usatrade_map.csv"),
+            keep_cols::Vector{Symbol} = [:naics, :naics4]
+        )
 
+Load the USA Trade to NAICS mapping file. Optionally keep only a subset of columns, by
+specifying the `keep_cols` argument.
+
+Returns a DataFrame with the specified columns. The `naics` and `naics4` columns
+are converted to Symbols.
+
+## Optional Arguments
+
+- `path::String`: Path to the USA Trade mapping CSV file.
+- `keep_cols::Vector{Symbol}`: Columns to keep from the CSV file. Default is 
+`[:naics, :naics4]`.
+"""
 function load_usatrade_map(;
         path = joinpath(@__DIR__, "data", "usatrade_map.csv"),
         keep_cols::Vector{Symbol} = [:naics, :naics4]
@@ -102,12 +164,20 @@ end
 """
     load_sgf_map(;
             path = joinpath(@__DIR__, "data", "sgf_map.csv"),
-            keep_cols::Vector{Symbol} = []
+            keep_cols::Vector{Symbol} = [:naics, :sgf_code]
         )
 
 
-Load the SGF to NAICS mapping file. Optionally keep only a subset of columns, by 
-default keep all columns.
+Load the SGF to NAICS mapping file. Optionally keep only a subset of columns, by
+specifying the `keep_cols` argument.
+
+Returns a DataFrame with the specified columns. All data is returned as Strings.
+
+## Optional Arguments
+
+- `path::String`: Path to the SGF mapping CSV file.
+- `keep_cols::Vector{Symbol}`: Columns to keep from the CSV file. Default is 
+`[:naics, :sgf_code]`.
 """
 function load_sgf_map(;
         path = joinpath(@__DIR__, "data", "sgf_map.csv"),
@@ -123,6 +193,21 @@ function load_sgf_map(;
     return sgf_map
 end
 
+"""
+    load_sgf_states(;
+            path = joinpath(@__DIR__, "data", "sgf_states.csv"),
+        )
+
+Load the SGF states mapping file. The default path is set to `data/sgf_states.csv`
+relative to this file's directory.
+
+Returns a DataFrame with two columns: `code` and `state`. Both columns are
+converted to Strings.
+
+## Optional Arguments
+
+- `path::String`: Path to the SGF states CSV file.
+"""
 function load_sgf_states(;
         path = joinpath(@__DIR__, "data", "sgf_states.csv"),
     )
