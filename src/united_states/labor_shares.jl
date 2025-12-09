@@ -1,5 +1,43 @@
+"""
+    labor_shares(
+        summary::National,
+        raw_data::Dict;
+    )
+
+Compute the share of total value added (`labor` + `capital`) attributed to labor for each
+region, sector, and year. 
+
+Returns a DataFrame with columns: `year`, `region`, `col` (sector), and `value` (labor share).
+
+## Required Arguments
+
+- `summary::National`: A `National` object containing the national summary data.
+- `raw_data::Dict`: A dictionary containing the raw data DataFrames.
 
 
+## Raw Data Used
+
+- `:gdp`
+- `:labor`
+- `:capital`
+- `:tax`
+- `:subsidy`
+
+## Motivation
+
+The `captial` data provided by the BEA has unavoidable negative values for some 
+years, sectors, and regions. To address this, we compute labor shares by reconciling 
+the reported GDP data with GDP computed from GSP components (labor, capital, tax, 
+subsidy). We then use a least squares optimization approach to estimate labor 
+shares that are consistent with both the national-level labor shares and the
+regional GDP data.
+
+## Data Source
+
+This data can be downloaded from 
+[the BEA website](https://apps.bea.gov/regional/downloadzip.htm), select `Gross
+Domestic Product (GDP) by State` and download the `SAGDP` data.
+"""
 function labor_shares(
     summary::National,
     raw_data::Dict;
