@@ -27,7 +27,7 @@ module WiNDCRegional
     export load_state_finances
 
     include("united_states/freight_analysis_framework.jl")
-    export load_faf_base, load_faf_data, load_regional_purchase_coefficients
+    export load_faf_data, load_regional_purchase_coefficients
 
     include("united_states/usa_trade.jl")
     export load_trade_shares
