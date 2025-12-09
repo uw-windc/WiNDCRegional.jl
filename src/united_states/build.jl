@@ -387,7 +387,13 @@ state-level using BEA GSP data.
 
 ## Aggregate Parameters
 
-Add `intermediate_demand` to `Use` parameter and `intermediate_supply` to `Supply` parameter.
+Add `intermediate_demand` to `Use` parameter and `intermediate_supply` to `Supply` parameter.\
+
+## Process
+
+Use the [`WiNDCRegional.disaggregate_by_shares`](@ref) function on the domain 
+`sector` to disaggregate intermediate demand and supply using state GDP data as 
+shares.
 """
 function disaggregate_intermediate(
         state_table::State,    
@@ -536,9 +542,8 @@ national level tax rates and total output by state.
 
 ## Depends On
 
-- Intermediate Demand
-- Labor Demand
-- Capital Demand
+- Intermediate Supply
+- Summary output tax rate
 
 ## Added Parameters
 
@@ -547,6 +552,12 @@ national level tax rates and total output by state.
 ## Aggregate Parameters
 
 Add `output_tax` to `Use` set.
+
+## Process
+
+Assume equal tax rates across all states. Calculate state-level output tax by
+multiplying state-level intermediate supply by the national output tax rate.
+
 """
 function disaggregate_output_tax(
         state_table::State,    
@@ -622,6 +633,12 @@ from the summary level data.
 
 Add `tax` to `Supply` parameters.
 
+## Process
+
+The absorption tax rate is calculated inclusive of subisidies at the national level.
+Assume equal tax rates across all states.
+The state-level tax is calculated by multiplying the state-level absorption by
+the national absorption tax rate.
 """
 function disaggregate_tax(
         state_table::State,    
@@ -693,6 +710,15 @@ element `invest`, updates the elements table accordingly.
 
 Add `investment_final_demand` to `Use`, `Other_Final_Demand`, and `Final_Demand` parameters.
 
+## Process
+
+Use the [`WiNDCRegional.disaggregate_by_shares`](@ref) function on the domain
+`commodity` to disaggregate investment final demand using state GDP data as
+shares.
+
+The data is then grouped by row, year, parameter, and region to aggregate all
+summary-level investment final demand elements into a single element `invest`.
+
 """
 function disaggregate_investment_final_demand(
         state_table::State,    
@@ -759,6 +785,11 @@ state-level using BEA PCE data.
 ## Aggregate Parameters
 
 Add `personal_consumption` to `Use`, `Other_Final_Demand`, and `Final_Demand` parameters.
+
+## Process
+
+Use the [`WiNDCRegional.disaggregate_by_shares`](@ref) function on the domain
+`commodity` to disaggregate personal consumption using BEA PCE data as shares.
 """
 function disaggregate_personal_consumption(
         state_table::State,    
@@ -819,6 +850,11 @@ BEA PCE data.
 ## Aggregate Parameters
 
 Add `household_supply` to `Supply` parameters.
+
+## Process
+
+Use the [`WiNDCRegional.disaggregate_by_shares`](@ref) function on the domain
+`commodity` to disaggregate household supply using BEA PCE data as shares.
 """
 function disaggregate_household_supply(
         state_table::State,    
@@ -883,6 +919,15 @@ element `govern`, updates the elements table accordingly.
 ## Aggregate Parameters
 
 Add `government_final_demand` to `Use`, `Other_Final_Demand`, and `Final_Demand` parameters.
+
+## Process
+
+Use the [`WiNDCRegional.disaggregate_by_shares`](@ref) function on the domain
+`commodity` to disaggregate government final demand using Census SGF data as
+shares.
+
+The data is then grouped by row, year, parameter, and region to aggregate all
+summary-level government final demand elements into a single element `govern`.
 """
 function disaggregate_government_final_demand(
         state_table::State,    
@@ -890,29 +935,17 @@ function disaggregate_government_final_demand(
         raw_data::Dict;
     )
 
-    census_data = raw_data[:sgf] |>
-        x -> rename(x, :naics => :row, :state => :region) |>
-        x -> groupby(x, [:year, :row]) |>
-        x -> combine(x, 
-            :region => identity => :region,
-            :value => (y -> y./sum(y)) => :value
+    state_government = WiNDCRegional.disaggregate_by_shares(
+            summary,
+            raw_data[:sgf],
+            [:Government_Final_Demand];
+            domain = :commodity
+        ) |>
+        x -> groupby(x, [:row, :year, :parameter, :region]) |>
+        x -> combine(x, :value => sum => :value) |>
+        x -> transform(x,
+            :parameter => ByRow(y -> :govern) => :col
         )
-
-
-    state_government = leftjoin(
-            table(summary, :Government_Final_Demand) |>
-                x -> groupby(x, 
-                        [:year, :row]
-                ) |>
-                x -> combine(x, :value => sum => :value),
-            census_data |> x -> rename(x, :value => :sgf),
-            on = [:year, :row],
-        ) |>
-        x -> transform(x, 
-            [:value, :sgf] => ByRow(*) => :value,
-            :row => ByRow(y -> (:govern, :government_final_demand)) => [:col, :parameter]
-        ) |>
-        x -> select(x, :row, :col, :year, :region, :parameter, :value) 
 
     df = vcat(table(state_table), state_government)
 
@@ -964,6 +997,11 @@ BEA GSP data and trade shares.
 ## Aggregate Parameters
 
 Add `export` to `Use`, `Final_Demand`, and `Export` parameters.
+
+## Process
+
+Use trade shares data to disaggregate exports where available. For commodities
+without trade share data, use state GDP data to disaggregate exports by shares.
 """
 function disaggregate_foreign_exports(
         state_table::State,    
@@ -1067,6 +1105,11 @@ supply and exports.
 ## Aggregate Parameters
 
 Add `reexport` to `Use` parameter.
+
+## Process
+
+Reexports occur when total supply is less than exports. Calculate reexports as the
+negative portion of the difference between total supply and exports.
 """
 function create_reexports(
         state_table::State,
@@ -1075,16 +1118,16 @@ function create_reexports(
     )
 
     reexports = innerjoin(
-        WiNDCRegional.total_supply(state_table; output = :supply),
-        table(state_table, :Export) |> x -> select(x, :row, :year, :region, :value => :exports),
-        on = [:row, :year, :region]
-    ) |>
-    x -> transform(x,
-        [:supply, :exports] => ByRow((a,b) -> (a+b)) => :value,
-        :row => ByRow(y -> (:reexport, :reexport)) => [:col, :parameter]
-    ) |>
-    x -> subset(x, :value => ByRow(<(0))) |>
-    x -> select(x, :row, :col, :region, :year, :parameter, :value)
+            WiNDCRegional.total_supply(state_table; output = :supply),
+            table(state_table, :Export) |> x -> select(x, :row, :year, :region, :value => :exports),
+            on = [:row, :year, :region]
+        ) |>
+        x -> transform(x,
+            [:supply, :exports] => ByRow((a,b) -> (a+b)) => :value,
+            :row => ByRow(y -> (:reexport, :reexport)) => [:col, :parameter]
+        ) |>
+        x -> subset(x, :value => ByRow(<(0))) |>
+        x -> select(x, :row, :col, :region, :year, :parameter, :value)
 
     df = vcat(table(state_table), reexports)
     S = sets(state_table) |>
@@ -1127,6 +1170,11 @@ Disaggregate the foreign imports from the national summary into state-level usin
 ## Aggregate Parameters
 
 Add `import` to `Supply` parameter.
+
+## Process
+
+Use the [`WiNDCRegional.disaggregate_by_shares`](@ref) function on the domain
+`commodity` to disaggregate imports using absorption data as shares.
 """
 function disaggregate_foreign_imports(
         state_table::State,    
@@ -1182,6 +1230,11 @@ Disaggregate the margin demand from the national summary into state-level using
 ## Aggregate Parameters
 
 Add `margin_demand` to `Supply` parameter.
+
+## Process
+
+Use the [`WiNDCRegional.disaggregate_by_shares`](@ref) function on the domain
+`commodity` to disaggregate margin demand using absorption data as shares.
 """
 function disaggregate_margin_demand(
         state_table::State,    
@@ -1239,6 +1292,11 @@ level duty rates and total imports by state.
 ## Aggregate Parameters
 
 Add `duty` to `Supply` parameter.
+
+## Process
+
+Assume equal duty rates across all states. Calculate state-level duty by
+multiplying state-level imports by the national duty rate.
 """
 function disaggregate_duty(
         state_table::State,    
