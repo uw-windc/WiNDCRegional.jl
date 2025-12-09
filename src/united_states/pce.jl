@@ -1,3 +1,29 @@
+"""
+    function load_pce_data(
+        path::String,
+        name::String;
+        state_fips::DataFrame = load_state_fips(),
+        pce_map::DataFrame = load_pce_map(),
+    )
+
+Load the Personal Consumption Expenditures (PCE) data.
+
+## Required Arguments
+
+- `path::String`: Path to the PCE CSV file.
+- `name::String`: Name to assign to the loaded data, e.g. the state name.
+
+## Optional Arguments
+
+- `state_fips::DataFrame`: [`load_state_fips`](@ref) DataFrame mapping state FIPS codes to state abbreviations.
+- `pce_map::DataFrame`: [`load_pce_map`](@ref) DataFrame mapping PCE LineCodes to NAICS codes.
+
+## Data Source
+
+This data can be downloaded from 
+[the BEA website](https://apps.bea.gov/regional/downloadzip.htm), select 
+`Personal Consumption Expenditures (PCE) by State` and download the `PCE` data.
+"""
 function load_pce_data(
     path::String,
     name::String;

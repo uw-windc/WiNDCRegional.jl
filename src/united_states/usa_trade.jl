@@ -146,6 +146,19 @@ of goods.
 - `base_year::Int`: The base year for backfilling missing years. Default is 
     `1997`, the first year of summary data.
 
+## Data Source
+
+There are two sources for this input data. The first is the 
+[USA Trade Online portal](https://usatrade.census.gov/). This requires a log-in. 
+For both `Imports` and `Exports` we want NAICS data. When selecting data, we want 
+every state (this is different that All States), the most disaggregated 
+commodities (third level), and for `Exports` we want `World Total` and for `Imports` 
+we want both `World Total` and `Canada` in the Countries column.
+
+The second source is the file [`Commodity_detail_by_state_cy.xlsx`](https://ers.usda.gov/sites/default/files/_laserfiche/DataFiles/100812/commodity_detail_by_state_cy.xlsx). 
+This is a very fragile link that may change over time. If you find this link is broken,
+raise an issue on the WiNDCRegional GitHub repository.
+
 ## Loading Process
 
 First we calculate the trade shares for each state, commodity, flow, and year. This

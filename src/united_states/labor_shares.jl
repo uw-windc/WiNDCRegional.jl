@@ -17,11 +17,13 @@ Returns a DataFrame with columns: `year`, `region`, `col` (sector), and `value` 
 
 ## Raw Data Used
 
-- `:gdp`
-- `:labor`
-- `:capital`
-- `:tax`
-- `:subsidy`
+All data is loaded with [`load_state_gdp`](@ref), the dictionary should contain the following keys:
+
+- `:gdp` - SAGDP2
+- `:labor` - SAGDP4
+- `:capital` - SAGDP7
+- `:tax` - SAGDP6
+- `:subsidy` - SAGDP5
 
 ## Motivation
 

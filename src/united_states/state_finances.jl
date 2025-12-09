@@ -68,6 +68,24 @@ directory path.
     dataframe. The keys are column names, and the values are dictionaries
     mapping new data names to existing data names. The replacement is done using
     [`WiNDCRegional.sgf_append_data`](@ref).
+
+## Data Source
+
+The data can be downloaded from [Census.gob](https://www.census.gov/programs-surveys/state/data/datasets.All.List_75006027.html).
+We need this data from 1997 onward. There does not appear to be a bulk download option, so
+each file must be downloaded manually.
+
+These files are heavily encoded TXT files. For reference, here are the first few lines of
+the 2023 data file (`23state35.txt`):
+
+|     |     |
+| --- | --- |
+|0000000000000019U | 1089056745232324 |
+|0000000000000029U |   95934926232324 |
+|0000000000000039U |  109916472232324 |
+|0000000000000049U | 1077543532232324 |
+|0000000000000052T |    7567094232324 |
+|0000000000000053T |    5175382232324 |
 """
 function load_state_finances(
         file_pattern::Regex,
