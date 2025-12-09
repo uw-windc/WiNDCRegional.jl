@@ -4,10 +4,37 @@
 Create an empty State table structure based on the sets and elements of the 
 provided National summary. 
 
-Add one set, State, containing all US states. These are loaded using the provided
-`state_fips.csv` file. 
+Add one set, State, containing all US states. The states are loaded using the 
+[`WiNDCRegional.load_state_fips`](@ref) function. 
 
-NOTE: Update with set listing
+Each disaggregation function will add new parameters and elements as needed.
+
+## Sets with Elements Preserved
+
+- `capital_demand`
+- `commodity`
+- `duty`
+- `export`
+- `import`
+- `labor_demand`
+- `margin`
+- `output_tax`
+- `personal_consumption`
+- `sector`
+- `tax`
+- `trade`
+- `transport`
+- `year`
+
+## Aggregate Parameters
+
+These parameters are kept, but all elements are removed. 
+
+- `Other_Final_Demand`
+- `Use`
+- `Supply`
+- `Final_Demand`
+- `Value_Added`
 """
 function initialize_table(summary::National, raw_data::Dict)
     state_fips = raw_data[:state_map]
@@ -66,7 +93,8 @@ end
 Load map data specified in the `metadata:maps` section of the regional.yaml file.
 Returns a dictionary of DataFrames, with keys corresponding to the map types.
 
-If the paths are not speicifed in `regional.yaml`, the default maps will be loaded.
+If the paths are not speicifed in [`WiNDCRegional.load_regional_yaml`](@ref), the 
+default maps will be loaded.
 
 ## Required Arguments
 
@@ -75,13 +103,13 @@ If the paths are not speicifed in `regional.yaml`, the default maps will be load
 
 ## Default Loading Functions
 
-- `state_map` => [`WiNDCRegional.load_state_fips`](@ref)
-- `gdp_map` => [`WiNDCRegional.load_industry_codes`](@ref)
-- `pce_map` => [`WiNDCRegional.load_pce_map`](@ref)
-- `sgf_map` => [`WiNDCRegional.load_sgf_map`](@ref)
-- `sgf_states_map` => [`WiNDCRegional.load_sgf_states`](@ref)
-- `trade_map` => [`WiNDCRegional.load_usatrade_map`](@ref)
-- `faf_map` => [`WiNDCRegional.load_faf_map`](@ref)
+- `state_map` - [`WiNDCRegional.load_state_fips`](@ref)
+- `gdp_map` - [`WiNDCRegional.load_industry_codes`](@ref)
+- `pce_map` - [`WiNDCRegional.load_pce_map`](@ref)
+- `sgf_map` - [`WiNDCRegional.load_sgf_map`](@ref)
+- `sgf_states_map` - [`WiNDCRegional.load_sgf_states`](@ref)
+- `trade_map` - [`WiNDCRegional.load_usatrade_map`](@ref)
+- `faf_map` - [`WiNDCRegional.load_faf_map`](@ref)
 """
 function load_map_data(map_dictionary::Dict)
     load_functions = Dict(
@@ -134,14 +162,14 @@ section of `regional.yaml`.
 
 ## Data Loading Functions
 
-- `state_gdp` - All values => [`WiNDCRegional.load_state_gdp`](@ref)
-- `pce` => [`WiNDCRegional.load_pce_data`](@ref)
-- `sgf` => [`WiNDCRegional.load_state_finances`](@ref)
+- `state_gdp` - All values - [`WiNDCRegional.load_state_gdp`](@ref)
+- `pce` - [`WiNDCRegional.load_pce_data`](@ref)
+- `sgf` - [`WiNDCRegional.load_state_finances`](@ref)
 - `trade_shares`
-    - `exports` and `imports` => [`WiNDCRegional.load_usa_raw_trade_data`](@ref)
-    - `ag_time_series` => [`WiNDCRegional.load_usda_agricultural_flow`](@ref)
-    - trade shares => [`WiNDCRegional.load_trade_shares`](@ref)
-- `rpc` => [`WiNDCRegional.load_regional_purchase_coefficients`](@ref)
+    - `exports` and `imports` - [`WiNDCRegional.load_usa_raw_trade_data`](@ref)
+    - `ag_time_series` - [`WiNDCRegional.load_usda_agricultural_flow`](@ref)
+    - `trade shares` - [`WiNDCRegional.load_trade_shares`](@ref)
+- `rpc` - [`WiNDCRegional.load_regional_purchase_coefficients`](@ref)
 """
 function load_raw_data(
         summary::National,
@@ -258,8 +286,38 @@ end
     )
 
 Disaggregate the US WiNDCNational summary-level data into a state-level table, 
-using raw data files located in `data_directory`.
+using raw data files located in `data_directory`. The disaggregation is performed 
+through a sequence of functions, each disaggregating a specific component of the 
+national summary.
 
+Returns a balanced WiNDCRegional State table.
+
+## Required Arguments
+
+- `summary::National`: The national summary WiNDCNational table.
+- `regional_info::Dict`: The full contents of the `regional.yaml` file, loaded 
+    as a dictionary.
+
+## Disaggregation Steps
+
+The disaggregation is performed through the following steps:
+
+1. [`WiNDCRegional.initialize_table`](@ref)
+2. [`WiNDCRegional.disaggregate_intermediate`](@ref)
+3. [`WiNDCRegional.disaggregate_labor_capital`](@ref)
+4. [`WiNDCRegional.disaggregate_output_tax`](@ref)
+5. [`WiNDCRegional.disaggregate_investment_final_demand`](@ref)
+6. [`WiNDCRegional.disaggregate_personal_consumption`](@ref)
+7. [`WiNDCRegional.disaggregate_household_supply`](@ref)
+8. [`WiNDCRegional.disaggregate_government_final_demand`](@ref)
+9. [`WiNDCRegional.disaggregate_foreign_exports`](@ref)
+10. [`WiNDCRegional.create_reexports`](@ref)
+11. [`WiNDCRegional.disaggregate_foreign_imports`](@ref)
+12. [`WiNDCRegional.disaggregate_margin_demand`](@ref)
+13. [`WiNDCRegional.disaggregate_duty`](@ref)
+14. [`WiNDCRegional.disaggregate_tax`](@ref)
+15. [`WiNDCRegional.create_regional_demand`](@ref)
+16. [`WiNDCRegional.create_regional_margin_supply`](@ref)
 
 
 """
@@ -310,24 +368,26 @@ end
 
 """
     disaggregate_intermediate(
-            state_table::State,    
-            summary::National,
-            data_directory::String;
-            gdp_path = "SAGDP2__ALL_AREAS_1997_2024.csv"
-        )
+        state_table::State,    
+        summary::National,
+        raw_data::Dict;
+    )
 
 Disaggregate the intermediate demand and supply from the national summary into 
 state-level using BEA GSP data.
 
-Raw data used:
-    - `gdp`
+## Raw Data 
 
-New parameters:
-    - `Intermediate_Demand` with element `intermediate_demand`
-    - `Intermediate_Supply` with element `intermediate_supply`
+- `gdp` - State GDP data (`SAGDP2`) loaded using [`WiNDCRegional.load_state_gdp`](@ref).
 
-New Sets:
+## Added Parameters
 
+- `Intermediate_Demand` with element `intermediate_demand`
+- `Intermediate_Supply` with element `intermediate_supply`
+
+## Aggregate Parameters
+
+Add `intermediate_demand` to `Use` parameter and `intermediate_supply` to `Supply` parameter.
 """
 function disaggregate_intermediate(
         state_table::State,    
@@ -378,16 +438,22 @@ end
 Disaggregate the labor and capital demand from the national summary into state-level
 using BEA GSP data.
 
-Raw data used:
-    - `gdp`
-    - `labor`
-    - `capital`
-    - `tax`
-    - `subsidy`
+## Raw Data
 
-New parameters:
-    - `Labor_Demand` with element `labor_demand`
-    - `Capital_Demand` with element `capital_demand`
+- `gdp` - State GDP data (`SAGDP2`) loaded using [`WiNDCRegional.load_state_gdp`](@ref).
+- `labor` - State labor data (`SAGDP4`) loaded using [`WiNDCRegional.load_labor_data`](@ref).
+- `capital` - State capital data (`SAGDP7`) loaded using [`WiNDCRegional.load_capital_data`](@ref).
+- `tax` - State tax data (`SAGDP6`) loaded using [`WiNDCRegional.load_tax_data`](@ref).
+- `subsidy` - State subsidy data (`SAGDP5`) loaded using [`WiNDCRegional.load_subsidy_data`](@ref).
+
+## Added Parameters
+
+- `Labor_Demand` with element `labor_demand`
+- `Capital_Demand` with element `capital_demand`
+
+## Aggregate Parameters
+
+Add `labor_demand` and `capital_demand` to `Value_Added` and `Use` parameters.
 """
 function disaggregate_labor_capital(
         state_table::State,    
@@ -468,13 +534,19 @@ end
 Disaggregate the output tax from the national summary into state-level using 
 national level tax rates and total output by state.
 
-Dependent on:
-    - Intermediate Demand
-    - Labor Demand
-    - Capital Demand
+## Depends On
 
-New parameters:
-    - `Output_Tax` with element `output_tax`
+- Intermediate Demand
+- Labor Demand
+- Capital Demand
+
+## Added Parameters
+
+- `Output_Tax` with element `output_tax`
+
+## Aggregate Parameters
+
+Add `output_tax` to `Use` set.
 """
 function disaggregate_output_tax(
         state_table::State,    
@@ -533,13 +605,22 @@ end
     )
 
 Disaggregate the tax from the national summary into state-level using BEA
-GSP data.
+GSP data. The resulting tax will be _inclusive_ of subsidies, which is a change 
+from the summary level data.
 
-Note: This will be inclusive of subsidies.
 
-Dependent on:
-    - [`WiNDCRegional.absorption`](@ref)
-    - Summary absorption tax rate
+## Depends On
+    
+- [`WiNDCRegional.absorption`](@ref)
+- Summary absorption tax rate
+
+## Added Parameters
+
+- `Tax` with element `tax`
+
+## Aggregate Parameters
+
+Add `tax` to `Supply` parameters.
 
 """
 function disaggregate_tax(
@@ -596,14 +677,22 @@ Disaggregate the investment final demand from the national summary into state-le
 using BEA GSP data. Also aggregates all investment final demand to a single 
 element `invest`, updates the elements table accordingly.
 
-Raw data used:
-    - `gdp`
+## Raw Data
 
-New parameter:
-    - `Investment_Final_Demand` with element `investment_final_demand`
+- `gdp` - State GDP data (`SAGDP2`) loaded using [`WiNDCRegional.load_state_gdp`](@ref).
 
-New Sets:
-    - `investment_final_demand` with element `invest` in domain `col`
+## Added Parameters
+
+- `Investment_Final_Demand` with element `investment_final_demand`
+
+## Added Sets
+
+- `investment_final_demand` with element `invest` in domain `col`
+
+## Aggregate Parameters
+
+Add `investment_final_demand` to `Use`, `Other_Final_Demand`, and `Final_Demand` parameters.
+
 """
 function disaggregate_investment_final_demand(
         state_table::State,    
@@ -655,14 +744,21 @@ end
         raw_data::Dict;
     )
 
-Disaggregate the personal consumption expenditure from the national summary into
+Disaggregate the personal consumption expenditure by shares from the national summary into
 state-level using BEA PCE data.
 
-Raw data used:
-    - `pce`
+## Raw Data
+    
+- `pce` - Personal Consumption Expenditure data loaded using 
+    [`WiNDCRegional.load_pce_data`](@ref).
 
-New Parameter
-    - `Personal_Consumption` with element `personal_consumption`
+## Added Parameters
+
+- `Personal_Consumption` with element `personal_consumption`
+
+## Aggregate Parameters
+
+Add `personal_consumption` to `Use`, `Other_Final_Demand`, and `Final_Demand` parameters.
 """
 function disaggregate_personal_consumption(
         state_table::State,    
@@ -711,11 +807,18 @@ end
 Disaggregate the household supply from the national summary into state-level using
 BEA PCE data.
 
-Raw data used:
-    - `pce`
+## Raw Data
+    
+- `pce` - Personal Consumption Expenditure data loaded using 
+    [`WiNDCRegional.load_pce_data`](@ref).
 
-New Parameter
-    - `Household_Supply` with element `household_supply`
+## Added Parameters
+
+- `Household_Supply` with element `household_supply`
+
+## Aggregate Parameters
+
+Add `household_supply` to `Supply` parameters.
 """
 function disaggregate_household_supply(
         state_table::State,    
@@ -764,14 +867,22 @@ Disaggregate the government final demand from the national summary into state-le
 using Census SGF data. Also aggregates all government final demand to a single 
 element `govern`, updates the elements table accordingly.
 
-Raw data used:
-    - `sgf`
+## Raw Data
+    
+- `sgf` - State Government Finances data loaded using 
+    [`WiNDCRegional.load_state_finances`](@ref).
 
-New parameter:
-    - `Government_Final_Demand` with element `government_final_demand`
+## Added Parameters
 
-New Sets:
-    - `government_final_demand` with element `govern` in domain `col`
+- `Government_Final_Demand` with element `government_final_demand`
+
+## Added Sets
+
+- `government_final_demand` with element `govern` in domain `col`
+
+## Aggregate Parameters
+
+Add `government_final_demand` to `Use`, `Other_Final_Demand`, and `Final_Demand` parameters.
 """
 function disaggregate_government_final_demand(
         state_table::State,    
@@ -840,12 +951,19 @@ end
 Disaggregate the foreign exports from the national summary into state-level using
 BEA GSP data and trade shares.
 
-Raw data used:
-    - `gdp`
-    - `trade_shares`
+## Raw Data
 
-New Parameter
-    - `Export` with element `export`
+- `gdp` - State GDP data (`SAGDP2`) loaded using [`WiNDCRegional.load_state_gdp`](@ref).
+- `trade_shares` - Trade shares data loaded using 
+    [`WiNDCRegional.load_trade_shares`](@ref).
+
+## Added Parameters
+
+- `Export` with element `export`
+
+## Aggregate Parameters
+
+Add `export` to `Use`, `Final_Demand`, and `Export` parameters.
 """
 function disaggregate_foreign_exports(
         state_table::State,    
@@ -933,15 +1051,22 @@ end
 Reexports are defined as the negative portion of the difference between total 
 supply and exports.
 
-Dependent on:
-    - [`WiNDCRegional.total_supply`](@ref)
-    - exports
+## Depends On
 
-New Parameter
-    - `Reexport` with element `reexport`
+- [`WiNDCRegional.total_supply`](@ref)
+- Exports
 
-New Sets:
-    - `reexport` with element `reexport` in domain `col`
+## Added Parameters
+
+- `Reexport` with element `reexport`
+
+## Added Sets
+
+- `reexport` with element `reexport` in domain `col`
+
+## Aggregate Parameters
+
+Add `reexport` to `Use` parameter.
 """
 function create_reexports(
         state_table::State,
@@ -991,11 +1116,17 @@ end
 Disaggregate the foreign imports from the national summary into state-level using
 [`absorption`](@ref).
 
-Dependent on:
-    - [`absorption`](@ref)
+## Depends On
 
-New Parameter:
-    - `Import` with element `import`
+- [`absorption`](@ref)
+
+## Added Parameters
+
+- `Import` with element `import`
+
+## Aggregate Parameters
+
+Add `import` to `Supply` parameter.
 """
 function disaggregate_foreign_imports(
         state_table::State,    
@@ -1041,8 +1172,16 @@ end
 Disaggregate the margin demand from the national summary into state-level using
 [`absorption`](@ref).
 
-Dependent on:
+## Depends On
     - [`absorption`](@ref)
+
+## Added Parameters
+
+- `Margin_Demand` with element `margin_demand`
+
+## Aggregate Parameters
+
+Add `margin_demand` to `Supply` parameter.
 """
 function disaggregate_margin_demand(
         state_table::State,    
@@ -1089,11 +1228,17 @@ end
 Disaggregate the duty from the national summary into state-level using national
 level duty rates and total imports by state.
 
-Dependent on:
-    - imports
+## Depends On
+    
+- Imports
 
-New Parameter:
-    - `Duty` with element `duty`
+## Added Parameters
+
+- `Duty` with element `duty`
+
+## Aggregate Parameters
+
+Add `duty` to `Supply` parameter.
 """
 function disaggregate_duty(
         state_table::State,    
@@ -1221,20 +1366,30 @@ end
 Create regional demand (local + national) based on regional purchase coefficients.
 
 
-Raw data used:
-    - `rpc`
+## Raw Data
+    
+- `rpc` - Regional purchase coefficients loaded using 
+    [`WiNDCRegional.load_regional_purchase_coefficients`](@ref).
 
-Dependent on:
-    - [`WiNDCRegional.absorption`](@ref)
-    - [`WiNDCRegional.total_supply`](@ref)
+## Depends On
 
-New Parameters:
-    - `local_demand` with element `local_demand`
-    - `national_demand` with element `national_demand`
+- [`WiNDCRegional.absorption`](@ref)
+- [`WiNDCRegional.total_supply`](@ref)
 
-New Sets:
-    - `local_demand` with element `local_demand` in domain `col`
-    - `national_demand` with element `national_demand` in domain `col`
+## Added Parameters
+
+- `Local_Demand` with element `local_demand`
+- `National_Demand` with element `national_demand`
+
+## Added Sets
+
+- `local_demand` with element `local_demand` in domain `col`
+- `national_demand` with element `national_demand` in domain `col`
+
+## Aggregate Parameters
+
+Add `local_demand` and `national_demand` to `Supply` parameter.
+
 """
 function create_regional_demand(
         state_table::State,
@@ -1313,8 +1468,8 @@ function create_regional_demand(
                 (set = :National_Demand, name = :national_demand, description = "National Demand parameter"),
                 (set = :local_demand, name = :local_demand, description = "Local Demand element"),
                 (set = :national_demand, name = :national_demand, description = "National Demand element"),
-                (set = :supply, name = :local_demand, description = "Local Demand element"),
-                (set = :supply, name = :national_demand, description = "National Demand element"),
+                (set = :Supply, name = :local_demand, description = "Local Demand element"),
+                (set = :Supply, name = :national_demand, description = "National Demand element"),
             ])
         )
 
@@ -1329,14 +1484,26 @@ end
         raw_data::Dict;
     )
 
-Raw data used:
-    - `rpc`
+## Raw Data
+    
+- `rpc` - Regional purchase coefficients loaded using 
+    [`WiNDCRegional.load_regional_purchase_coefficients`](@ref).
 
-New Parameters:
-    - `Local_Margin_Supply` with element `local_margin_supply`
-    - `National_Margin_Supply` with element `region_margin_supply`
-    - `Margin_Supply` with elements `local_margin_supply` and `region_margin_supply`
+## Added Parameters
 
+- `Local_Margin_Supply` with element `local_margin_supply`
+- `National_Margin_Supply` with element `region_margin_supply`
+- `Margin_Supply` with elements `local_margin_supply` and `region_margin_supply`
+
+## Added Sets
+
+- `local_margin_supply` with element `local_margin_supply` in domain `parameter`
+- `national_margin_supply` with element `national_margin_supply` in domain `parameter`
+
+## Aggregate Parameters
+
+Add `local_margin_supply` and `national_margin_supply` to `Margin_Supply` and `Use` 
+parameters.
     
 """
 function create_regional_margin_supply(
@@ -1433,7 +1600,7 @@ function create_regional_margin_supply(
         x -> vcat(x,
             DataFrame([
                 (name = :Local_Margin_Supply, description = "Local Margin Supply", domain = :parameter),
-                (name = :National_Margin_Supply, description = "National Margin Supply", domain = :parameter)
+                (name = :National_Margin_Supply, description = "National Margin Supply", domain = :parameter),
                 (name = :Margin_Supply, description = "Margin Supply", domain = :parameter),
             ])
         )
@@ -1444,10 +1611,10 @@ function create_regional_margin_supply(
                 (set = :National_Margin_Supply, name = :national_margin_supply, description = "National Margin Supply parameter"),
                 (set = :Margin_Supply, name = :local_margin_supply, description = "Local Margin Supply element"),
                 (set = :Margin_Supply, name = :national_margin_supply, description = "National Margin Supply element"),
+                (set = :Use, name = :local_margin_supply, description = "Local Margin Supply element"),
+                (set = :Use, name = :national_margin_supply, description = "National Margin Supply element"),
             ])
         )  
 
     return State(df, S, E)
-
-
 end
