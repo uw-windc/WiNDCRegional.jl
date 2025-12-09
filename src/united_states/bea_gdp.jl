@@ -9,7 +9,36 @@ function add_good(state_year::DataFrame, good::Symbol)
     return df
 end
 
+"""
+    load_state_gdp(
+        path::String, 
+        name::String;
+        state_fips::DataFrame = load_state_fips(),
+        industry_codes::DataFrame = load_industry_codes(),
+        )
 
+Load SAGDP data. 
+
+## Required Arguments
+
+- `path::String`: Path to the SAGDP CSV file.
+- `name::String`: Name to assign to the loaded data, e.g. `gdp`.
+
+## Optional Arguments
+
+- `state_fips::DataFrame`: DataFrame mapping state FIPS codes to state abbreviations.
+- `industry_codes::DataFrame`: DataFrame mapping BEA industry codes to NAICS codes.
+
+By default, we use the default maps provided by [`load_state_fips()`](@ref) and [`load_industry_codes()`](@ref).
+However, any mapping DataFrame with the same structure can be provided.
+
+## Data Source
+
+This data can be downloaded from 
+[the BEA website](https://apps.bea.gov/regional/downloadzip.htm), select `Gross
+Domestic Product (GDP) by State` and download the `SAGDP` data.
+
+"""
 function load_state_gdp(
     path::String, 
     name::String;
