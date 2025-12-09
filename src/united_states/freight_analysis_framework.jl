@@ -220,12 +220,13 @@ based on the FAF data and the commodity data. The returned DataFrame has columns
 - `naics` - NAICS code of the good
 - `rpc` - Regional purchase coefficient, between 0 and 1
 
-The computation has two steps:
+The computation has several steps:
 
-1. Identify non-trade goods, which are goods that do not appear in the FAF data.
+1. Load the FAF data using [`load_faf_data`](@ref) to get trade flows.
+2. Identify non-trade goods, which are goods that do not appear in the FAF data.
    Pin the RPC to be the average over the traded goods.
-2. Compute the RPC as local / (local + national)
-3. Apply any adjusted demand values provided in the `adjusted_demand` dictionary.
+3. Compute the RPC as local / (local + national)
+4. Apply any adjusted demand values provided in the `adjusted_demand` dictionary.
 
 ## Arguments
 
@@ -245,6 +246,16 @@ The computation has two steps:
 - `cols_to_keep`: Columns to keep from the FAF data. Defaults to a predefined list of columns.
 - `regex_cols_to_keep`: Regular expression to match columns to keep from the FAF data. Defaults to a predefined regular expression.
 - `max_year`: Maximum year to include in the data. Defaults to the maximum year in the summary data.
+
+## Data Source
+
+[The Frieght Analysis Framework (FAF)](https://www.bts.gov/faf) data can be 
+downloaded from the BTS website. We use two data files:
+
+- The regional database, or `FAF5.7.1_State.csv` as of December 2025, which 
+contains data from 2017 onward.
+- The reprocessed data file, or `FAF5.7.1_Reprocessed.csv` as of December 2025,
+which contains data from 1997 to 2012 on a five-year basis.
 """
 function load_regional_purchase_coefficients(
     summary::WiNDCNational.National,
