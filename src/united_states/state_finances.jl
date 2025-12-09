@@ -67,7 +67,7 @@ directory path.
 - `replacement_data::Dict`: A dictionary of replacement data to append to the
     dataframe. The keys are column names, and the values are dictionaries
     mapping new data names to existing data names. The replacement is done using
-    [`WiNDCRegional.sgf_append_data`](@ref).
+    [`WiNDCRegional.extend_data`](@ref).
 
 ## Data Source
 

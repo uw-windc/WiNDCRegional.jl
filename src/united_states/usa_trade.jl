@@ -135,8 +135,8 @@ of goods.
 
 ## Required Arguments
 
-- `exports::DataFrame`: Export data from [`load_usda_raw_trade_data`](@ref).
-- `imports::DataFrame`: Import data from [`load_usda_raw_trade_data`](@ref).
+- `exports::DataFrame`: Export data from [`load_usa_raw_trade_data`](@ref).
+- `imports::DataFrame`: Import data from [`load_usa_raw_trade_data`](@ref).
 - `usda_agricultural_flow::DataFrame`: Agricultural flow data from 
     [`load_usda_agricultural_flow`](@ref).
 

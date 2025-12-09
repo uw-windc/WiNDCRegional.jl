@@ -222,7 +222,7 @@ based on the FAF data and the commodity data. The returned DataFrame has columns
 
 The computation has several steps:
 
-1. Load the FAF data using [`load_faf_data`](@ref) to get trade flows.
+1. Load the FAF data using [`WiNDCRegional.load_faf_data`](@ref) to get trade flows.
 2. Identify non-trade goods, which are goods that do not appear in the FAF data.
    Pin the RPC to be the average over the traded goods.
 3. Compute the RPC as local / (local + national)

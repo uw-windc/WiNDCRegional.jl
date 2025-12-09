@@ -446,11 +446,13 @@ using BEA GSP data.
 
 ## Raw Data
 
-- `gdp` - State GDP data (`SAGDP2`) loaded using [`WiNDCRegional.load_state_gdp`](@ref).
-- `labor` - State labor data (`SAGDP4`) loaded using [`WiNDCRegional.load_labor_data`](@ref).
-- `capital` - State capital data (`SAGDP7`) loaded using [`WiNDCRegional.load_capital_data`](@ref).
-- `tax` - State tax data (`SAGDP6`) loaded using [`WiNDCRegional.load_tax_data`](@ref).
-- `subsidy` - State subsidy data (`SAGDP5`) loaded using [`WiNDCRegional.load_subsidy_data`](@ref).
+All data is loaded using [`WiNDCRegional.load_state_gdp`](@ref).
+
+- `gdp` - State GDP data (`SAGDP2`) 
+- `labor` - State labor data (`SAGDP4`)
+- `capital` - State capital data (`SAGDP7`)
+- `tax` - State tax data (`SAGDP6`)
+- `subsidy` - State subsidy data (`SAGDP5`)
 
 ## Added Parameters
 
