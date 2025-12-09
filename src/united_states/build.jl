@@ -581,7 +581,7 @@ function disaggregate_output_tax(
         ) |>
         x -> transform(x, 
             [:output, :value] => ((o,r) -> -o .* r) => :output_tax,
-            :value => ByRow(y -> tax_code) => :row
+            :value => ByRow(y -> [tax_code, :output_tax]) => [:row, :parameter]
         ) |>
         x -> subset(x, :output_tax => ByRow(y -> abs(y)>1e-5)) |>
         x -> select(x, :row, :col, :region, :year, :parameter, :output_tax => :value)
@@ -1135,7 +1135,7 @@ function create_reexports(
     S = sets(state_table) |>
         x -> vcat(x,
             DataFrame([
-                (name = :reexport, description = "Reexports", domain = :row),
+                (name = :reexport, description = "Reexports", domain = :col),
                 (name = :Reexport, description = "Reexports", domain = :parameter)
             ])
         )
@@ -1316,7 +1316,7 @@ function disaggregate_duty(
         ) |>
         x -> transform(x, 
             [:import, :duty_rate] => ((o,r) -> o .* r) => :value,
-            :duty_rate => ByRow(y -> (duty_code, duty_set)) => [:col, :parameter]
+            :duty_rate => ByRow(y -> (duty_code, :duty)) => [:col, :parameter]
         ) |>
         x -> subset(x, :value => ByRow(y -> abs(y)>1e-5)) |>
         x -> select(x, :row, :col, :year, :region, :parameter, :value)
@@ -1333,7 +1333,7 @@ function disaggregate_duty(
     E = elements(state_table) |>
         x -> vcat(x,
             DataFrame([
-                (set = :Duty, name = duty_code, description = "Duty"),
+                (set = :Duty, name = :duty, description = "Duty"),
                 (set = :Supply, name = duty_code, description = "Duty"),
             ])
         )
@@ -1650,7 +1650,7 @@ function create_regional_margin_supply(
     x -> coalesce.(x,0) |>
     x -> transform(x,
         [:totmarg, :value] => ByRow(-) => :value,
-        :row => ByRow(y -> :region_margin_supply) => :parameter    
+        :row => ByRow(y -> :national_margin_supply) => :parameter    
     ) |>
     x -> select(x, :row, :col, :year, :region, :parameter, :value)
 
