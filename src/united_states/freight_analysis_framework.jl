@@ -24,7 +24,7 @@ function faf_cols_to_keep(i,name, cols_to_keep, regex_cols_to_keep, max_year)
     return true
 end
 
-raw"""
+"""
     load_faf_base(
         path::String,
         state_fips::DataFrame,
@@ -37,7 +37,7 @@ raw"""
             :trade_type,
             :sctg2,
         ],
-        regex_cols_to_keep = r"^value_(\d{4})$",
+        regex_cols_to_keep = r"^value_(\\d{4})\$",
         max_year = 2023,
     )
 
@@ -83,7 +83,7 @@ function load_faf_base(
     return df
 end
 
-raw"""
+"""
     load_faf_data(
         state_path::String,
         reprocessed_path::String,
@@ -97,7 +97,7 @@ raw"""
             :trade_type,
             :sctg2,
         ],
-        regex_cols_to_keep = r"^value_(\d{4})$",
+        regex_cols_to_keep = r"^value_(\\d{4})\$",
         max_year = 2023,
     )
 
@@ -222,7 +222,7 @@ based on the FAF data and the commodity data. The returned DataFrame has columns
 
 The computation has several steps:
 
-1. Load the FAF data using [`WiNDCRegional.load_faf_data`](@ref) to get trade flows.
+1. Load the FAF data using [`load_faf_data`](@ref) to get trade flows.
 2. Identify non-trade goods, which are goods that do not appear in the FAF data.
    Pin the RPC to be the average over the traded goods.
 3. Compute the RPC as local / (local + national)
