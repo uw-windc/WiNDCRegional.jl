@@ -76,7 +76,12 @@ function initialize_table(summary::National, raw_data::Dict)
             DataFrame([
                 (set = :state, name = s, description = s) for s in state_fips[!, :state]
             ])
+        ) |>
+        x -> subset(x,
+            :name => ByRow(y -> !(y in (:Used, :Other)))
         )
+
+    
 
     state_table = State(
         DataFrame(row = [], col = [], region = [], year = [], parameter = [], value = []),
