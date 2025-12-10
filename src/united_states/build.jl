@@ -1339,7 +1339,7 @@ function disaggregate_duty(
         x -> vcat(x,
             DataFrame([
                 (set = :Duty, name = :duty, description = "Duty"),
-                (set = :Supply, name = duty_code, description = "Duty"),
+                (set = :Supply, name = :duty, description = "Duty"),
             ])
         )
 
