@@ -364,6 +364,7 @@ function create_state_table(
     state_table = WiNDCRegional.disaggregate_duty(state_table, summary, raw_data)
     state_table = WiNDCRegional.disaggregate_tax(state_table, summary, raw_data)
 
+    state_table = WiNDCRegional.adjust_by_absorption(state_table)
 
     state_table = WiNDCRegional.create_regional_demand(state_table, summary, raw_data)
     state_table = WiNDCRegional.create_regional_margin_supply(state_table, summary, raw_data)
@@ -576,12 +577,31 @@ function disaggregate_output_tax(
     tax_code = elements(summary, :Output_Tax; base=true) |>
         x -> only(x)[:name]
 
+    output_tax_rate = innerjoin(
+        table(summary, :Intermediate_Supply) |>
+            x -> groupby(x, [:col, :year]) |>
+            x -> combine(x, :value => sum => :is),
+        
+        table(summary,
+            :Output_Tax,
+            :Sector_Subsidy
+        ) |>
+        x -> groupby(x, [:col, :year]) |>
+        x -> combine(x, :value => sum => :ot),
+        on = [:col, :year]
+    ) |>
+    x -> transform(x, 
+        [:is, :ot] => ByRow((is,ot) -> -ot/is) => :value,
+        :col => ByRow(y -> (:output_tax_rate)) => :parameter,
+    ) |>
+    x -> select(x, :col, :year, :parameter, :value) 
 
-    state_output_tax = outerjoin(
+    state_output_tax = innerjoin(
         table(state_table, :Intermediate_Supply) |>
             x -> groupby(x, [:year, :col, :region]) |>
             x -> combine(x, :value => sum => :output),
-        WiNDCNational.output_tax_rate(summary),
+        #WiNDCNational.output_tax_rate(summary),
+        output_tax_rate,
         on = [:year, :col]
         ) |>
         x -> transform(x, 
@@ -1365,7 +1385,7 @@ function adjust_by_absorption(
     # Want to be negative
     diff = vcat(
         WiNDCRegional.absorption(state_table),
-        table(state_table, :Tax, :Subsidy, :Reexport, :Import, :Duty, :Margin_Demand)
+        table(state_table, :Tax, :Reexport, :Import, :Duty, :Margin_Demand)
     ) |>
     x -> groupby(x, [:year, :region, :row]) |>
     x -> combine(x, :value => sum => :diff) |>
@@ -1403,7 +1423,7 @@ function adjust_by_absorption(
         ) |>
         x -> coalesce.(x,0) |>
         x -> transform(x,
-            [:value, :diff] => ByRow(+) => :value,
+            [:value, :diff] => ByRow(-) => :value,
         ) |> x -> select(x, Not(:diff))
 
 
