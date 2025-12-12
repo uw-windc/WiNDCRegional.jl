@@ -1,12 +1,14 @@
 module WiNDCRegional
 
     using DataFrames, CSV, XLSX, WiNDCContainer, WiNDCNational
-
     using JuMP, Ipopt
+    import DataStructures: DefaultDict
+    using MPSGE
 
     include("structs.jl")
 
     export State
+    
 
 
     include("aggregate_parameters.jl")
@@ -36,5 +38,8 @@ module WiNDCRegional
 
     include("united_states/build.jl")
     export create_state_table
+
+    include("model.jl")
+    
 
 end

@@ -76,7 +76,12 @@ function initialize_table(summary::National, raw_data::Dict)
             DataFrame([
                 (set = :state, name = s, description = s) for s in state_fips[!, :state]
             ])
+        ) |>
+        x -> subset(x,
+            :name => ByRow(y -> !(y in (:Used, :Other)))
         )
+
+    
 
     state_table = State(
         DataFrame(row = [], col = [], region = [], year = [], parameter = [], value = []),
@@ -359,6 +364,7 @@ function create_state_table(
     state_table = WiNDCRegional.disaggregate_duty(state_table, summary, raw_data)
     state_table = WiNDCRegional.disaggregate_tax(state_table, summary, raw_data)
 
+    #state_table = WiNDCRegional.adjust_by_absorption(state_table)
 
     state_table = WiNDCRegional.create_regional_demand(state_table, summary, raw_data)
     state_table = WiNDCRegional.create_regional_margin_supply(state_table, summary, raw_data)
@@ -571,19 +577,37 @@ function disaggregate_output_tax(
     tax_code = elements(summary, :Output_Tax; base=true) |>
         x -> only(x)[:name]
 
+    output_tax_rate = innerjoin(
+        table(summary, :Intermediate_Supply) |>
+            x -> groupby(x, [:col, :year]) |>
+            x -> combine(x, :value => sum => :is),
+        
+        table(summary,
+            :Output_Tax,
+            :Sector_Subsidy
+        ) |>
+        x -> groupby(x, [:col, :year]) |>
+        x -> combine(x, :value => sum => :ot),
+        on = [:col, :year]
+    ) |>
+    x -> transform(x, 
+        [:is, :ot] => ByRow((is,ot) -> -ot/is) => :value,
+        :col => ByRow(y -> (:output_tax_rate)) => :parameter,
+    ) |>
+    x -> select(x, :col, :year, :parameter, :value) 
 
-    state_output_tax = outerjoin(
+    state_output_tax = innerjoin(
         table(state_table, :Intermediate_Supply) |>
             x -> groupby(x, [:year, :col, :region]) |>
             x -> combine(x, :value => sum => :output),
-        WiNDCNational.output_tax_rate(summary),
+        #WiNDCNational.output_tax_rate(summary),
+        output_tax_rate,
         on = [:year, :col]
         ) |>
         x -> transform(x, 
             [:output, :value] => ((o,r) -> -o .* r) => :output_tax,
             :value => ByRow(y -> [tax_code, :output_tax]) => [:row, :parameter]
         ) |>
-        x -> subset(x, :output_tax => ByRow(y -> abs(y)>1e-5)) |>
         x -> select(x, :row, :col, :region, :year, :parameter, :output_tax => :value)
 
 
@@ -651,7 +675,7 @@ function disaggregate_tax(
 
     col_label = elements(summary, :Tax; base = true)[1,1]
 
-    state_tax = outerjoin(
+    state_tax = innerjoin(
             WiNDCRegional.absorption(state_table),
             absorption_tax_rate(summary, output = :tax_rate) |> x -> select(x, Not(:parameter)),
             on = [:year, :row],
@@ -660,10 +684,7 @@ function disaggregate_tax(
             [:value, :tax_rate] => ByRow((v,tr) -> -v*tr) => :value,
             :parameter => ByRow(y -> (col_label, :tax)) => [:col, :parameter]
         ) |>
-        x -> select(x, :row, :col, :region, :year, :parameter, :value) |>
-        x -> subset(x,
-            :value => ByRow(y -> abs(y) > 1e-6)
-        )
+        x -> select(x, :row, :col, :region, :year, :parameter, :value)
     df = vcat(table(state_table),state_tax)
 
     S = sets(state_table) |>
@@ -1309,7 +1330,7 @@ function disaggregate_duty(
     duty_code, duty_set = elements(summary, :Duty; base=true) |>
         x -> (only(x)[:name], only(x)[:set])
 
-    state_duty = rightjoin(
+    state_duty = innerjoin(
         table(state_table, :Import) |> x-> rename(x, :value => :import),
         WiNDCNational.import_tariff_rate(summary; output = :duty_rate, minimal=true) |> x-> select(x, Not(:parameter)),
         on = [:year, :row]
@@ -1318,7 +1339,6 @@ function disaggregate_duty(
             [:import, :duty_rate] => ((o,r) -> o .* r) => :value,
             :duty_rate => ByRow(y -> (duty_code, :duty)) => [:col, :parameter]
         ) |>
-        x -> subset(x, :value => ByRow(y -> abs(y)>1e-5)) |>
         x -> select(x, :row, :col, :year, :region, :parameter, :value)
 
     df = vcat(table(state_table), state_duty)
@@ -1334,7 +1354,7 @@ function disaggregate_duty(
         x -> vcat(x,
             DataFrame([
                 (set = :Duty, name = :duty, description = "Duty"),
-                (set = :Supply, name = duty_code, description = "Duty"),
+                (set = :Supply, name = :duty, description = "Duty"),
             ])
         )
 
@@ -1360,7 +1380,7 @@ function adjust_by_absorption(
     # Want to be negative
     diff = vcat(
         WiNDCRegional.absorption(state_table),
-        table(state_table, :Tax, :Subsidy, :Reexport, :Import, :Duty, :Margin_Demand)
+        table(state_table, :Tax, :Reexport, :Import, :Duty, :Margin_Demand)
     ) |>
     x -> groupby(x, [:year, :region, :row]) |>
     x -> combine(x, :value => sum => :diff) |>
@@ -1398,7 +1418,7 @@ function adjust_by_absorption(
         ) |>
         x -> coalesce.(x,0) |>
         x -> transform(x,
-            [:value, :diff] => ByRow(+) => :value,
+            [:value, :diff] => ByRow(-) => :value,
         ) |> x -> select(x, Not(:diff))
 
 
@@ -1465,7 +1485,7 @@ function create_regional_demand(
         ) |>
         x -> groupby(x, [:year, :region, :row]) |>
         x -> combine(x, :value => sum => :value) |>
-        x -> subset(x, :value => ByRow(<(1e-6)))  |>
+        x -> subset(x, :value => ByRow(<(0)))  |>
         x -> transform(x, :value => ByRow(-) => :value)
 
     domestic_reexport_demand = vcat(
