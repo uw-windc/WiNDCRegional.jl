@@ -95,7 +95,7 @@ Returns a DataFrame with columns `:year`, `:state`, `:naics`, `:value`, and `:fl
 
 This loads the file [`Commodity_detail_by_state_cy.xlsx`](https://ers.usda.gov/sites/default/files/_laserfiche/DataFiles/100812/commodity_detail_by_state_cy.xlsx). 
 This is a very fragile link that may change over time. If you find this link is broken,
-raise an issue on the WiNDCRegional GitHub repository.
+raise an issue on the [WiNDCRegional GitHub repository](https://github.com/uw-windc/WiNDCRegional.jl).
 """
 function load_usda_agricultural_flow(
         path::String,

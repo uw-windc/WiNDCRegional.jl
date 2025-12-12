@@ -121,9 +121,9 @@ years uses the data from the closest available year.
 downloaded from the BTS website. We use two data files:
 
 - The regional database, or `FAF5.7.1_State.csv` as of December 2025, which 
-contains data from 2017 onward.
+    contains data from 2017 onward.
 - The reprocessed data file, or `FAF5.7.1_Reprocessed.csv` as of December 2025,
-which contains data from 1997 to 2012 on a five-year basis.
+    which contains data from 1997 to 2012 on a five-year basis.
 """
 function load_faf_data(
         state_path::String,

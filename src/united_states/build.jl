@@ -1257,7 +1257,8 @@ Disaggregate the margin demand from the national summary into state-level using
 [`absorption`](@ref).
 
 ## Depends On
-    - [`absorption`](@ref)
+
+- [`absorption`](@ref)
 
 ## Added Parameters
 
