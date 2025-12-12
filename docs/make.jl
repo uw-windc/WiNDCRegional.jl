@@ -14,7 +14,9 @@ const _PAGES = [
     "Data" => [
         "data/maps.md",
         "data/input_data.md",
+        "data/disaggregation.md",
         "data/calibration.md",
+        "data/set_listing.md",
     ],
     "Model" => [
         "model/model.md"
