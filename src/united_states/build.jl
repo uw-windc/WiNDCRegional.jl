@@ -287,7 +287,8 @@ end
 """
     create_state_table(
         summary::National,
-        regional_info::Dict,
+        regional_info::Dict;
+        tol::Float64 = 0
     )
 
 Disaggregate the US WiNDCNational summary-level data into a state-level table, 
@@ -334,7 +335,7 @@ The disaggregation is performed through the following steps:
 function create_state_table(
         summary::National,
         regional_info::Dict;
-        tol::Float64 = 0
+        tol::Float64 = 0.0
     )
 
     metadata = regional_info["metadata"]
