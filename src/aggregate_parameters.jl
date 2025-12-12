@@ -226,31 +226,6 @@ function absorption(
 end
 
 """
-    balance_of_payments(
-        state_table::AbstractRegionalTable; 
-        column::Symbol = :value, 
-        output::Symbol = :value
-    )
-
-Calculate the balance of payments for each commodity in each region. The balance
-of payments is defined as the sum of:
-
-- `Imports`
-- `Exports`
-"""
-function balance_of_payments(
-        state_table::AbstractRegionalTable; 
-        column::Symbol = :value, 
-        output::Symbol = :value
-    )
-    return table(state_table, :Imports, :Exports) |>
-        x -> groupby(x, [:row, :year, :region]) |>
-        x -> combine(x, column => sum => output) |>
-        x -> transform(x, :row => ByRow(y -> (:bop, :balance_of_payments)) => [:col, :parameter])
-end
-
-
-"""
     output_tax_rate(
             state_table::AbstractRegionalTable; 
             column::Symbol = :value, 
