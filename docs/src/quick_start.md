@@ -4,7 +4,7 @@ This guide provides a brief overview of how to use the WiNDCRegional package to 
 
 ## Download the Raw Data
 
-The raw data can be downloaded from the WiNDC website. Extract the data files to a local directory on your machine. You will need to provide the path to this directory when loading the data into Julia.
+The raw data can be downloaded from [the following link](https://windc.wisc.edu/download?filename=b1b69504efef7fc44d6c18c7dd4dc4e5). Extract the data files to a local directory on your machine. You will need to provide the path to this directory when loading the data into Julia.
 
 ## Set up Julia Environment
 
