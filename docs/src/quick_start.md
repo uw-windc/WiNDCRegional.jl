@@ -32,12 +32,8 @@ The disaggregation process is still being refined, but the following code will p
 using DataFrames, YAML, WiNDCRegional, MPSGE, WiNDCNational
 
 ## Load the YAML file
-begin
-    info = YAML.load_file("/path/to/regional.yaml")
-    metadata = info["metadata"]
-    data_directory = metadata["data_directory"]
-    data_info = info["data"]
-end
+info = load_regional_yaml("path/to/your/data/directory")
+
 
 ## Load the national records. Issue with `Used` and `Other`, so they get removed.
 summary_raw = WiNDCNational.build_us_table()

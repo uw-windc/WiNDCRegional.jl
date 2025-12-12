@@ -8,6 +8,8 @@ However, users may wish to customize certain aspects of the configuration. The Y
     The YAML configuration structure may be subject to change as the package is further developed. Users are encouraged to check for updates in future releases.
 
 
+This data is loaded using the [`load_regional_yaml`](@ref) function, which reads the YAML file and returns a dictionary containing the configuration information.
+
 ## Metadata Section
 
 The `metadata` section contains four keys:
