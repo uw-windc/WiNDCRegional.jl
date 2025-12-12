@@ -8,7 +8,7 @@ At the national level, the Bureau of Economic Analysis (BEA) provides comprehens
 
 The disaggregation process involves several key steps:
 
-1 **Data Mapping**: Regularize the input data to ensure consistent codes for states, sectors, and commodities using mapping tables.
+1. **Data Mapping**: Regularize the input data to ensure consistent codes for states, sectors, and commodities using mapping tables.
 2. **Data Collection**: Gather relevant regional data, including state-level GDP, personal consumption expenditures (PCE), state finances, freight data, trade data, and agricultural flow data.
 3. **Disaggregation**: Utilize the collected and mapped data to disaggregate the national I/O table into regional I/O tables, reflecting the economic activities of individual states or regions.
 4. **Validation**: Validate the disaggregated regional I/O tables using a CGE model to ensure accuracy and reliability.
