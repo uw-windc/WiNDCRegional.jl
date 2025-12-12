@@ -1,3 +1,135 @@
+""" 
+    regional_model(state_table::State; year = 2024)
+
+Constructs a regional MPSGE model based on the provided state-level data table.
+
+## Arguments
+
+- `state_table::State`: A state-level data table containing the necessary parameters for the regional model.
+
+## Optional Arguments
+
+- `year::Int = 2024`: The year for which the model is being constructed. This 
+    determines which year's data from the state table will be used.
+
+## Returns
+
+An `MPSGEModel` object representing the regional model.
+
+## Paramters
+
+This model includes the following parameters:
+
+- `OTR[r=states, s=sectors]`: The output tax rate applied to sectoral outputs in each state.
+- `TR[r=states, g=commodities]`: The tax rate applied to commodities in each state.
+- `DR[r=states, g=commodities]`: The duty rate applied to imported commodities in each state.
+
+If the model is denoted `M`, these parameters can be accessed as `M[:OTR]`, 
+`M[:TR]`, and `M[:DR]`. 
+
+## Variables
+
+### Sectors
+
+- Y[r=states, s=sectors]: Sectoral production in each state.
+- X[r=states, g=commodities]: Commodity disposition in each state.
+- A[r=states, g=commodities]: Commodity absorption in each state.
+- C[r=states]: Aggregate final demand in each state.
+- MS[r=states, m=margins]: Margin supply in each state.
+
+### Commodities
+
+- PA[r=states, g=commodities]: Regional market (input) prices in each state.
+- PY[r=states, g=commodities]: Regional market (output) prices in each state.
+- PD[r=states, g=commodities]: Local market prices in each state.
+- PN[g=commodities]: National market prices.
+- PL[r=states]: Wage rates in each state.
+- PK[r=states, s=sectors]: Rental rates of capital in each state.
+- PM[r=states, m=margins]: Margin prices in each state.
+- PC[r=states]: Consumer price index in each state.
+- PFX: Foreign exchange rate.
+
+### Consumer
+
+- RA[r=states]: Representative agent in each state.
+
+## Production Blocks
+
+### Y
+[`WiNDCRegional.sectoral_output`](@ref)
+```julia
+sectoral_output(state_year; output = :DefaultDict) |> Q->
+@production(M, Y[r=states, s=sectors], [t=0, s=0, va=>s=1], begin
+    @output(PY[r,g=commodities], Q[g, s, r, :intermediate_supply],                     t, taxes = [Tax(RA[r], M[:OTR][r,s])], reference_price = 1-Q[:otr, s, r, :output_tax_rate])
+    @input(PA[r, g=commodities], Q[g, s, r, :intermediate_demand],                     s)
+    @input(PL[r],            sum(Q[l, s, r, :labor_demand] for l in labor_demand),     va)
+    @input(PK[r, s],         sum(Q[k, s, r, :capital_demand] for k in capital_demand), va)
+end)
+```
+
+### X
+[`WiNDCRegional.disposition_data`](@ref)
+```julia
+disposition_data(state_year; output = :DefaultDict) |> Q->
+@production(M, X[r=states, g=commodities], [s=0, t=4], begin
+    @output(PFX,      Q[g, r, :netport],                t)
+    @output(PN[g],    Q[g, r, :region_national_supply], t)
+    @output(PD[r, g], Q[g, r, :region_local_supply],    t)
+    @input(PY[r, g],  Q[g, r, :total_supply],           s)
+end)
+```
+
+### A
+[`WiNDCRegional.armington_data`](@ref)
+```julia
+armington_data(state_year; output = :DefaultDict) |> Q-> 
+@production(M, A[r=states, g=commodities], [t=0, s=0, dm => s = 2, d=>dm=4], begin
+    @output(PA[r, g],        Q[g, :abs, r, :absorption],                  t, taxes = [Tax(RA[r], M[:TR][r,g])], reference_price = 1 - Q[g, :tr, r, :tax_rate])
+    @output(PFX,             Q[g, :reexport, r, :reexport],               t)
+    @input(PN[g],            Q[g, :national_demand, r, :national_demand], d)
+    @input(PD[r, g],         Q[g, :local_demand, r, :local_demand],       d)
+    @input(PFX,          sum(Q[g, i, r, :import] for i in imports),       dm, taxes = [Tax(RA[r], M[:DR][r,g])], reference_price = 1 + Q[g, :dr, r, :duty_rate])
+    @input(PM[r, m=margins], Q[g, m, r, :margin_demand],                  s)
+end)
+```
+
+### MS
+[`WiNDCRegional.margin_supply_demand`](@ref)
+```julia
+margin_supply_demand(state_year; output = :DefaultDict) |> Q->
+@production(M, MS[r=states, m=margins], [t=0, s=0], begin
+    @output(PM[r, m],        sum(Q[g, m, r, :margin_demand] for g in commodities), t)
+    @input(PN[g=commodities],    Q[g, m, r, :national_margin_supply],              s)
+    @input(PD[r, g=commodities], Q[g, m, r, :local_margin_supply],                 s)
+end)
+```
+
+### C
+[`WiNDCRegional.consumption_data`](@ref)
+```julia
+consumption_data(state_year; output = :DefaultDict) |> Q->
+@production(M, C[r=states], [t=0, s=1], begin
+    @output(PC[r],           sum(Q[g, r, :personal_consumption] for g in commodities), t)
+    @input(PA[r, g=commodities], Q[g, r, :personal_consumption],                       s)
+end)
+```
+
+## Demand Blocks
+
+### RA
+[`WiNDCRegional.representative_agent_data`](@ref)
+```julia
+@demand(M, RA[r=states], begin
+    @final_demand(PC[r],              sum(Q[g, s, r, :personal_consumption] for g in commodities, s in personal_consumption))
+    @endowment(PY[r, g=commodities],  sum(Q[g, s, r, :household_supply] for s in personal_consumption))
+    @endowment(PFX,                       Q[:bopdef, :bopdef, r, :bopdef] + Q[:hhadj, :hhadj, r, :house_adjustment])
+    @endowment(PA[r, g=commodities],     -Q[g, :govern, r, :government_final_demand] -Q[g, :invest, r, :investment_final_demand])
+    @endowment(PL[r],                 sum(Q[g, s, r, :labor_demand] for g in labor_demand, s in sectors))
+    @endowment(PK[r, s=sectors],      sum(Q[g, s, r, :capital_demand] for g in capital_demand))
+end)
+```
+
+"""
 function regional_model(state_table::State;  year = 2024)
     state_year = State(
         table(state_table, :year => year),
@@ -291,7 +423,30 @@ function consumption_data(data::T; output = :DataFrame) where T<:AbstractRegiona
     
 end
 
+"""
+    representative_agent_data(data::T, output = :DataFrame) where T<:AbstractRegionalTable
 
+Extracts representative agent-related parameters from the regional data table.
+```julia
+    vcat(
+        table(data,
+            :Personal_Consumption,
+            :Household_Supply,
+            :Other_Final_Demand,
+            :Value_Added;
+            normalize = :Use
+            ) ,
+        household_adjustment(data),
+        balance_of_payments(data)
+    )
+```
+
+## Aggregate Data
+
+- [`WiNDCRegional.household_adjustment`](@ref)
+- [`WiNDCRegional.balance_of_payments`](@ref)
+
+"""
 function representative_agent_data(data::T; output = :DataFrame) where T<:AbstractRegionalTable
 
     df = vcat(

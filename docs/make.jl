@@ -6,7 +6,21 @@ DocMeta.setdocmeta!(WiNDCRegional, :DocTestSetup, :(using WiNDCRegional); recurs
 
 
 const _PAGES = [
-    "Introduction" => ["index.md"],
+    "Introduction" => [
+        "index.md",
+        "quick_start.md",
+        "yaml.md",
+    ],
+    "Data" => [
+        "data/maps.md",
+        "data/input_data.md",
+        "data/disaggregation.md",
+        "data/calibration.md",
+        "data/set_listing.md",
+    ],
+    "Model" => [
+        "model/model.md"
+    ],
     "API Reference" => ["api.md"],
 ]
 

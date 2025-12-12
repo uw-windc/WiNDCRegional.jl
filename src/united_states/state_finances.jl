@@ -71,7 +71,7 @@ directory path.
 
 ## Data Source
 
-The data can be downloaded from [Census.gob](https://www.census.gov/programs-surveys/state/data/datasets.All.List_75006027.html).
+The data can be downloaded from [Census.gov](https://www.census.gov/programs-surveys/state/data/datasets.All.List_75006027.html).
 We need this data from 1997 onward. There does not appear to be a bulk download option, so
 each file must be downloaded manually.
 

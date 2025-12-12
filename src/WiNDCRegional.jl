@@ -3,7 +3,7 @@ module WiNDCRegional
     using DataFrames, CSV, XLSX, WiNDCContainer, WiNDCNational
     using JuMP, Ipopt
     import DataStructures: DefaultDict
-    using MPSGE
+    using MPSGE, YAML
 
     include("structs.jl")
 
@@ -17,7 +17,7 @@ module WiNDCRegional
     include("united_states/common_files.jl")
 
     export load_state_fips, load_industry_codes, disaggregate_by_shares, load_pce_map, load_sgf_map,
-        load_usatrade_map, load_sgf_states
+        load_usatrade_map, load_sgf_states, load_regional_yaml
     
     include("united_states/bea_gdp.jl")
     export add_good, load_state_gdp, load_industry_codes

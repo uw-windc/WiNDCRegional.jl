@@ -377,13 +377,48 @@ end
 
 
 """
-    load_regional_yaml(path::String)
+    load_regional_yaml(path::String; file_name::String = "regional.yaml")
 
 Load a YAML file containing regional configuration data. Ensure the file is 
 formatted correctly with proper field names and structure.
 
+## Arguments
+
+- `path::String`: The directory path where the YAML file is located.
+
+## Optional Arguments
+
+- `file_name::String`: The name of the YAML file. Default is "regional.yaml".
+
+## Returns
+
+A dictionary containing the parsed YAML data.
+
+## Fields
+
+### metadata
+
+- `title::String`: Title of the regional data configuration.
+- `description::String`: Description of the regional data configuration.
+- `data_directory::String`: (Optional) Base directory for regional data files, if
+    not provided, defaults to the `path` argument.
+- `maps`: This specifies the mapping files. By default, the maps have not values 
+    indicating that the default mapping files included with the package should be 
+    used. If the user wishes to provide custom mapping files, they can specify 
+    the paths here.
+
+### data
+
+Specify paths to various data files needed for regional disaggregation. \
 """
-function load_regional_yaml(path::String)
-    info = YAML.load_file(path)
+function load_regional_yaml(path::String; file_name::String = "regional.yaml")
+    info = YAML.load_file(joinpath(path, file_name))
+
+    metadata = info["metadata"]
+
+    if !haskey(metadata, "data_directory")
+        metadata["data_directory"] = path
+    end
+    
     return info
 end

@@ -287,7 +287,8 @@ end
 """
     create_state_table(
         summary::National,
-        regional_info::Dict,
+        regional_info::Dict;
+        tol::Float64 = 0
     )
 
 Disaggregate the US WiNDCNational summary-level data into a state-level table, 
@@ -302,6 +303,11 @@ Returns a balanced WiNDCRegional State table.
 - `summary::National`: The national summary WiNDCNational table.
 - `regional_info::Dict`: The full contents of the `regional.yaml` file, loaded 
     as a dictionary.
+
+## Optional Arguments
+
+- `tol::Float64 = 0`: Tolerance level for removing small values from the final 
+    state table.
 
 ## Disaggregation Steps
 
@@ -328,7 +334,8 @@ The disaggregation is performed through the following steps:
 """
 function create_state_table(
         summary::National,
-        regional_info::Dict,
+        regional_info::Dict;
+        tol::Float64 = 0.0
     )
 
     metadata = regional_info["metadata"]
@@ -368,6 +375,12 @@ function create_state_table(
 
     state_table = WiNDCRegional.create_regional_demand(state_table, summary, raw_data)
     state_table = WiNDCRegional.create_regional_margin_supply(state_table, summary, raw_data)
+
+    df = table(state_table) |>
+        x -> subset(x,
+            :value => ByRow(y -> abs(y) >= tol)
+        )
+
 
     return state_table
 end
@@ -1244,7 +1257,8 @@ Disaggregate the margin demand from the national summary into state-level using
 [`absorption`](@ref).
 
 ## Depends On
-    - [`absorption`](@ref)
+
+- [`absorption`](@ref)
 
 ## Added Parameters
 
