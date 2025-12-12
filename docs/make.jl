@@ -18,7 +18,7 @@ const _PAGES = [
     ],
     "Model" => [
         "model/model.md"
-    ]
+    ],
     "API Reference" => ["api.md"],
 ]
 
