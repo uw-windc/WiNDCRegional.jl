@@ -18,7 +18,7 @@ pkg> activate .
 Then we install the necessary packages:
 
 ```julia
-pkg> add DataFrames, YAML, MPSGE, WiNDCNational
+pkg> add DataFrames, MPSGE
 pkg> add https://github.com/uw-windc/WiNDCRegional.jl
 ```
 
@@ -29,25 +29,10 @@ We will update this process once `WiNDCRegional` is a registered package.
 The disaggregation process is still being refined, but the following code will perform a basic disaggregation of national-level WiNDC results into regional-level data.
 
 ```julia
-using DataFrames, YAML, WiNDCRegional, MPSGE, WiNDCNational
+using DataFrames, WiNDCRegional, MPSGE
 
-## Load the YAML file
-info = load_regional_yaml("path/to/your/data/directory")
-
-
-## Load the national records. Issue with `Used` and `Other`, so they get removed.
-summary_raw = WiNDCNational.build_us_table()
-df = table(summary_raw) |>
-    x -> subset(x,
-        :row => ByRow(y -> !(y in (:Used, :Other)))
-    )
-summary_raw = National(df, sets(summary_raw), elements(summary_raw))
-summary,_ = calibrate(summary_raw)
-
-state_table = create_state_table(summary, info)
+state_table = create_state_table("path/to/your/data/directory")
 ```
-
-We will be updating the disaggregation process to be a single function call in the future.
 
 
 ## Verify Results in CGE Model

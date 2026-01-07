@@ -284,54 +284,7 @@ function load_raw_data(
 end
 
 
-"""
-    create_state_table(
-        summary::National,
-        regional_info::Dict;
-        tol::Float64 = 0
-    )
 
-Disaggregate the US WiNDCNational summary-level data into a state-level table, 
-using raw data files located in `data_directory`. The disaggregation is performed 
-through a sequence of functions, each disaggregating a specific component of the 
-national summary.
-
-Returns a balanced WiNDCRegional State table.
-
-## Required Arguments
-
-- `summary::National`: The national summary WiNDCNational table.
-- `regional_info::Dict`: The full contents of the `regional.yaml` file, loaded 
-    as a dictionary.
-
-## Optional Arguments
-
-- `tol::Float64 = 0`: Tolerance level for removing small values from the final 
-    state table.
-
-## Disaggregation Steps
-
-The disaggregation is performed through the following steps:
-
-1. [`WiNDCRegional.initialize_table`](@ref)
-2. [`WiNDCRegional.disaggregate_intermediate`](@ref)
-3. [`WiNDCRegional.disaggregate_labor_capital`](@ref)
-4. [`WiNDCRegional.disaggregate_output_tax`](@ref)
-5. [`WiNDCRegional.disaggregate_investment_final_demand`](@ref)
-6. [`WiNDCRegional.disaggregate_personal_consumption`](@ref)
-7. [`WiNDCRegional.disaggregate_household_supply`](@ref)
-8. [`WiNDCRegional.disaggregate_government_final_demand`](@ref)
-9. [`WiNDCRegional.disaggregate_foreign_exports`](@ref)
-10. [`WiNDCRegional.create_reexports`](@ref)
-11. [`WiNDCRegional.disaggregate_foreign_imports`](@ref)
-12. [`WiNDCRegional.disaggregate_margin_demand`](@ref)
-13. [`WiNDCRegional.disaggregate_duty`](@ref)
-14. [`WiNDCRegional.disaggregate_tax`](@ref)
-15. [`WiNDCRegional.create_regional_demand`](@ref)
-16. [`WiNDCRegional.create_regional_margin_supply`](@ref)
-
-
-"""
 function create_state_table(
         summary::National,
         regional_info::Dict;
@@ -384,6 +337,74 @@ function create_state_table(
 
     return state_table
 end
+
+"""
+    create_state_table(regional_data_path::String; tol::Float64 = 0.0)
+
+Disaggregate the US WiNDCNational summary-level data into a state-level table, 
+using raw data files located in `data_directory`. The disaggregation is performed 
+through a sequence of functions, each disaggregating a specific component of the 
+national summary.
+
+Returns a balanced WiNDCRegional State table.
+
+## Required Arguments
+
+- `regional_data_path::String`: Path to the `regional.yaml` file containing 
+    metadata and data file paths needed for disaggregation.
+
+## Optional Arguments
+
+- `tol::Float64 = 0`: Tolerance level for removing small values from the final 
+    state table.
+
+## Disaggregation Steps
+
+The disaggregation is performed through the following steps:
+
+1. [`WiNDCRegional.initialize_table`](@ref)
+2. [`WiNDCRegional.disaggregate_intermediate`](@ref)
+3. [`WiNDCRegional.disaggregate_labor_capital`](@ref)
+4. [`WiNDCRegional.disaggregate_output_tax`](@ref)
+5. [`WiNDCRegional.disaggregate_investment_final_demand`](@ref)
+6. [`WiNDCRegional.disaggregate_personal_consumption`](@ref)
+7. [`WiNDCRegional.disaggregate_household_supply`](@ref)
+8. [`WiNDCRegional.disaggregate_government_final_demand`](@ref)
+9. [`WiNDCRegional.disaggregate_foreign_exports`](@ref)
+10. [`WiNDCRegional.create_reexports`](@ref)
+11. [`WiNDCRegional.disaggregate_foreign_imports`](@ref)
+12. [`WiNDCRegional.disaggregate_margin_demand`](@ref)
+13. [`WiNDCRegional.disaggregate_duty`](@ref)
+14. [`WiNDCRegional.disaggregate_tax`](@ref)
+15. [`WiNDCRegional.create_regional_demand`](@ref)
+16. [`WiNDCRegional.create_regional_margin_supply`](@ref)
+
+
+"""
+function create_state_table(regional_data_path::String; tol::Float64 = 0.0)
+    info = load_regional_yaml(regional_data_path)
+    summary_path = get(info["data"]["summary"], "path", nothing)
+
+    summary_path = isnothing(summary_path) ? :summary : nothing
+
+    summary_raw = WiNDCNational.build_us_table(summary_path)
+
+    df = table(summary_raw) |>
+    x -> subset(x,
+        :row => ByRow(y -> !(y in (:Used, :Other)))
+    )
+    summary_raw = National(df, sets(summary_raw), elements(summary_raw))
+    summary,_ = calibrate(summary_raw)
+    
+    return create_state_table(summary, info; tol = tol)
+
+end
+
+
+
+
+
+
 
 """
     disaggregate_intermediate(
