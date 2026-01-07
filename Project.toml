@@ -1,6 +1,6 @@
 name = "WiNDCRegional"
 uuid = "3a283cf7-dd81-4e73-b72e-b49da15ce41c"
-version = "0.0.1"
+version = "0.1.0"
 authors = ["Mitch Phillipson"]
 
 [deps]
