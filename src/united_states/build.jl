@@ -1658,7 +1658,10 @@ function create_regional_margin_supply(
 
     temp = vcat(
         WiNDCRegional.total_supply(state_table),
-        table(state_table, :Export, :Reexport, :Local_Demand; normalize = :Reexport),
+        table(state_table, :Export, :Reexport, :Local_Demand),
+    ) |>
+    x -> transform(x,
+        [:parameter, :value] => ByRow((p, v) -> p ∈[:reexport, :local_demand] ? -v : v) => :value
     ) |>
     x -> groupby(x, [:year, :region, :row]) |>
     x -> combine(x, :value => sum => :value) |>
